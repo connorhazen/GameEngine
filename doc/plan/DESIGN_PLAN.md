@@ -9,10 +9,25 @@ To establish such a framework, we will rely on interfaces and abstractions. In e
 
 ##Overview
 
+The elements of a game can be broken into categories: UI elements (general), UI 
+elements (game specific controls), game state displays, initial level setups, and game 
+logic/interactions. 
+
+##Design Details
+
+Engine Internal: The Engine has 3 main children classes. These are the gameHandler, AnimationHandler, and LevelHandler. 
+
+* The level handler contains three methods, create level, next level and check game over. 
+
+* The animation handler just returns animations. These are created by passing a before and after state. 
+
+* Finally the gameHandler. This has a method called run event. If the event has a specified result in the game, then it runs the associated interactions. The game handler has three dependencies, an interaction interface, rules interface and event interface. The event interface says what to do for each event. This uses the rules and interactions to complete the update. The various interfaces allow for the custom games. 
+
+CRUCIAL: The event is what you do to the cell/s, the interaction is which cell/s you do it to, and the rules are the outcome of the interaction. This is truly where the various games are made. We will code some generic implementations that seem to be common, while also providing some more vague subclasses that can use lambda's supplied by the XML to make the custom implementations. 
+=======
 Our design is made up of three components: the player, the engine, and the view. This design essentially mirrors the MVC design we have previously discussed. The player acts as the main controller and deals with creating the main menu and then creating the correct view and engine based on the Data class and what game was selected. The data class is essentially a parser that reads an XML file and creates the engine and view by assembling components specified in the XML. 
 
 These engines and views act as a generic agent that holds specific versions of Interfaces that carry out various functions. Each engine is compiled with the same interfaces, but the specific implementation of the interface is specified by XML. In this way, we can create many different games that all run using the same framework but swapping subclasses. 
-
 
 
 Player:
