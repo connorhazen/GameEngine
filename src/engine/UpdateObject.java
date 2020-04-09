@@ -1,9 +1,9 @@
 package engine;
 
-import javafx.animation.Animation;
+import util.Grid;
 
 public interface UpdateObject {
   Grid getGrid();
-  Animation getAnimation();
+  GameAnimation getAnimation();
   boolean getLevelOver();
 }
