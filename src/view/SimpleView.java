@@ -35,6 +35,9 @@ public class SimpleView implements View {
   }
 
   private void displayGrid(Grid grid) {
+    if(grid == null){
+      return;
+    }
     int height = grid.getHeight();
     int width = grid.getWidth();
 

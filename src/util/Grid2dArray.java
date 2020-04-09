@@ -4,8 +4,12 @@ import java.util.Iterator;
 
 public class Grid2dArray extends Grid {
   private MutableCell[][] grid;
+  private int width;
+  private int height;
 
   public Grid2dArray(int width, int height){
+    this.width = width;
+    this.height = height;
     grid = new MutableCell[width][height];
   }
 
@@ -35,17 +39,14 @@ public class Grid2dArray extends Grid {
 
   @Override
   public int getWidth() {
-    return grid.length;
+    return width;
   }
 
 
-  /**
-   * TODO check if x is 0 ie out of bounds;
-   * @return
-   */
+
   @Override
   public int getHeight() {
-    return grid[0].length;
+    return height;
   }
 
   @Override
