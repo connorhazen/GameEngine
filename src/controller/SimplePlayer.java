@@ -13,7 +13,7 @@ import util.InitialState;
 import view.View;
 
 public class SimplePlayer implements Player {
-  private View v;
+  private View view;
   private Engine engine;
   private final static double HEIGHT = 500;
   private final static double WIDTH = 500;
@@ -23,17 +23,17 @@ public class SimplePlayer implements Player {
 
 
   public SimplePlayer(Stage primaryStage) {
-
     Group root = new Group();
     Scene display = new Scene(root, WIDTH, HEIGHT);
     currentScene = display;
     primaryStage.setScene(display);
     primaryStage.show();
 
-
     GameObject go = new GameObject(GAME_FILE, display);
-    v = go.getView();
+    view = go.getView();
     engine = go.getEngine();
+
+    view.updateGridDisplay(engine.getGrid());
   }
 
   @Override
@@ -45,7 +45,6 @@ public class SimplePlayer implements Player {
   @Override
   public void handleEvent(Action e) {
     UpdateObject uo = engine.executeAction(e);
-
     if (hasNextAction(uo)){
       updateView(uo);
       handleEvent(e);
@@ -59,24 +58,8 @@ public class SimplePlayer implements Player {
 
   @Override
   public void updateView(UpdateObject uo) {
-    v.updateGridDisplay(uo);
+    view.updateGridDisplay(uo);
 
   }
 
-
-  public void tester(){
-    updateView(new UpdateStatus(makeStupidGrid(), null, true, null));
-  }
-
-  private Grid makeStupidGrid(){
-    Grid2dArray grid = new Grid2dArray(10,10);
-
-    for(int x = 0; x < 10; x++){
-      for(int y = 0; y < 10; y++){
-        grid.setCell(x, y, new InitialState("dumb", "StateImages/questionMark.gif", 0) {
-        });
-      }
-    }
-    return grid;
-  }
 }
