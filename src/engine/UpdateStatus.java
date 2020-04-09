@@ -2,25 +2,26 @@ package engine;
 
 
 import util.Grid;
+import util.UserAction;
 
 public class UpdateStatus implements UpdateObject {
     private Grid gridStatus;
     private GameAnimation animationStatus;
     private boolean gameOverStatus;
-    private Event nextEvent;
+    private UserAction nextUserAction;
 
-    public UpdateStatus(Grid g, GameAnimation a, boolean over, Event ev){
+    public UpdateStatus(Grid g, GameAnimation a, boolean over, UserAction ev){
         gridStatus = g;
         animationStatus = a;
         gameOverStatus = over;
-        nextEvent = ev;
+        nextUserAction = ev;
     }
 
     public UpdateStatus(Grid g){
         gridStatus = g;
         animationStatus = null;
         gameOverStatus = false;
-        nextEvent = null;
+        nextUserAction = null;
     }
 
     @Override
@@ -39,7 +40,7 @@ public class UpdateStatus implements UpdateObject {
     }
 
     @Override
-    public Event getNextEvent() {
-        return nextEvent;
+    public UserAction getNextUserAction() {
+        return nextUserAction;
     }
 }
