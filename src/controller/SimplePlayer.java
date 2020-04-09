@@ -2,14 +2,10 @@ package controller;
 
 import engine.Engine;
 import engine.UpdateObject;
-import engine.UpdateStatus;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import util.Action;
-import util.Grid;
-import util.Grid2dArray;
-import util.InitialState;
+import util.SimpleAction;
 import view.View;
 
 public class SimplePlayer implements Player {
@@ -38,12 +34,12 @@ public class SimplePlayer implements Player {
 
   @Override
   public void makeListeners() {
-    currentScene.setOnKeyPressed(e -> handleEvent(new Action(e)));
+    currentScene.setOnKeyPressed(e -> handleEvent(new SimpleAction(e)));
   }
 
 
   @Override
-  public void handleEvent(Action e) {
+  public void handleEvent(SimpleAction e) {
     UpdateObject uo = engine.executeAction(e);
     if (hasNextAction(uo)){
       updateView(uo);
@@ -53,7 +49,7 @@ public class SimplePlayer implements Player {
   }
 
   private boolean hasNextAction(UpdateObject uo) {
-    return uo.getNextUserAction() !=null;
+    return uo.getNextAction() !=null;
   }
 
   @Override

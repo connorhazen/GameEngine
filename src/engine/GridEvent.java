@@ -1,7 +1,7 @@
 package engine;
 
 import util.Grid;
-import util.UserAction;
+import util.Action;
 
 public class GridEvent implements Event {
 
@@ -14,7 +14,7 @@ public class GridEvent implements Event {
     }
 
     @Override
-    public UserAction getNextAction() {
+    public Action getNextAction() {
         return null;
     }
 }
