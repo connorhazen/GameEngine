@@ -1,5 +1,14 @@
+import engine.Event;
+import engine.UpdateObject;
 import javafx.application.Application;
 
-public abstract class Player extends Application{
+public interface Player {
+
+  void makeListeners();
+
+  void handleEvent(Event e);
+
+  void updateView(UpdateObject uo);
+
 
 }
