@@ -16,20 +16,18 @@ public class Grid2dArray extends Grid {
   public void setCell(int x, int y, State newState){
     MutableCell cell = grid[x][y];
     if(cell == null){
-      grid[x][y] = new MutableCell();
-      cell = grid[x][y];
+      grid[x][y] = new MutableCell(newState, new Coordinates(x,y));
     }
-    cell.setState(newState);
+    else{
+      cell.setState(newState);
+    }
   }
 
-  @Override
-  public String getIdentifier(Cell x) {
-    return null;
-  }
+
 
   @Override
-  public String getCell(String identifier) {
-    return null;
+  public Cell getCell(Coordinates coords) {
+    return getCell(coords.x, coords.y);
   }
 
   @Override
