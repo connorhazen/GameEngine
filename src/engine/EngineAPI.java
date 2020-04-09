@@ -1,8 +1,10 @@
 package engine;
 
+import util.UserAction;
+
 public interface EngineAPI {
   UpdateObject getGrid();
 
-  UpdateObject executeEvent(Event e);
+  UpdateObject executeAction(UserAction action);
 
 }
