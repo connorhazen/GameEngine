@@ -34,7 +34,7 @@ public class SimplePlayer implements Player {
 
     primaryStage.show();
 
-    engine = new Engine();
+    engine = new Engine(null, null, null);
   }
 
   @Override
@@ -45,8 +45,17 @@ public class SimplePlayer implements Player {
 
   @Override
   public void handleEvent(Action e) {
-    engine.
+    UpdateObject uo = engine.executeAction(e);
 
+    if (hasNextAction(uo)){
+      updateView(uo);
+      handleEvent(e);
+    }
+
+  }
+
+  private boolean hasNextAction(UpdateObject uo) {
+    return uo.getNextUserAction() !=null;
   }
 
   @Override
@@ -57,7 +66,7 @@ public class SimplePlayer implements Player {
 
 
   public void tester(){
-    updateView(new UpdateStatus(makeStupidGrid(), null, true));
+    updateView(new UpdateStatus(makeStupidGrid(), null, true, null));
   }
 
   private Grid makeStupidGrid(){

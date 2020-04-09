@@ -3,7 +3,7 @@ package util;
 import engine.Event;
 import javafx.scene.input.KeyEvent;
 
-public class Action implements Event {
+public class Action implements UserAction {
 
   private String code;
   public Action(KeyEvent e) {
