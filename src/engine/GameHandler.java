@@ -1,10 +1,13 @@
 package engine;
 
 import util.Grid;
+import util.UserAction;
 
 public interface GameHandler {
 
-    Event getNextEvent();
+    void addEvent(UserAction action, String operation, String interactions, String rules);
 
-    Grid generateUpdatedGrid(Grid currentGrid, Event e);
+    UserAction getNextEvent();
+
+    Grid generateUpdatedGrid(Grid currentGrid, UserAction e);
 }
