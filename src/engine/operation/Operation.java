@@ -1,4 +1,4 @@
-package engine;
+package engine.operation;
 
 public interface Operation {
 }

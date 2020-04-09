@@ -18,6 +18,7 @@ public class GridEvent implements Event {
     private Operation myOperation;
     private Interaction myInteraction;
     private Rules myRules;
+    private UserAction nextAction;
 
     public GridEvent(String operation, String interaction, String rules) {
         myOperation = (Operation)createObjectOf(operation, OPERATION_PACKAGE);
