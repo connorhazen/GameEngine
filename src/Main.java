@@ -1,4 +1,4 @@
-import Controller.SimplePlayer;
+import controller.SimplePlayer;
 import javafx.application.Application;
 
 import javafx.stage.Stage;

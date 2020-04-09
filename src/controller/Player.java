@@ -1,6 +1,5 @@
-package Controller;
+package controller;
 
-import engine.Event;
 import engine.UpdateObject;
 import util.Action;
 

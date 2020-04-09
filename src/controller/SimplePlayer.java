@@ -1,7 +1,6 @@
-package Controller;
+package controller;
 
 import engine.Engine;
-import engine.Event;
 import engine.UpdateObject;
 import engine.UpdateStatus;
 import javafx.scene.Group;
@@ -11,7 +10,6 @@ import util.Action;
 import util.Grid;
 import util.Grid2dArray;
 import util.InitialState;
-import view.SimpleView;
 import view.View;
 
 public class SimplePlayer implements Player {
@@ -19,6 +17,7 @@ public class SimplePlayer implements Player {
   private Engine engine;
   private final static double HEIGHT = 500;
   private final static double WIDTH = 500;
+  private final static String GAME_FILE = "game1.xml";
 
   private Scene currentScene;
 
@@ -28,13 +27,13 @@ public class SimplePlayer implements Player {
     Group root = new Group();
     Scene display = new Scene(root, WIDTH, HEIGHT);
     currentScene = display;
-
     primaryStage.setScene(display);
-    v = new SimpleView(display);
-
     primaryStage.show();
 
-    engine = new Engine(null, null, null);
+
+    GameObject go = new GameObject(GAME_FILE, display);
+    v = go.getView();
+    engine = go.getEngine();
   }
 
   @Override
