@@ -1,12 +1,14 @@
+package Controller;
+
 import engine.Event;
 import engine.UpdateObject;
-import javafx.application.Application;
+import util.Action;
 
 public interface Player {
 
   void makeListeners();
 
-  void handleEvent(Event e);
+  void handleEvent(Action e);
 
   void updateView(UpdateObject uo);
 

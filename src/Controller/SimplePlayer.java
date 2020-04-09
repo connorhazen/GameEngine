@@ -1,32 +1,51 @@
+package Controller;
+
+import engine.Engine;
 import engine.Event;
 import engine.UpdateObject;
 import engine.UpdateStatus;
-import javafx.application.Application;
+import javafx.scene.Group;
+import javafx.scene.Scene;
 import javafx.stage.Stage;
+import util.Action;
 import util.Grid;
 import util.Grid2dArray;
 import util.InitialState;
-import util.State;
 import view.SimpleView;
 import view.View;
 
 public class SimplePlayer implements Player {
   private View v;
+  private Engine engine;
+  private final static double HEIGHT = 500;
+  private final static double WIDTH = 500;
+
+  private Scene currentScene;
 
 
   public SimplePlayer(Stage primaryStage) {
-    v = new SimpleView(primaryStage);
+
+    Group root = new Group();
+    Scene display = new Scene(root, WIDTH, HEIGHT);
+    currentScene = display;
+
+    primaryStage.setScene(display);
+    v = new SimpleView(display);
 
     primaryStage.show();
+
+    engine = new Engine();
   }
 
   @Override
   public void makeListeners() {
-
+    currentScene.setOnKeyPressed(e -> handleEvent(new Action(e)));
   }
 
+
   @Override
-  public void handleEvent(Event e) {
+  public void handleEvent(Action e) {
+    engine.
 
   }
 

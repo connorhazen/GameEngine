@@ -1,5 +1,6 @@
+import Controller.SimplePlayer;
 import javafx.application.Application;
-import javafx.beans.property.SimpleBooleanProperty;
+
 import javafx.stage.Stage;
 
 public class Main extends Application {
