@@ -5,14 +5,14 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import javafx.scene.image.Image;
 
-public class InitialState implements State {
+public class SimpleState implements State {
   private String type;
   private Image image;
   private double value;
 
   public static final String DEFAULT_IMAGE = "/StateImages/questionMark.gif";
 
-  public InitialState(String type, String imageFile, double value){
+  public SimpleState(String type, String imageFile, double value){
     this.image = makeImage(imageFile);
     this.type = type;
     this.value = value;

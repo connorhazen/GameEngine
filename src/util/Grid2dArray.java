@@ -4,28 +4,41 @@ import java.util.Iterator;
 
 public class Grid2dArray extends Grid {
   private MutableCell[][] grid;
+  private int width;
+  private int height;
 
   public Grid2dArray(int width, int height){
+    this.width = width;
+    this.height = height;
     grid = new MutableCell[width][height];
+  }
+
+  public Grid2dArray(Grid grid){
+    width = grid.getWidth();
+    height = grid.getHeight();
+
+    for(int x = 0; x<width; x++){
+      for(int y = 0; y<height; y++) {
+        setCell(x,y, grid.getCell(x,y).getState());
+      }
+    }
   }
 
   public void setCell(int x, int y, State newState){
     MutableCell cell = grid[x][y];
     if(cell == null){
-      grid[x][y] = new MutableCell();
-      cell = grid[x][y];
+      grid[x][y] = new MutableCell(newState, new Coordinates(x,y));
     }
-    cell.setState(newState);
+    else{
+      cell.setState(newState);
+    }
   }
 
-  @Override
-  public String getIdentifier(Cell x) {
-    return null;
-  }
+
 
   @Override
-  public String getCell(String identifier) {
-    return null;
+  public Cell getCell(Coordinates coords) {
+    return getCell(coords.x, coords.y);
   }
 
   @Override
@@ -35,17 +48,12 @@ public class Grid2dArray extends Grid {
 
   @Override
   public int getWidth() {
-    return grid.length;
+    return width;
   }
 
-
-  /**
-   * TODO check if x is 0 ie out of bounds;
-   * @return
-   */
   @Override
   public int getHeight() {
-    return grid[0].length;
+    return height;
   }
 
   @Override

@@ -1,12 +1,13 @@
-import engine.Event;
+package controller;
+
 import engine.UpdateObject;
-import javafx.application.Application;
+import util.SimpleAction;
 
 public interface Player {
 
   void makeListeners();
 
-  void handleEvent(Event e);
+  void handleEvent(SimpleAction e);
 
   void updateView(UpdateObject uo);
 

@@ -4,7 +4,7 @@ import engine.interaction.Interaction;
 import engine.operation.Operation;
 import engine.rules.Rules;
 import util.Grid;
-import util.UserAction;
+import util.Action;
 
 import java.lang.reflect.Constructor;
 
@@ -32,7 +32,7 @@ public class GridEvent implements Event {
     }
 
     @Override
-    public UserAction getNextAction() {
+    public Action getNextAction() {
         return null;
     }
 

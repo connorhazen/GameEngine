@@ -14,13 +14,11 @@ public class SimpleView implements View {
 
   private Scene display;
   private Group root;
-  private final static double HEIGHT = 500;
-  private final static double WIDTH = 500;
 
-  public SimpleView(Stage stage){
-    root = new Group();
-    display = new Scene(root, WIDTH, HEIGHT);
-    stage.setScene(display);
+  public SimpleView(Scene scene){
+    display = scene;
+    root = (Group) scene.getRoot();
+
   }
 
 
@@ -35,16 +33,19 @@ public class SimpleView implements View {
   }
 
   private void displayGrid(Grid grid) {
+    if(grid == null){
+      return;
+    }
     int height = grid.getHeight();
     int width = grid.getWidth();
 
     for(int x = 0; x<width; x++){
       for(int y = 0; y<height; y++){
         ImageView add = new ImageView(grid.getCell(x,y).getImage());
-        add.setFitWidth(WIDTH/width);
-        add.setFitHeight(HEIGHT/height);
-        add.setLayoutX(WIDTH/width * x);
-        add.setLayoutY(HEIGHT/height*y);
+        add.setFitWidth(display.getWidth()/width);
+        add.setFitHeight(display.getHeight()/height);
+        add.setLayoutX(display.getWidth()/width * x);
+        add.setLayoutY(display.getHeight()/height*y);
         root.getChildren().add(add);
       }
     }
