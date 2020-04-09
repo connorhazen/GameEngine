@@ -1,8 +1,12 @@
 package view;
 
+
+import engine.UpdateObject;
+import util.Grid;
+
 public interface View {
 
-  void updateGridDisplay(Grid g);
+  void updateGridDisplay(UpdateObject uo);
 
   void displayWindow(Window w);
 
