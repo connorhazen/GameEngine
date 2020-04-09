@@ -2,13 +2,9 @@ package util;
 
 import java.util.Iterator;
 
-public interface Grid extends Iterable<Cell> {
+public abstract class Grid implements Iterable<Cell> {
 
-  String getIdentifier(Cell x);
+  abstract String getIdentifier(Cell x);
 
-  String getCell(String identifier);
-
-  @Override
-  Iterator<Cell> iterator();
-
+  abstract String getCell(String identifier);
 }
