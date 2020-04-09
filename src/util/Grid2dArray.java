@@ -1,6 +1,9 @@
 package util;
 
+import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
+import java.util.function.Consumer;
 
 public class Grid2dArray extends Grid {
   private MutableCell[][] grid;
@@ -16,12 +19,7 @@ public class Grid2dArray extends Grid {
   public Grid2dArray(Grid grid){
     width = grid.getWidth();
     height = grid.getHeight();
-
-    for(int x = 0; x<width; x++){
-      for(int y = 0; y<height; y++) {
-        setCell(x,y, grid.getCell(x,y).getState());
-      }
-    }
+    loop((c) -> {setCell(c.x, c.y, grid.getCell(c).getState());});
   }
 
   public void setCell(int x, int y, State newState){
@@ -41,6 +39,10 @@ public class Grid2dArray extends Grid {
     return getCell(coords.x, coords.y);
   }
 
+  public Cell getMutableCell(Coordinates coords) {
+    return grid[coords.x][coords.y];
+  }
+
   @Override
   public Cell getCell(int x, int y) {
     return grid[x][y];
@@ -57,7 +59,26 @@ public class Grid2dArray extends Grid {
   }
 
   @Override
+  public List<Cell> getCellsOfState(State s) {
+    List<Cell> ret = new ArrayList<>();
+    Consumer<Coordinates> con = (c) -> {if(getCell(c).getState().equals(s)) ret.add(getCell(c));};
+
+    loop(con);
+
+    return ret;
+
+  }
+
+  @Override
   public Iterator<Cell> iterator() {
     return null;
+  }
+
+  private void loop(Consumer<Coordinates> run){
+    for(int x = 0; x<width; x++) {
+      for (int y = 0; y < height; y++) {
+        run.accept(new Coordinates(x,y));
+      }
+    }
   }
 }
