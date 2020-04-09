@@ -19,15 +19,22 @@ public class Engine implements EngineAPI{
 
     @Override
     public UpdateObject getGrid() {
-        return generateUpdateStatus();
+        return new UpdateStatus(currentGrid);
     }
 
     @Override
     public UpdateObject executeEvent(Event e) {
+        updatedGrid = currGameHandler.generateUpdatedGrid(currentGrid, e);
         return generateUpdateStatus();
     }
 
     private UpdateObject generateUpdateStatus() {
-        return null;
+        boolean status = currLevelHandler.determineStatus();
+        GameAnimation animation = currAnimationHandler.getAnimation(currentGrid, updatedGrid);
+        Event nextEvent = currGameHandler.getNextEvent();
+        UpdateObject updateStatus = new UpdateStatus(updatedGrid,animation,status,nextEvent);
+        currentGrid = updatedGrid;
+        updatedGrid = null;
+        return updateStatus;
     }
 }
