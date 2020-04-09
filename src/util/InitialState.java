@@ -28,6 +28,7 @@ public class InitialState implements State {
       try{
         ClassLoader classLoader = ClassLoader.getSystemClassLoader();
         FileInputStream file = new FileInputStream(classLoader.getResource(DEFAULT_IMAGE).getFile());
+        image = new Image(file);
       } catch (FileNotFoundException ex) {
         System.out.println("Fucked up");
       }
