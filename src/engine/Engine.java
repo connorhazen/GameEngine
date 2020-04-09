@@ -1,6 +1,7 @@
 package engine;
 
 import util.Grid;
+import util.UserAction;
 
 public class Engine implements EngineAPI{
     private Grid currentGrid;
@@ -23,16 +24,16 @@ public class Engine implements EngineAPI{
     }
 
     @Override
-    public UpdateObject executeEvent(Event e) {
-        updatedGrid = currGameHandler.generateUpdatedGrid(currentGrid, e);
+    public UpdateObject executeAction(UserAction action) {
+        updatedGrid = currGameHandler.generateUpdatedGrid(currentGrid, action);
         return generateUpdateStatus();
     }
 
     private UpdateObject generateUpdateStatus() {
         boolean status = currLevelHandler.determineStatus();
         GameAnimation animation = currAnimationHandler.getAnimation(currentGrid, updatedGrid);
-        Event nextEvent = currGameHandler.getNextEvent();
-        UpdateObject updateStatus = new UpdateStatus(updatedGrid,animation,status,nextEvent);
+        UserAction nextUserAction = currGameHandler.getNextEvent();
+        UpdateObject updateStatus = new UpdateStatus(updatedGrid,animation,status, nextUserAction);
         currentGrid = updatedGrid;
         updatedGrid = null;
         return updateStatus;
