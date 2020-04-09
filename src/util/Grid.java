@@ -4,7 +4,12 @@ import java.util.Iterator;
 
 public abstract class Grid implements Iterable<Cell> {
 
-  abstract String getIdentifier(Cell x);
+  public abstract String getIdentifier(Cell x);
 
-  abstract String getCell(String identifier);
+  public abstract String getCell(String identifier);
+
+  public abstract Cell getCell(int x, int y);
+
+  public abstract int getWidth();
+  public abstract int getHeight();
 }
