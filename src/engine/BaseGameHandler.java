@@ -18,8 +18,8 @@ public class BaseGameHandler implements GameHandler {
     }
 
     @Override
-    public void addEvent(Action action, String operation, String interaction, String rules){
-        eventMappings.put(action, new GridEvent(operation,interaction,rules));
+    public void addEvent(Action action, String operation, String interaction, String rules, Action nextAction){
+        eventMappings.put(action, new GridEvent(operation,interaction,rules, nextAction));
     }
 
     @Override
@@ -39,6 +39,7 @@ public class BaseGameHandler implements GameHandler {
             return updatedGrid;
         }
         else{
+            nextEvent = null;
             return currentGrid;
         }
     }

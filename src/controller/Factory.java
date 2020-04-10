@@ -38,10 +38,10 @@ public class Factory {
 
   //TODO: remove and use xml parsing
   public void hardcodedEventsForNow(GameHandler gh){
-    gh.addEvent(new SimpleAction("LEFT"),"OperationCombine2048","RightToLeftAll","Rule2048");
-    gh.addEvent(new SimpleAction("RIGHT"),"OperationCombine2048","LeftToRightAll","Rule2048");
-    gh.addEvent(new SimpleAction("UP"),"OperationCombine2048","BottomToTopAll","Rule2048");
-    gh.addEvent(new SimpleAction("DOWN"),"OperationCombine2048","TopToBottomAll","Rule2048");
+    gh.addEvent(new SimpleAction("LEFT"),"OperationCombine2048","RightToLeftAll","Rule2048", new SimpleAction("addRandom"));
+    gh.addEvent(new SimpleAction("RIGHT"),"OperationCombine2048","LeftToRightAll","Rule2048", new SimpleAction("addRandom"));
+    gh.addEvent(new SimpleAction("UP"),"OperationCombine2048","BottomToTopAll","Rule2048", new SimpleAction("addRandom"));
+    gh.addEvent(new SimpleAction("DOWN"),"OperationCombine2048","TopToBottomAll","Rule2048", new SimpleAction("addRandom"));
   }
 
   public View makeView() {

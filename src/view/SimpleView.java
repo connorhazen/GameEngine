@@ -84,6 +84,7 @@ public class SimpleView implements View {
         image = new Image(inputStream);
       } catch (Exception ex) {
         System.out.println("Fucked up");
+        ex.printStackTrace();
       }
     }
 

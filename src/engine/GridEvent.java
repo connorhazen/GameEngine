@@ -20,11 +20,11 @@ public class GridEvent implements Event {
     private Rules myRules;
     private Action nextAction;
 
-    public GridEvent(String operation, String interaction, String rules) {
+    public GridEvent(String operation, String interaction, String rules, Action nextAction) {
         myOperation = (Operation)createObjectOf(operation, OPERATION_PACKAGE);
         myInteraction = (Interaction)createObjectOf(interaction, INTERACTION_PACKAGE);
         myRules = (Rules)createObjectOf(rules, RULES_PACKAGE);
-        nextAction = null;
+        this.nextAction = nextAction;
     }
 
     @Override

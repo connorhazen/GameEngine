@@ -5,6 +5,7 @@ import engine.UpdateObject;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import util.Action;
 import util.SimpleAction;
 import view.View;
 
@@ -43,19 +44,17 @@ public class SimplePlayer implements Player {
 
 
   @Override
-  public void handleEvent(SimpleAction e) {
-    System.out.println("Player listend code :" + e.getCode());
-
+  public void handleEvent(Action e) {
+    System.out.println("Player listened code :" + e.getCode());
     UpdateObject uo = engine.executeAction(e);
-    if (hasNextAction(uo)){
-      updateView(uo);
-      handleEvent(e);
+    updateView(uo);
+    if(hasNextAction(uo)){
+      handleEvent(uo.getNextAction());
     }
-
   }
 
   private boolean hasNextAction(UpdateObject uo) {
-    return uo.getNextAction() !=null;
+    return uo.getNextAction() != null;
   }
 
   @Override

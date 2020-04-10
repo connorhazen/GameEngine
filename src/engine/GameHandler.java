@@ -6,7 +6,7 @@ import util.SimpleAction;
 
 public interface GameHandler {
 
-    void addEvent(Action action, String operation, String interactions, String rules);
+    void addEvent(Action action, String operation, String interactions, String rules, Action nextAction);
 
     Action getNextEvent();
 
