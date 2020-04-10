@@ -8,7 +8,7 @@ import java.util.List;
 
 public abstract class OrderedAll implements Interaction {
 
-    protected List<MutableCell> cells;
+    protected List<List<MutableCell>> cells;
     public abstract void setGrid(Grid2dArray currentGrid);
 
     public OrderedAll(){
@@ -17,14 +17,20 @@ public abstract class OrderedAll implements Interaction {
 
     @Override
     public boolean hasNext() {
-        return cells != null && cells.size() >= 2;
+        System.out.println(cells);
+        return (cells != null) && (cells.size() != 1 && cells.get(0).size() > 1);
     }
 
     @Override
     public List<MutableCell> next() {
         List<MutableCell> pairOfCells = new ArrayList<>();
-        pairOfCells.add(cells.remove(0));
-        pairOfCells.add(cells.get(0));
+        List<MutableCell> currentGroup = cells.get(0);
+        if(currentGroup.size() < 2){
+            cells.remove(0);
+            currentGroup = cells.get(0);
+        }
+        pairOfCells.add(currentGroup.remove(0));
+        pairOfCells.add(currentGroup.get(0));
         return pairOfCells;
     }
 }
