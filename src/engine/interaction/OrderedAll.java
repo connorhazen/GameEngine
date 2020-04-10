@@ -24,7 +24,7 @@ public abstract class OrderedAll implements Interaction {
     public List<MutableCell> next() {
         List<MutableCell> pairOfCells = new ArrayList<>();
         pairOfCells.add(cells.remove(0));
-        pairOfCells.add(cells.remove(0));
+        pairOfCells.add(cells.get(0));
         return pairOfCells;
     }
 }
