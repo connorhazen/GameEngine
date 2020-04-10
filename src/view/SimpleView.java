@@ -55,7 +55,9 @@ public class SimpleView implements View {
       pane.setPrefHeight(display.getHeight() / height);
       pane.setLayoutX(display.getWidth() / width * c.x);
       pane.setLayoutY(display.getHeight() / height * c.y);
-      pane.getChildren().add(makeImage(grid.getCell(c.x, c.y).getType(),grid.getCell(c.x, c.y).getValue() ));
+
+      Node toAdd =  makeImage(grid.getCell(c.x, c.y).getType(),grid.getCell(c.x, c.y).getValue());
+      pane.getChildren().add(toAdd);
       root.getChildren().add(pane);
     });
   }
@@ -64,6 +66,8 @@ public class SimpleView implements View {
 
 
     if(!imageMap.containsKey(value)){
+      Label ret = new Label(Integer.toString(value));
+
       return new Label(Integer.toString(value));
     }
 
