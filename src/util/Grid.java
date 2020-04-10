@@ -2,6 +2,7 @@ package util;
 
 import java.util.Iterator;
 import java.util.List;
+import java.util.function.Consumer;
 
 public abstract class Grid implements Iterable<Cell> {
 
@@ -14,4 +15,6 @@ public abstract class Grid implements Iterable<Cell> {
   public abstract int getHeight();
 
   public abstract List<Cell> getCellsOfState(State s);
+
+  public abstract void loop(Consumer<Coordinates> c);
 }

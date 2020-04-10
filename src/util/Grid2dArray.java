@@ -39,7 +39,7 @@ public class Grid2dArray extends Grid {
     return getCell(coords.x, coords.y);
   }
 
-  public Cell getMutableCell(Coordinates coords) {
+  public MutableCell getMutableCell(Coordinates coords) {
     return grid[coords.x][coords.y];
   }
 
@@ -74,7 +74,8 @@ public class Grid2dArray extends Grid {
     return null;
   }
 
-  private void loop(Consumer<Coordinates> run){
+  @Override
+  public void loop(Consumer<Coordinates> run){
     for(int x = 0; x<width; x++) {
       for (int y = 0; y < height; y++) {
         run.accept(new Coordinates(x,y));

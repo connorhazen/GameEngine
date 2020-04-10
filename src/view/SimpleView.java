@@ -39,16 +39,15 @@ public class SimpleView implements View {
     int height = grid.getHeight();
     int width = grid.getWidth();
 
-    for(int x = 0; x<width; x++){
-      for(int y = 0; y<height; y++){
-        ImageView add = new ImageView(grid.getCell(x,y).getImage());
-        add.setFitWidth(display.getWidth()/width);
-        add.setFitHeight(display.getHeight()/height);
-        add.setLayoutX(display.getWidth()/width * x);
-        add.setLayoutY(display.getHeight()/height*y);
-        root.getChildren().add(add);
-      }
-    }
+    grid.loop((c) -> {
+      ImageView add = new ImageView(grid.getCell(c.x, c.y).getImage());
+      add.setFitWidth(display.getWidth() / width);
+      add.setFitHeight(display.getHeight() / height);
+      add.setLayoutX(display.getWidth() / width * c.x);
+      add.setLayoutY(display.getHeight() / height * c.y);
+      root.getChildren().add(add);
+    });
+
   }
 
   @Override
