@@ -30,9 +30,14 @@ public class BaseGameHandler implements GameHandler {
 
     @Override
     public Grid generateUpdatedGrid(Grid currentGrid, Action action) {
-        Event eventToPerform = eventMappings.get(action);
-        Grid updatedGrid = eventToPerform.execute(currentGrid);
-        nextEvent = eventToPerform.getNextAction();
-        return updatedGrid;
+        if (eventMappings.containsKey(action)){
+            Event eventToPerform = eventMappings.get(action);
+            Grid updatedGrid = eventToPerform.execute(currentGrid);
+            nextEvent = eventToPerform.getNextAction();
+            return updatedGrid;
+        }
+        else{
+            return currentGrid;
+        }
     }
 }
