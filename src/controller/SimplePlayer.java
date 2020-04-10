@@ -36,7 +36,9 @@ public class SimplePlayer implements Player {
 
   @Override
   public void makeListeners() {
-    currentScene.setOnKeyPressed(e -> handleEvent(new SimpleAction(e)));
+    currentScene.setOnKeyPressed(e -> {
+      handleEvent(new SimpleAction(e));
+    });
   }
 
 

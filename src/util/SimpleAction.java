@@ -6,7 +6,7 @@ public class SimpleAction implements Action {
 
   private String code;
   public SimpleAction(KeyEvent e) {
-    code =  e.getText();
+    code =  e.getCode().toString();
   }
 
   public SimpleAction(String e){
