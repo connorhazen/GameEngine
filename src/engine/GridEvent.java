@@ -20,11 +20,14 @@ public class GridEvent implements Event {
     private Rules myRules;
     private Action nextAction;
 
+    private Boolean didExecute;
+
     public GridEvent(String operation, String interaction, String rules, Action nextAction) {
         myOperation = (Operation)createObjectOf(operation, OPERATION_PACKAGE);
         myInteraction = (Interaction)createObjectOf(interaction, INTERACTION_PACKAGE);
         myRules = (Rules)createObjectOf(rules, RULES_PACKAGE);
         this.nextAction = nextAction;
+        didExecute = false;
     }
 
     @Override
@@ -34,6 +37,7 @@ public class GridEvent implements Event {
         while(myInteraction.hasNext()){
             List<MutableCell> currCells = myInteraction.next();
             if(myRules.canPerform(currCells)){
+                didExecute = true;
                 myOperation.execute(currCells);
             }
         }
@@ -42,7 +46,12 @@ public class GridEvent implements Event {
 
     @Override
     public Action getNextAction() {
-        return nextAction;
+        if(didExecute){
+            didExecute = false;
+            return nextAction;
+        }
+        return null;
+
     }
 
     private Object createObjectOf(String rules, String pack) {
