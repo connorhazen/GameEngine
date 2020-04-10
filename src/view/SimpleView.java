@@ -62,12 +62,12 @@ public class SimpleView implements View {
 
   private Node makeImage(String type, Integer value){
 
-    String file = imageMap.get(value);
-    if(type.equals("v")){
+
+    if(!imageMap.containsKey(value)){
       return new Label(Integer.toString(value));
     }
 
-
+    String file = imageMap.get(value);
 
     Image image = null;
     try{

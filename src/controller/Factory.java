@@ -23,6 +23,7 @@ public class Factory {
     this.gameFile = gameFile;
     this.display = display;
     imageMap = new HashMap<>();
+    imageMap.put(0,"questionMark.gif");
 
   }
 
