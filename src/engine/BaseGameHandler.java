@@ -2,6 +2,7 @@ package engine;
 
 import util.Grid;
 import util.Action;
+import util.SimpleAction;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -31,6 +32,7 @@ public class BaseGameHandler implements GameHandler {
     @Override
     public Grid generateUpdatedGrid(Grid currentGrid, Action action) {
         if (eventMappings.containsKey(action)){
+            System.out.println("*");
             Event eventToPerform = eventMappings.get(action);
             Grid updatedGrid = eventToPerform.execute(currentGrid);
             nextEvent = eventToPerform.getNextAction();

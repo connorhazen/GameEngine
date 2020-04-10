@@ -2,6 +2,7 @@ package engine;
 
 import util.Grid;
 import util.Action;
+import util.SimpleAction;
 
 public interface GameHandler {
 
