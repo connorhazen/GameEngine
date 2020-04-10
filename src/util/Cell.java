@@ -11,7 +11,7 @@ public class Cell {
     return state.getType();
   }
 
-  public double getValue(){
+  public int getValue(){
     return state.getValue();
   }
 

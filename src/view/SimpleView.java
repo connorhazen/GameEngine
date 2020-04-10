@@ -20,10 +20,10 @@ public class SimpleView implements View {
 
   private Scene display;
   private Group root;
-  private Map<String, String> imageMap;
+  private Map<Integer, String> imageMap;
   public static final String DEFAULT_IMAGE = "/StateImages/questionMark.gif";
 
-  public SimpleView(Scene scene, Map<String, String> images){
+  public SimpleView(Scene scene, Map<Integer, String> images){
     display = scene;
     root = (Group) scene.getRoot();
     imageMap = images;
@@ -60,17 +60,19 @@ public class SimpleView implements View {
     });
   }
 
-  private Node makeImage(String type, double value){
+  private Node makeImage(String type, Integer value){
 
-    String file = imageMap.get(type);
-    if(file.equals("v")){
-      return new Label(Double.toString(value));
+
+    if(!imageMap.containsKey(value)){
+      return new Label(Integer.toString(value));
     }
+
+    String file = imageMap.get(value);
 
     Image image = null;
     try{
       ClassLoader classLoader = ClassLoader.getSystemClassLoader();
-      FileInputStream inputStream = new FileInputStream(classLoader.getResource(DEFAULT_IMAGE).getFile());
+      FileInputStream inputStream = new FileInputStream(classLoader.getResource(file).getFile());
       image = new Image(inputStream);
     } catch (FileNotFoundException e) {
       try{
