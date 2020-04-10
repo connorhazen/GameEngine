@@ -39,7 +39,7 @@ public class Grid2dArray extends Grid {
     return getCell(coords.x, coords.y);
   }
 
-  public Cell getMutableCell(Coordinates coords) {
+  public MutableCell getMutableCell(Coordinates coords) {
     return grid[coords.x][coords.y];
   }
 

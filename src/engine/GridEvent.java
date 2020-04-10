@@ -32,7 +32,7 @@ public class GridEvent implements Event {
         Grid2dArray copiedGrid = new Grid2dArray(currentGrid);
         myInteraction.setGrid(copiedGrid);
         while(myInteraction.hasNext()){
-            List<MutableCell> currCells = myInteraction.getNext();
+            List<MutableCell> currCells = myInteraction.next();
             if(myRules.canPerform(currCells)){
                 myOperation.execute(currCells);
             }
