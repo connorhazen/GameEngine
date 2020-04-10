@@ -26,6 +26,8 @@ public class SimplePlayer implements Player {
     primaryStage.setScene(display);
     primaryStage.show();
 
+
+
     GameObject go = new GameObject(GAME_FILE, display);
     view = go.getView();
     engine = go.getEngine();
