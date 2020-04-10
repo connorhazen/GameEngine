@@ -17,8 +17,7 @@ public abstract class OrderedAll implements Interaction {
 
     @Override
     public boolean hasNext() {
-        System.out.println(cells);
-        return (cells != null) && (cells.size() != 1 && cells.get(0).size() > 1);
+        return (cells != null) && !(cells.size() == 1 && cells.get(0).size() < 2);
     }
 
     @Override
