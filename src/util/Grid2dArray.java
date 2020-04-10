@@ -19,6 +19,7 @@ public class Grid2dArray extends Grid {
   public Grid2dArray(Grid grid){
     width = grid.getWidth();
     height = grid.getHeight();
+    this.grid = new MutableCell[width][height];
     loop((c) -> {setCell(c.x, c.y, grid.getCell(c).getState());});
   }
 

@@ -44,7 +44,7 @@ public class SimplePlayer implements Player {
 
   @Override
   public void handleEvent(SimpleAction e) {
-    System.out.println(e.getCode());
+    System.out.println("Player listend code :" + e.getCode());
 
     UpdateObject uo = engine.executeAction(e);
     if (hasNextAction(uo)){
