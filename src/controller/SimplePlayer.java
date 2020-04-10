@@ -30,6 +30,8 @@ public class SimplePlayer implements Player {
     engine = go.getEngine();
 
     view.updateGridDisplay(engine.getGrid());
+
+    makeListeners();
   }
 
   @Override
@@ -40,6 +42,8 @@ public class SimplePlayer implements Player {
 
   @Override
   public void handleEvent(SimpleAction e) {
+    System.out.println(e.getCode());
+
     UpdateObject uo = engine.executeAction(e);
     if (hasNextAction(uo)){
       updateView(uo);

@@ -4,6 +4,7 @@ import engine.UpdateObject;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.Map;
+import java.util.Objects;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.scene.Group;
 import javafx.scene.Node;
@@ -21,7 +22,7 @@ public class SimpleView implements View {
   private Scene display;
   private Group root;
   private Map<Integer, String> imageMap;
-  public static final String DEFAULT_IMAGE = "/StateImages/questionMark.gif";
+  public static final String DEFAULT_IMAGE = "StateImages/questionMark.gif";
 
   public SimpleView(Scene scene, Map<Integer, String> images){
     display = scene;
@@ -55,7 +56,6 @@ public class SimpleView implements View {
       pane.setLayoutX(display.getWidth() / width * c.x);
       pane.setLayoutY(display.getHeight() / height * c.y);
       pane.getChildren().add(makeImage(grid.getCell(c.x, c.y).getType(),grid.getCell(c.x, c.y).getValue() ));
-
       root.getChildren().add(pane);
     });
   }
@@ -67,19 +67,21 @@ public class SimpleView implements View {
       return new Label(Integer.toString(value));
     }
 
+
     String file = imageMap.get(value);
 
     Image image = null;
     try{
       ClassLoader classLoader = ClassLoader.getSystemClassLoader();
-      FileInputStream inputStream = new FileInputStream(classLoader.getResource(file).getFile());
+      FileInputStream inputStream = new FileInputStream(Objects.requireNonNull(classLoader.getResource(file)).getFile());
       image = new Image(inputStream);
-    } catch (FileNotFoundException e) {
+    } catch (Exception e) {
       try{
         ClassLoader classLoader = ClassLoader.getSystemClassLoader();
-        FileInputStream inputStream = new FileInputStream(classLoader.getResource(DEFAULT_IMAGE).getFile());
+        FileInputStream inputStream = new FileInputStream(
+            Objects.requireNonNull(classLoader.getResource(DEFAULT_IMAGE)).getFile());
         image = new Image(inputStream);
-      } catch (FileNotFoundException ex) {
+      } catch (Exception ex) {
         System.out.println("Fucked up");
       }
     }
