@@ -9,8 +9,9 @@ public class GameObject {
   private View view;
 
   public GameObject(String gameFile, Scene display) {
-    engine = EngineFactory.make(gameFile);
-    view = ViewFactory.make(gameFile, display);
+    Factory f = new Factory(gameFile, display);
+    engine = f.makeEngine();
+    view = f.makeView();
   }
 
   public View getView() {

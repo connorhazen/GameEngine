@@ -6,6 +6,6 @@ public interface State {
 
   String getType();
 
-  double getValue();
+  int getValue();
 
 }

@@ -6,11 +6,11 @@ import javafx.scene.image.Image;
 
 public class SimpleState implements State {
   private String type;
-  private double value;
+  private int value;
 
 
 
-  public SimpleState(String type, double value){
+  public SimpleState(String type, int value){
     this.type = type;
     this.value = value;
   }
@@ -23,7 +23,7 @@ public class SimpleState implements State {
   }
 
   @Override
-  public double getValue() {
+  public int getValue() {
     return value;
   }
 }
