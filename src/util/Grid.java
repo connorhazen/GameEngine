@@ -14,7 +14,7 @@ public abstract class Grid implements Iterable<Cell> {
   public abstract int getWidth();
   public abstract int getHeight();
 
-  public abstract List<Cell> getCellsOfState(State s);
+  public abstract List<MutableCell> getCellsOfState(State s);
 
   public abstract void loop(Consumer<Coordinates> c);
 }

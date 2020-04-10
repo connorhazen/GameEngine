@@ -42,6 +42,7 @@ public class Factory {
     gh.addEvent(new SimpleAction("RIGHT"),"OperationCombine2048","LeftToRightAll","Rule2048", new SimpleAction("addRandom"));
     gh.addEvent(new SimpleAction("UP"),"OperationCombine2048","BottomToTopAll","Rule2048", new SimpleAction("addRandom"));
     gh.addEvent(new SimpleAction("DOWN"),"OperationCombine2048","TopToBottomAll","Rule2048", new SimpleAction("addRandom"));
+    gh.addEvent(new SimpleAction("addRandom"),"OperationAddRandom","RandomOfType","RuleTrue", null);
   }
 
   public View makeView() {

@@ -60,9 +60,9 @@ public class Grid2dArray extends Grid {
   }
 
   @Override
-  public List<Cell> getCellsOfState(State s) {
-    List<Cell> ret = new ArrayList<>();
-    Consumer<Coordinates> con = (c) -> {if(getCell(c).getState().equals(s)) ret.add(getCell(c));};
+  public List<MutableCell> getCellsOfState(State s) {
+    List<MutableCell> ret = new ArrayList<>();
+    Consumer<Coordinates> con = (c) -> {if(getCell(c).getState().getValue() == s.getValue()) ret.add(getMutableCell(c));};
 
     loop(con);
 
