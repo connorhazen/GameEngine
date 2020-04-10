@@ -7,10 +7,6 @@ public class Cell {
   protected Coordinates coords;
 
 
-  public Image getImage(){
-    return state.getImage();
-  }
-
   public String getType(){
     return state.getType();
   }
