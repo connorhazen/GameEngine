@@ -13,8 +13,8 @@ Sprint 1:
 Sprint 2:
 
  * Create files that allow implementations of other two games - Charles
- * Rework view to look better and include better use of properties files  - connor
+ * Rework game.view to look better and include better use of properties files  - connor
  * Add more classes to allow for extended use cases - connor
- * Rework the view to use reflection for button creation. - charles
+ * Rework the game.view to use reflection for button creation. - charles
 
 Although we have specified primary responsibilities for different parts of this project, we are planning to play this by year a bit and help where needed.

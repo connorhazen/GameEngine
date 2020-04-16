@@ -22,7 +22,7 @@ Hours Spent:
 
 ### Running the Program
 
-Main class:
+game.Main class:
 
 Data files needed: 
 
