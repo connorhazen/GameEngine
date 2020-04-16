@@ -1,11 +1,11 @@
 package controller;
 
-import engine.Engine;
 import engine.UpdateObject;
 import javafx.geometry.Insets;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
@@ -16,16 +16,17 @@ import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 import util.Action;
 import util.SimpleAction;
-import view.View;
+
+import java.io.File;
 
 public class SimplePlayer implements Player {
 
-  private final static String GAME_FILE = "game1.xml";
+  private final static String GAME_FILE = "Games/game1.xml";
   private static final int PADDING = 5;
   private static final int V_GAP = 10;
   private static final int H_GAP = 50;
   private static final int WIDTH = 750;
-  private static final int HEIGHT = 450;
+  private static final int HEIGHT = 200;
   private static final Color BACKGROUND_COLOR = Color.TAN;
   private static final String TITLE = "GridGUYS Games - Final Project";
 
@@ -53,8 +54,10 @@ public class SimplePlayer implements Player {
     pane.setVgap(V_GAP);
     pane.setHgap(H_GAP);
     Text title = generateTitle();
+    VBox gameSelectors = generateGameButtons();
     Button generateGameButton = createButton();
     pane.add(title,0,0);
+    pane.add(gameSelectors,0,1);
     pane.add(generateGameButton,1,1);
     return pane;
   }
@@ -73,6 +76,23 @@ public class SimplePlayer implements Player {
     title.setFont(Font.font("Verdana", 32));
     title.setTextAlignment(TextAlignment.CENTER);
     return title;
+  }
+
+  private VBox generateGameButtons() {
+    VBox buttonBox = new VBox();
+    ToggleGroup group = new ToggleGroup();
+    int index = 0;
+    File fil = new File(getClass().getClassLoader().getResource("Games").getFile());
+    for(File f : fil.listFiles()){
+      System.out.println(f.getName());
+      if(!f.getName().contains(".")){
+        RadioButton b = new RadioButton(f.getName());
+        b.setToggleGroup(group);
+        buttonBox.getChildren().add(index,b);
+        index++;
+      }
+    }
+    return buttonBox;
   }
 
   private void initialGameSetup(GameObject go){
