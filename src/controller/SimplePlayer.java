@@ -18,11 +18,17 @@ public class SimplePlayer implements Player {
 
   public SimplePlayer(Stage primaryStage) {
 
-
+    startupMenu(primaryStage);
     GameObject go = new GameObject(GAME_FILE);
-    View view = go.getView();
-    Engine engine = go.getEngine();
-    view.updateGridDisplay(engine.getGrid());
+    initialGameSetup(go);
+  }
+
+  private void startupMenu(Stage menuStage) {
+
+  }
+
+  private void initialGameSetup(GameObject go){
+    updateView(go.getEngine().getGrid(),go);
     makeListeners(go);
   }
 
