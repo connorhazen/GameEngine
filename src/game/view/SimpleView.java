@@ -90,7 +90,7 @@ public class SimpleView implements View {
         ClassLoader classLoader = ClassLoader.getSystemClassLoader();
         FileInputStream inputStream = new FileInputStream(
             Objects.requireNonNull(classLoader.getResource(DEFAULT_IMAGE)).getFile());
-        image = new Image(inputStream);
+        //image = new Image(inputStream);
       } catch (Exception ex) {
         System.out.println("Fucked up");
         ex.printStackTrace();

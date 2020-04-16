@@ -42,6 +42,7 @@ public class FileReader {
    * @param fileName the name of file wanting to be read
    */
   public FileReader(String fileName){
+
     File file = new File(getClass().getClassLoader().getResource(fileName).getFile());
     simElement = getRootElement(file);
   }

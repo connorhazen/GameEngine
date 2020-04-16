@@ -21,7 +21,9 @@ public class Factory {
   public Factory(String gameFile){
     this.gameFile = gameFile;
     imageMap = new HashMap<>();
-    imageMap.put(0, "StateImages/questionMark.gif");
+    //imageMap.put(0, "StateImages/questionMark.gif");
+    imageMap.put(0, ""
+        + "");
   }
 
   public Engine makeEngine() throws XMLException {
