@@ -5,7 +5,10 @@ import engine.UpdateObject;
 import javafx.geometry.Insets;
 import javafx.scene.Group;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
@@ -49,12 +52,27 @@ public class SimplePlayer implements Player {
     pane.setPadding(new Insets(PADDING, PADDING, PADDING, PADDING));
     pane.setVgap(V_GAP);
     pane.setHgap(H_GAP);
+    Text title = generateTitle();
+    Button generateGameButton = createButton();
+    pane.add(title,0,0);
+    pane.add(generateGameButton,1,1);
+    return pane;
+  }
+
+  private Button createButton() {
+    Button b = new Button("Generate Game");
+    b.setOnAction(e -> {
+      //TODO: fill this in to get access to selected radio button
+    });
+    return b;
+  }
+
+  private Text generateTitle() {
     Text title = new Text(TITLE);
     title.setFill(Color.BLACK);
     title.setFont(Font.font("Verdana", 32));
     title.setTextAlignment(TextAlignment.CENTER);
-    pane.add(title,0,0);
-    return pane;
+    return title;
   }
 
   private void initialGameSetup(GameObject go){
