@@ -2,6 +2,7 @@ package view;
 
 
 import engine.UpdateObject;
+import javafx.scene.Scene;
 import util.Grid;
 
 public interface View {
@@ -13,4 +14,5 @@ public interface View {
   void removeWindow(Window w);
 
 
+  Scene getScene();
 }

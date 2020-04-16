@@ -10,48 +10,37 @@ import util.SimpleAction;
 import view.View;
 
 public class SimplePlayer implements Player {
-  private View view;
-  private Engine engine;
-  private final static double HEIGHT = 500;
-  private final static double WIDTH = 500;
+
   private final static String GAME_FILE = "game1.xml";
 
-  private Scene currentScene;
+
 
 
   public SimplePlayer(Stage primaryStage) {
-    Group root = new Group();
-    Scene display = new Scene(root, WIDTH, HEIGHT);
-    currentScene = display;
-    primaryStage.setScene(display);
-    primaryStage.show();
 
 
-
-    GameObject go = new GameObject(GAME_FILE, display);
-    view = go.getView();
-    engine = go.getEngine();
-
+    GameObject go = new GameObject(GAME_FILE, primaryStage);
+    View view = go.getView();
+    Engine engine = go.getEngine();
     view.updateGridDisplay(engine.getGrid());
-
-    makeListeners();
+    makeListeners(go);
   }
 
   @Override
-  public void makeListeners() {
-    currentScene.setOnKeyPressed(e -> {
-      handleEvent(new SimpleAction(e));
+  public void makeListeners(GameObject go) {
+    go.getScene().setOnKeyPressed(e -> {
+      handleEvent(new SimpleAction(e), go);
     });
   }
 
 
   @Override
-  public void handleEvent(Action e) {
+  public void handleEvent(Action e, GameObject go) {
     System.out.println("Player listened code :" + e.getCode());
-    UpdateObject uo = engine.executeAction(e);
-    updateView(uo);
+    UpdateObject uo = go.getEngine().executeAction(e);
+    updateView(uo, go);
     if(hasNextAction(uo)){
-      handleEvent(uo.getNextAction());
+      handleEvent(uo.getNextAction(), go);
     }
   }
 
@@ -60,8 +49,8 @@ public class SimplePlayer implements Player {
   }
 
   @Override
-  public void updateView(UpdateObject uo) {
-    view.updateGridDisplay(uo);
+  public void updateView(UpdateObject uo, GameObject go) {
+    go.getView().updateGridDisplay(uo);
 
   }
 

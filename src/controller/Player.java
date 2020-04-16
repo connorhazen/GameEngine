@@ -6,11 +6,11 @@ import util.SimpleAction;
 
 public interface Player {
 
-  void makeListeners();
+  void makeListeners(GameObject go);
 
-  void handleEvent(Action e);
+  void handleEvent(Action e, GameObject go);
 
-  void updateView(UpdateObject uo);
+  void updateView(UpdateObject uo, GameObject go);
 
 
 }

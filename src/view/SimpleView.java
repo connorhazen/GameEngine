@@ -12,6 +12,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
 import javafx.scene.image.ImageView;
+import javafx.stage.Stage;
 import util.Grid;
 
 public class SimpleView implements View {
@@ -20,11 +21,18 @@ public class SimpleView implements View {
   private Group root;
   private Map<Integer, String> imageMap;
   public static final String DEFAULT_IMAGE = "StateImages/questionMark.gif";
+  private final static double HEIGHT = 500;
+  private final static double WIDTH = 500;
 
-  public SimpleView(Scene scene, Map<Integer, String> images){
-    display = scene;
-    root = (Group) scene.getRoot();
+  public SimpleView(Stage stage, Map<Integer, String> images){
+    root = new Group();
+    display = new Scene(root, WIDTH, HEIGHT);
+
+    stage.setScene(display);
+
     imageMap = images;
+
+    stage.show();
 
   }
 
@@ -100,5 +108,10 @@ public class SimpleView implements View {
   @Override
   public void removeWindow(Window w) {
 
+  }
+
+  @Override
+  public Scene getScene() {
+    return display;
   }
 }
