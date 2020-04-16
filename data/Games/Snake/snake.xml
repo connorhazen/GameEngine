@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<data>
+  <Engine>
+    <Event>
+      <Code>LeftArrow</Code>
+      <EventClass>TransformAllSquares</EventClass>
+      <Rules>SimpleRule</Rules>
+      <Interaction>SimpleInteraction</Interaction>
+      <FollowEvents>NewRandom</FollowEvents>
+    </Event>
+    <Event>
+      <Code>NewRandom</Code>
+      <EventClass>RandomSquareType</EventClass>
+      <Rules>EmptySquare</Rules>
+      <Interaction>RandomInteraction</Interaction>
+      <Param1>Empty</Param1>
+    </Event>
+    <States>Head,Body,Food,Empty</States>
+    <LevelBuilder>
+      <Type>Random</Type>
+      <Parms>1, 0, 1, x</Parms>
+      <ParamChange>0,0,0,0</ParamChange>
+    </LevelBuilder>
+  </Engine>
+
+  <View>
+
+  </View>
+
+</data>
