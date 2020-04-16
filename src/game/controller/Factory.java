@@ -16,22 +16,25 @@ import game.view.View;
 public class Factory {
   private String gameFile;
   private Map<Integer, String> imageMap;
+  public static final String ENGINE = "/engine.xml";
+  public static final String VIEW = "/view.xml";
 
 
   public Factory(String gameFile){
     this.gameFile = gameFile;
     imageMap = new HashMap<>();
     //imageMap.put(0, "StateImages/questionMark.gif");
-    imageMap.put(0, ""
-        + "");
+    imageMap.put(0, "");
   }
 
   public Engine makeEngine() throws XMLException {
     GameHandler gh = new BaseGameHandler();
     LevelHandler lh = new BaseLevelHandler();
     AnimationHandler ah = new BaseAnimationHandler();
+    System.out.println(gameFile + ENGINE);
+    EngineFactory.parseXML(gameFile + ENGINE, gh, ah, lh);
 
-    EngineFactory.parseXML(gameFile, gh, ah, lh);
+
 
     return new Engine(gh,ah,lh);
   }
