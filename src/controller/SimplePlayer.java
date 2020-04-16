@@ -14,6 +14,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
+import parse.XMLException;
 import util.Action;
 import util.SimpleAction;
 
@@ -29,13 +30,10 @@ public class SimplePlayer implements Player {
   private static final int HEIGHT = 200;
   private static final Color BACKGROUND_COLOR = Color.TAN;
   private static final String TITLE = "GridGUYS Games - Final Project";
-
-
+  private ToggleGroup toggleGroup = new ToggleGroup();
 
   public SimplePlayer(Stage primaryStage) {
     startupMenu(primaryStage);
-    GameObject go = new GameObject(GAME_FILE);
-    initialGameSetup(go);
   }
 
   private void startupMenu(Stage menuStage) {
@@ -66,6 +64,15 @@ public class SimplePlayer implements Player {
     Button b = new Button("Generate Game");
     b.setOnAction(e -> {
       //TODO: fill this in to get access to selected radio button
+      String activeButton = ((RadioButton)toggleGroup.getSelectedToggle()).getText();
+      System.out.println(activeButton);
+      try{
+        GameObject go = new GameObject("Games/"+activeButton);
+        initialGameSetup(go);
+      }
+      catch(XMLException ex){
+        System.out.println(ex);
+      }
     });
     return b;
   }
@@ -80,14 +87,12 @@ public class SimplePlayer implements Player {
 
   private VBox generateGameButtons() {
     VBox buttonBox = new VBox();
-    ToggleGroup group = new ToggleGroup();
     int index = 0;
     File fil = new File(getClass().getClassLoader().getResource("Games").getFile());
     for(File f : fil.listFiles()){
-      System.out.println(f.getName());
       if(!f.getName().contains(".")){
         RadioButton b = new RadioButton(f.getName());
-        b.setToggleGroup(group);
+        b.setToggleGroup(toggleGroup);
         buttonBox.getChildren().add(index,b);
         index++;
       }
@@ -125,7 +130,6 @@ public class SimplePlayer implements Player {
   @Override
   public void updateView(UpdateObject uo, GameObject go) {
     go.getView().updateGridDisplay(uo);
-
   }
 
 }
