@@ -2,14 +2,16 @@ package controller;
 
 import engine.Engine;
 import javafx.scene.Scene;
-import javafx.stage.Stage;
+import parse.XMLException;
 import view.View;
 
 public class GameObject {
   private Engine engine;
   private View view;
 
-  public GameObject(String folderPath) {
+  public GameObject(String folderPath) throws XMLException {
+
+
     Factory f = new Factory(folderPath);
     engine = f.makeEngine();
     view = f.makeView();

@@ -11,24 +11,23 @@ import java.util.HashMap;
 import java.util.Map;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import parse.XMLException;
 import util.SimpleAction;
 import view.SimpleView;
 import view.View;
 
 public class Factory {
   private String gameFile;
-  private Stage display;
   private Map<Integer, String> imageMap;
 
 
   public Factory(String gameFile){
     this.gameFile = gameFile;
-    this.display = display;
     imageMap = new HashMap<>();
     imageMap.put(0, "StateImages/questionMark.gif");
   }
 
-  public Engine makeEngine() {
+  public Engine makeEngine() throws XMLException {
     GameHandler gh = new BaseGameHandler();
     LevelHandler lh = new BaseLevelHandler();
     AnimationHandler ah = new BaseAnimationHandler();

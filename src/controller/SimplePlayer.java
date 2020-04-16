@@ -20,9 +20,7 @@ public class SimplePlayer implements Player {
 
 
     GameObject go = new GameObject(GAME_FILE);
-    View view = go.getView();
-    Engine engine = go.getEngine();
-    view.updateGridDisplay(engine.getGrid());
+    updateView(go.getEngine().getGrid(), go);
     makeListeners(go);
   }
 
@@ -51,7 +49,6 @@ public class SimplePlayer implements Player {
   @Override
   public void updateView(UpdateObject uo, GameObject go) {
     go.getView().updateGridDisplay(uo);
-
   }
 
 }
