@@ -19,7 +19,7 @@ public class SimplePlayer implements Player {
   public SimplePlayer(Stage primaryStage) {
 
 
-    GameObject go = new GameObject(GAME_FILE, primaryStage);
+    GameObject go = new GameObject(GAME_FILE);
     View view = go.getView();
     Engine engine = go.getEngine();
     view.updateGridDisplay(engine.getGrid());

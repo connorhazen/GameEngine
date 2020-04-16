@@ -9,8 +9,8 @@ public class GameObject {
   private Engine engine;
   private View view;
 
-  public GameObject(String folderPath, Stage display) {
-    Factory f = new Factory(folderPath, display);
+  public GameObject(String folderPath) {
+    Factory f = new Factory(folderPath);
     engine = f.makeEngine();
     view = f.makeView();
   }

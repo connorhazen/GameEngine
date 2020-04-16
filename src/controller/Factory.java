@@ -21,7 +21,7 @@ public class Factory {
   private Map<Integer, String> imageMap;
 
 
-  public Factory(String gameFile, Stage display){
+  public Factory(String gameFile){
     this.gameFile = gameFile;
     this.display = display;
     imageMap = new HashMap<>();
@@ -40,6 +40,6 @@ public class Factory {
 
 
   public View makeView() {
-    return new SimpleView(display, imageMap);
+    return new SimpleView(imageMap);
   }
 }

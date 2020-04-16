@@ -24,7 +24,9 @@ public class SimpleView implements View {
   private final static double HEIGHT = 500;
   private final static double WIDTH = 500;
 
-  public SimpleView(Stage stage, Map<Integer, String> images){
+  public SimpleView( Map<Integer, String> images){
+    Stage stage = new Stage();
+
     root = new Group();
     display = new Scene(root, WIDTH, HEIGHT);
 
