@@ -5,7 +5,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.function.Consumer;
 
-public class Grid2dArray extends Grid {
+public class Grid2dArray implements Grid {
   private MutableCell[][] grid;
   private int width;
   private int height;
@@ -70,10 +70,6 @@ public class Grid2dArray extends Grid {
 
   }
 
-  @Override
-  public Iterator<Cell> iterator() {
-    return null;
-  }
 
   @Override
   public void loop(Consumer<Coordinates> run){
@@ -84,10 +80,43 @@ public class Grid2dArray extends Grid {
     }
   }
 
+
   @Override
-  public List<MutableCell> getCellsOfValue(SimpleState s) {
+  public List<MutableCell> getCellsOfValue(int val) {
     List<MutableCell> ret = new ArrayList<>();
-    Consumer<Coordinates> con = (c) -> {if(getCell(c).getState().getValue() == s.getValue()) ret.add(getMutableCell(c));};
+    Consumer<Coordinates> con = (c) -> {if(getCell(c).getState().getValue() == val) ret.add(getMutableCell(c));};
+
+    loop(con);
+
+    return ret;
+  }
+
+  @Override
+  public List<MutableCell> getCellsOfType(String type) {
+    List<MutableCell> ret = new ArrayList<>();
+    Consumer<Coordinates> con = (c) -> {if(getCell(c).getState().getType().equals(type)) ret.add(getMutableCell(c));};
+
+    loop(con);
+
+    return ret;
+  }
+
+  @Override
+  public MutableCell getCellDirection(MutableCell c) {
+    int xD = 0;
+    int yD = 0;
+    if(c.getDirection().equals("LEFT")) xD = -1;
+    if(c.getDirection().equals("RIGHT")) xD = 1;
+    if(c.getDirection().equals("UP")) yD = -1;
+    if(c.getDirection().equals("DOWN")) yD = 1;
+
+    return getMutableCell(new Coordinates(c.getCoords().x + xD, c.getCoords().y + yD ));
+  }
+
+  @Override
+  public List<MutableCell> getMarkedCells() {
+    List<MutableCell> ret = new ArrayList<>();
+    Consumer<Coordinates> con = (c) -> {if(getCell(c).getState().ifMarked()) ret.add(getMutableCell(c));};
 
     loop(con);
 
