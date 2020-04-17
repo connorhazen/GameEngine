@@ -83,4 +83,14 @@ public class Grid2dArray extends Grid {
       }
     }
   }
+
+  @Override
+  public List<MutableCell> getCellsOfValue(SimpleState s) {
+    List<MutableCell> ret = new ArrayList<>();
+    Consumer<Coordinates> con = (c) -> {if(getCell(c).getState().getValue() == s.getValue()) ret.add(getMutableCell(c));};
+
+    loop(con);
+
+    return ret;
+  }
 }

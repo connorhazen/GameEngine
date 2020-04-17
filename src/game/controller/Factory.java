@@ -31,10 +31,7 @@ public class Factory {
     GameHandler gh = new BaseGameHandler();
     LevelHandler lh = new BaseLevelHandler();
     AnimationHandler ah = new BaseAnimationHandler();
-    System.out.println(gameFile + ENGINE);
     EngineFactory.parseXML(gameFile + ENGINE, gh, ah, lh);
-
-
 
     return new Engine(gh,ah,lh);
   }

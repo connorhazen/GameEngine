@@ -6,14 +6,14 @@ import game.util.Grid2dArray;
 import game.util.MutableCell;
 import game.util.SimpleState;
 
-public class RandomOfType implements Interaction{
+public class RandomOfValue implements Interaction{
 
   protected List<MutableCell> cells;
 
   @Override
   public void setGrid(Grid2dArray currentGrid) {
     cells = new ArrayList<>();
-    cells.addAll(currentGrid.getCellsOfState(new SimpleState("", 0)));
+    cells.addAll(currentGrid.getCellsOfValue(new SimpleState("", 0)));
   }
 
   @Override

@@ -104,7 +104,7 @@ public class SimpleView implements View {
   }
 
   private Paint getColor(int value) {
-    return Color.hsb(1,((Math.log10(value)/Math.log10(2) * .1)%1),1 );
+    return Color.hsb(1.0,.05 + ((Math.log10(value)/Math.log10(2) * .1)%1), 1.0);
   }
 
   private ImageView makeImage(String type, Integer value){
@@ -147,22 +147,5 @@ public class SimpleView implements View {
     return display;
   }
 
-  private void scaleButton(Label button) {
-    double w = button.getWidth();
-    double h = button.getHeight();
-
-    double bw = button.prefWidth(-1);
-    double bh = button.prefHeight(-1);
-
-    if (w == 0 || h == 0 || bw == 0 || bh == 0) return ;
-
-    double hScale = w / bw ;
-    double vScale = h / bw ;
-
-    double scale = Math.min(hScale, vScale);
-
-    button.lookup(".text").setScaleX(scale);
-    button.lookup(".text").setScaleY(scale);
-  }
 }
 

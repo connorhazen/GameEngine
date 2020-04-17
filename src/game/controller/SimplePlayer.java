@@ -71,7 +71,6 @@ public class SimplePlayer implements Player {
     b.setOnAction(e -> {
       //TODO: fill this in to get access to selected radio button
       String activeButton = ((RadioButton)toggleGroup.getSelectedToggle()).getText();
-      System.out.println(activeButton);
       try{
         GameObject go = new GameObject("Games/"+activeButton);
         initialGameSetup(go);

@@ -1,9 +1,11 @@
 package game.engine;
 
+import game.parse.XMLException;
 import game.util.Grid;
 import game.util.Action;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class BaseGameHandler implements GameHandler {
@@ -17,7 +19,7 @@ public class BaseGameHandler implements GameHandler {
     }
 
     @Override
-    public void addEvent(Action action, String operation, String interaction, String rules, Action nextAction){
+    public void addEvent(Action action, List<String> operation, List<String> interaction, List<String> rules, Action nextAction) throws XMLException {
         eventMappings.put(action, new GridEvent(operation,interaction,rules, nextAction));
     }
 
