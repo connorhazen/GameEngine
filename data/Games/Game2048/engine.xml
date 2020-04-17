@@ -4,28 +4,28 @@
     <Code>LEFT</Code>
     <Operations>OperationCombine2048</Operations>
     <Rules>Rule2048</Rules>
-    <Interaction>RightToLeftAll</Interaction>
+    <Interaction>LeftToRightAll</Interaction>
     <IfExecuteEvent>addRandom</IfExecuteEvent>
   </Event>
   <Event>
     <Code>RIGHT</Code>
     <Operations>OperationCombine2048</Operations>
     <Rules>Rule2048</Rules>
-    <Interaction>LeftToRightAll</Interaction>
+    <Interaction>RightToLeftAll</Interaction>
     <IfExecuteEvent>addRandom</IfExecuteEvent>
   </Event>
   <Event>
     <Code>UP</Code>
     <Operations>OperationCombine2048</Operations>
     <Rules>Rule2048</Rules>
-    <Interaction>BottomToTopAll</Interaction>
+    <Interaction>TopToBottomAll</Interaction>
     <IfExecuteEvent>addRandom</IfExecuteEvent>
   </Event>
   <Event>
     <Code>DOWN</Code>
     <Operations>OperationCombine2048</Operations>
     <Rules>Rule2048</Rules>
-    <Interaction>TopToBottomAll</Interaction>
+    <Interaction>BottomToTopAll</Interaction>
     <IfExecuteEvent>addRandom</IfExecuteEvent>
   </Event>
   <Event>
