@@ -4,7 +4,7 @@ import game.util.Cell;
 import game.util.MutableCell;
 import java.util.List;
 
-public class ValueGreaterThan0 implements Rules {
+public class ValueGreaterThan implements Rules {
 
   @Override
   public boolean canPerform(List<MutableCell> currCells) {
