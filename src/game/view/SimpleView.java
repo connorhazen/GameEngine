@@ -1,8 +1,10 @@
 package game.view;
 
 import game.engine.UpdateObject;
+import game.parse.XMLException;
 import game.util.Cell;
 import java.io.FileInputStream;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 import javafx.geometry.Pos;
@@ -28,12 +30,21 @@ public class SimpleView implements View {
 
   private Scene display;
   private Group root;
-  private Map<Integer, String> imageMap;
-  public static final String DEFAULT_IMAGE = "StateImages/questionMark.gif";
+  private Map<String, String> imageMap;
+
+  public static final String DEFAULT_IMAGE = "questionMark";
+  public static final String FILE_PATH = "StateImages/";
+  public static final String EXTENSION = ".gif";
+  public static final Map<String, Double> ROTATE_MAP = Map.of(
+      "LEFT", -90.0,
+      "RIGHT", 90.0,
+      "UP", 0.0,
+      "DOWN", 180.0
+      );
   private final static double HEIGHT = 500;
   private final static double WIDTH = 500;
 
-  public SimpleView( Map<Integer, String> images){
+  public SimpleView( Map<String, String> images){
     Stage stage = new Stage();
 
     root = new Group();
@@ -50,7 +61,7 @@ public class SimpleView implements View {
 
 
   @Override
-  public void updateGridDisplay(UpdateObject uo) {
+  public void updateGridDisplay(UpdateObject uo) throws XMLException{
     if(uo.getAnimation() == null){
       root.getChildren().clear();
       displayGrid(uo.getGrid());
@@ -58,7 +69,7 @@ public class SimpleView implements View {
 
   }
 
-  private void displayGrid(Grid grid) {
+  private void displayGrid(Grid grid) throws XMLException{
     if(grid == null){
       return;
     }
@@ -74,25 +85,51 @@ public class SimpleView implements View {
       pane.setLayoutY(display.getHeight() / height * c.y);
 
 
+
       Cell cell = grid.getCell(c.x, c.y);
-      if(imageMap.containsKey(cell.getValue())) {
-        pane.getChildren().add(makeImage(cell.getType(), cell.getValue()));
+
+      String image = getImageFile(cell.getValue());
+      if(image!=null) {
+        ImageView view = makeImage(image);
+        view.setRotate(ROTATE_MAP.get(cell.getDirection()));
+
+        pane.getChildren().add(view);
+
       }
       else{
         pane.getChildren().add(makeNumber(cell.getValue()));
       }
-
       root.getChildren().add(pane);
 
     });
   }
 
+  private String getImageFile(int value) {
+    for(String s: imageMap.keySet()){
+      String[] split = s.split(" ");
+      int lowerIndex = Integer.parseInt(split[0]);
+      int upperIndex = Integer.MAX_VALUE;
+      if(split.length>1){
+        if(split.length>2){
+          upperIndex = Integer.parseInt(split[3]);
+        }
+        if(value >= lowerIndex && value<= upperIndex){
+          return imageMap.get(s);
+        }
+      }
+      else{
+        if(value == lowerIndex){
+          return imageMap.get(s);
+        }
+      }
+    }
+
+    return null;
+  }
+
   private Button makeNumber(int value) {
 
     Button b = new Button(Integer.toString(value));
-
-
-
 
     b.setBackground(new Background(new BackgroundFill(getColor(value), null, null)));
     AnchorPane.setTopAnchor(b, 0.0);
@@ -107,26 +144,28 @@ public class SimpleView implements View {
     return Color.hsb(1.0,.05 + ((Math.log10(value)/Math.log10(2) * .1)%1), 1.0);
   }
 
-  private ImageView makeImage(String type, Integer value){
+  private ImageView makeImage(String fileName) throws XMLException{
 
-    String file = imageMap.get(value);
 
     Image image = null;
-    try{
-      ClassLoader classLoader = ClassLoader.getSystemClassLoader();
-      FileInputStream inputStream = new FileInputStream(Objects.requireNonNull(classLoader.getResource(file)).getFile());
-      image = new Image(inputStream);
-    } catch (Exception e) {
+    if(!fileName.equals("empty")){
       try{
         ClassLoader classLoader = ClassLoader.getSystemClassLoader();
-        FileInputStream inputStream = new FileInputStream(
-            Objects.requireNonNull(classLoader.getResource(DEFAULT_IMAGE)).getFile());
-        //image = new Image(inputStream);
-      } catch (Exception ex) {
-        System.out.println("Fucked up");
-        ex.printStackTrace();
+        FileInputStream inputStream = new FileInputStream(Objects.requireNonNull(classLoader.getResource(FILE_PATH + fileName + EXTENSION)).getFile());
+        image = new Image(inputStream);
+      } catch (Exception e) {
+        try{
+          ClassLoader classLoader = ClassLoader.getSystemClassLoader();
+          FileInputStream inputStream = new FileInputStream(
+              Objects.requireNonNull(classLoader.getResource(FILE_PATH + DEFAULT_IMAGE + EXTENSION)).getFile());
+          image = new Image(inputStream);
+        } catch (Exception ex) {
+          throw new XMLException("Image not found: "+ fileName);
+        }
       }
     }
+
+
 
 
     return new ImageView(image);

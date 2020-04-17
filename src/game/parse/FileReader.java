@@ -75,6 +75,15 @@ public class FileReader {
     Node node = nodes.item(0);
     return node.getNodeValue();
   }
+  public List<String> getValues(String tag) {
+    List<String> ret = new ArrayList<>();
+    NodeList nodes = simElement.getElementsByTagName(tag);
+    for(int i =0; i< nodes.getLength(); i++){
+      ret.add(nodes.item(i).getFirstChild().getNodeValue());
+    }
+
+    return ret;
+  }
 
 
   // get root element of an XML file

@@ -148,7 +148,12 @@ public class SimplePlayer implements Player {
 
   @Override
   public void updateView(UpdateObject uo, GameObject go) {
-    go.getView().updateGridDisplay(uo);
+    try {
+      go.getView().updateGridDisplay(uo);
+    }
+    catch (Exception e){
+      addGameMessage(e.getMessage());
+    }
   }
 
 }

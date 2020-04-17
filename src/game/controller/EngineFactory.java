@@ -15,9 +15,9 @@ import game.util.SimpleAction;
 
 public class EngineFactory {
 
-  public static void parseXML(String fileName, GameHandler gameHandler, AnimationHandler animationHandler, LevelHandler levelHandler) throws XMLException{
+  public static void parseXML(String folder,String fileName, GameHandler gameHandler, AnimationHandler animationHandler, LevelHandler levelHandler) throws XMLException{
 
-    FileReader fr = new FileReader(fileName);
+    FileReader fr = new FileReader(folder+fileName);
 
     doEvents(gameHandler, fr);
 

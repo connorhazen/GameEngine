@@ -60,6 +60,7 @@ public class GridEvent implements Event {
 
     @Override
     public Action getNextAction() {
+        //System.out.println(didExecute);
         if(didExecute){
             didExecute = false;
             return ifExecute;

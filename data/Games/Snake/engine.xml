@@ -39,7 +39,7 @@
   </Event>
   <Event>
     <Code>s4.5</Code>
-    <Operations>IncrementValue +1</Operations>
+    <Operations>IncrementValue 1</Operations>
     <Rules>RuleTrue</Rules>
     <Interaction>Marked</Interaction>
     <IfExecuteEvent>s5</IfExecuteEvent>
@@ -48,7 +48,7 @@
   <Event>
     <Code>s5</Code>
     <Operations>IncrementValue -1</Operations>
-    <Rules>ValueGreaterThanEqual 0</Rules>
+    <Rules>ValueGreaterThanEqual 1</Rules>
     <Interaction>All</Interaction>
     <IfExecuteEvent>s8</IfExecuteEvent>
     <IfNoExecuteEvent>s8</IfNoExecuteEvent>
@@ -103,6 +103,13 @@
     <Operations>SetDirection DOWN</Operations>
     <Rules>NotOppositeDirection DOWN</Rules>
     <Interaction>MaxValue</Interaction>
+  </Event>
+  <Event>
+    <Code>SPACE</Code>
+    <Operations>Nothing</Operations>
+    <Rules>RuleTrue DOWMaxValueN</Rules>
+    <Interaction>All</Interaction>
+    <IfExecuteEvent>s0</IfExecuteEvent>
   </Event>
 
  <LevelMaker>RandomSquareToValue 1</LevelMaker>

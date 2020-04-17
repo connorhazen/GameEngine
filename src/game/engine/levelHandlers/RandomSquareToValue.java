@@ -16,8 +16,8 @@ public class RandomSquareToValue implements InitialLevelMaker {
   @Override
   public Grid execute(int height, int width) {
     Grid2dArray grid = new Grid2dArray(width,height);
-    int x = (int)Math.random()*width;
-    int y = (int)Math.random()*height;
+    int x = (int)(Math.random()*width);
+    int y = (int) (Math.random()*height);
 
     grid.loop(e -> grid.setCell(e.x,e.y,new SimpleState("", 0)));
     grid.setCell(x, y, new SimpleState("", val));

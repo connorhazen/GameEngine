@@ -14,7 +14,7 @@ public class IncrementValue implements Operation{
   @Override
   public void execute(List<MutableCell> currCells) {
     for(MutableCell c : currCells){
-      c.setState(new SimpleState(c.getType(), c.getValue()+val));
+      c.setState(new SimpleState(c.getType(), c.getValue()+val, c.getDirection()));
     }
   }
 }

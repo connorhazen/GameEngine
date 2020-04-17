@@ -9,7 +9,6 @@ public class ValueGreaterThanEqual implements Rules {
   private int val;
 
   public ValueGreaterThanEqual(List<String> args){
-    System.out.println(args.get(0));
     val = Integer.parseInt(args.get(0));
   }
 

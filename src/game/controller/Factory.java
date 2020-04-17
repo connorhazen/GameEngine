@@ -13,6 +13,7 @@ import game.parse.XMLException;
 import game.view.SimpleView;
 import game.view.View;
 
+
 public class Factory {
   private String gameFile;
   private Map<Integer, String> imageMap;
@@ -22,22 +23,20 @@ public class Factory {
 
   public Factory(String gameFile){
     this.gameFile = gameFile;
-    imageMap = new HashMap<>();
-    //imageMap.put(0, "StateImages/questionMark.gif");
-    imageMap.put(0, "");
   }
 
   public Engine makeEngine() throws XMLException {
     GameHandler gh = new BaseGameHandler();
     LevelHandler lh = new BaseLevelHandler();
     AnimationHandler ah = new BaseAnimationHandler();
-    EngineFactory.parseXML(gameFile + ENGINE, gh, ah, lh);
+    EngineFactory.parseXML(gameFile, ENGINE, gh, ah, lh);
 
     return new Engine(gh,ah,lh);
   }
 
 
   public View makeView() {
-    return new SimpleView(imageMap);
+
+    return ViewFactory.makeView(gameFile, VIEW);
   }
 }
