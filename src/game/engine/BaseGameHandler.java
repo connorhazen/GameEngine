@@ -19,8 +19,8 @@ public class BaseGameHandler implements GameHandler {
     }
 
     @Override
-    public void addEvent(Action action, List<String> operation, List<String> interaction, List<String> rules, Action nextAction) throws XMLException {
-        eventMappings.put(action, new GridEvent(operation,interaction,rules, nextAction));
+    public void addEvent(Action action, List<String> operation, List<String> interaction, List<String> rules, Action ifExecuteEvent, Action ifNoExecuteEvent) throws XMLException {
+        eventMappings.put(action, new GridEvent(operation,interaction,rules, ifExecuteEvent, ifNoExecuteEvent));
     }
 
     @Override

@@ -13,7 +13,7 @@ public class RandomOfValue implements Interaction{
   @Override
   public void setGrid(Grid2dArray currentGrid) {
     cells = new ArrayList<>();
-    cells.addAll(currentGrid.getCellsOfValue(new SimpleState("", 0)));
+    cells.addAll(currentGrid.getCellsOfValue(0));
   }
 
   @Override

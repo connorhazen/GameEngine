@@ -5,7 +5,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.function.Consumer;
 
-public class Grid2dArray extends Grid {
+public class Grid2dArray implements Grid {
   private MutableCell[][] grid;
   private int width;
   private int height;
@@ -70,10 +70,6 @@ public class Grid2dArray extends Grid {
 
   }
 
-  @Override
-  public Iterator<Cell> iterator() {
-    return null;
-  }
 
   @Override
   public void loop(Consumer<Coordinates> run){
@@ -84,10 +80,11 @@ public class Grid2dArray extends Grid {
     }
   }
 
+
   @Override
-  public List<MutableCell> getCellsOfValue(SimpleState s) {
+  public List<MutableCell> getCellsOfValue(int val) {
     List<MutableCell> ret = new ArrayList<>();
-    Consumer<Coordinates> con = (c) -> {if(getCell(c).getState().getValue() == s.getValue()) ret.add(getMutableCell(c));};
+    Consumer<Coordinates> con = (c) -> {if(getCell(c).getState().getValue() == val) ret.add(getMutableCell(c));};
 
     loop(con);
 

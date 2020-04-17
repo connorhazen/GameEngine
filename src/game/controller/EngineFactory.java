@@ -29,12 +29,14 @@ public class EngineFactory {
         String operation = Objects.requireNonNull(map.get("Operations"));
         String interaction = Objects.requireNonNull(map.get("Interaction"));
         String rule = Objects.requireNonNull(map.get("Rules"));
-        SimpleAction next = new SimpleAction(map.get("FollowEvents"));
+        SimpleAction ifExe = new SimpleAction(map.get("IfExecuteEvents"));
+        if(ifExe.getCode() == null) ifExe = null;
 
-        if(next.getCode() == null) next = null;
+        SimpleAction ifNoExe = new SimpleAction(map.get("IfNoExecuteEvents"));
+        if(ifNoExe.getCode() == null) ifNoExe = null;
 
         gameHandler.addEvent(new SimpleAction(code), Arrays.asList(operation.split(" ")),  Arrays.asList(interaction.split(" ")),  Arrays.asList(rule.split(" ")),
-            next);
+            ifExe, ifNoExe);
 
       }
     } catch (XMLException e) {

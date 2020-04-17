@@ -20,11 +20,12 @@ public class GridEvent implements Event {
     private Operation myOperation;
     private Interaction myInteraction;
     private Rules myRules;
-    private Action nextAction;
+    private Action ifExecute;
+    private Action ifNoExecute;
 
     private Boolean didExecute;
 
-    public GridEvent(List<String> operation, List<String> interaction, List<String> rules, Action nextAction) {
+    public GridEvent(List<String> operation, List<String> interaction, List<String> rules, Action ifExecute, Action ifNoExecute) {
         List<String> operationParams = new ArrayList<>(operation);
         List<String> rulesParams = new ArrayList<>(rules);
         List<String> interactionParams = new ArrayList<>(interaction);
@@ -37,7 +38,8 @@ public class GridEvent implements Event {
         myOperation = (Operation)createObjectOf(operation.get(0), OPERATION_PACKAGE, operationParams);
         myInteraction = (Interaction)createObjectOf(interaction.get(0), INTERACTION_PACKAGE, interactionParams);
         myRules = (Rules)createObjectOf(rules.get(0), RULES_PACKAGE, rulesParams);
-        this.nextAction = nextAction;
+        this.ifExecute = ifExecute;
+        this.ifNoExecute = ifNoExecute;
         didExecute = false;
     }
 
@@ -59,9 +61,9 @@ public class GridEvent implements Event {
     public Action getNextAction() {
         if(didExecute){
             didExecute = false;
-            return nextAction;
+            return ifExecute;
         }
-        return null;
+        return ifNoExecute;
 
     }
 

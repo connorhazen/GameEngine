@@ -4,19 +4,19 @@ import java.util.Collection;
 import java.util.List;
 import java.util.function.Consumer;
 
-public abstract class Grid implements Iterable<Cell> {
+public interface  Grid {
 
 
-  public abstract Cell getCell(Coordinates coords);
+    Cell getCell(Coordinates coords);
 
-  public abstract Cell getCell(int x, int y);
+    Cell getCell(int x, int y);
 
-  public abstract int getWidth();
-  public abstract int getHeight();
+    int getWidth();
+    int getHeight();
 
-  public abstract List<MutableCell> getCellsOfState(State s);
+    List<MutableCell> getCellsOfState(State s);
 
-  public abstract void loop(Consumer<Coordinates> c);
+    void loop(Consumer<Coordinates> c);
 
-  public abstract List<MutableCell> getCellsOfValue(SimpleState simpleState);
+    List<MutableCell> getCellsOfValue(int val);
 }
