@@ -30,9 +30,9 @@
   </Event>
   <Event>
     <Code>addRandom</Code>
-    <Operations>OperationAddRandom</Operations>
+    <Operations>SetValue 1</Operations>
     <Rules>RuleTrue</Rules>
-    <Interaction>RandomOfValue</Interaction>
+    <Interaction>RandomOfValue 0</Interaction>
   </Event>
   <LevelMaker>RandomValsTo 2</LevelMaker>
 </data>

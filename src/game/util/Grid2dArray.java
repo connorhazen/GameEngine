@@ -110,7 +110,8 @@ public class Grid2dArray implements Grid {
     if(c.getDirection().equals("UP")) yD = -1;
     if(c.getDirection().equals("DOWN")) yD = 1;
 
-    return getMutableCell(new Coordinates(c.getCoords().x + xD, c.getCoords().y + yD ));
+
+    return getMutableCell(new Coordinates(Math.floorMod(c.getCoords().x + xD, width) , Math.floorMod(c.getCoords().y + yD,height)));
   }
 
   @Override

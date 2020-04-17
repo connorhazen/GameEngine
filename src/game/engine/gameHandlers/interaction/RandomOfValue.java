@@ -8,11 +8,15 @@ import game.util.MutableCell;
 public class RandomOfValue implements Interaction{
 
   protected List<MutableCell> cells;
+  private int val;
+  public RandomOfValue(List<String>args){
+    val = Integer.parseInt(args.get(0));
+  }
 
   @Override
   public void setGrid(Grid2dArray currentGrid) {
     cells = new ArrayList<>();
-    cells.addAll(currentGrid.getCellsOfValue(0));
+    cells.addAll(currentGrid.getCellsOfValue(val));
   }
 
   @Override

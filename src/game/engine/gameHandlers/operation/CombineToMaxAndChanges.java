@@ -15,11 +15,13 @@ public class CombineToMaxAndChanges implements Operation {
       c.mark(false);
       if(c.getValue()>max){
         maxCell = c;
+        max = c.getValue();
       }
     }
+
     for(MutableCell c : currCells){
       if(c!= maxCell){
-        c.setState(new SimpleState(c.getType(), max).mark(true));
+        c.setState(new SimpleState(c.getType(), max, maxCell.getDirection()).mark(true));
       }
     }
   }

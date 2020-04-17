@@ -21,6 +21,8 @@ public class All implements Interaction{
       cells.add(currentGrid.getMutableCell(e));
     };
 
+    currentGrid.loop(run);
+
   }
 
   @Override
