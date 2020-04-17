@@ -90,4 +90,36 @@ public class Grid2dArray implements Grid {
 
     return ret;
   }
+
+  @Override
+  public List<MutableCell> getCellsOfType(String type) {
+    List<MutableCell> ret = new ArrayList<>();
+    Consumer<Coordinates> con = (c) -> {if(getCell(c).getState().getType().equals(type)) ret.add(getMutableCell(c));};
+
+    loop(con);
+
+    return ret;
+  }
+
+  @Override
+  public MutableCell getCellDirection(MutableCell c) {
+    int xD = 0;
+    int yD = 0;
+    if(c.getDirection().equals("LEFT")) xD = -1;
+    if(c.getDirection().equals("RIGHT")) xD = 1;
+    if(c.getDirection().equals("UP")) yD = -1;
+    if(c.getDirection().equals("DOWN")) yD = 1;
+
+    return getMutableCell(new Coordinates(c.getCoords().x + xD, c.getCoords().y + yD ));
+  }
+
+  @Override
+  public List<MutableCell> getMarkedCells() {
+    List<MutableCell> ret = new ArrayList<>();
+    Consumer<Coordinates> con = (c) -> {if(getCell(c).getState().ifMarked()) ret.add(getMutableCell(c));};
+
+    loop(con);
+
+    return ret;
+  }
 }

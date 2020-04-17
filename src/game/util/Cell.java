@@ -13,6 +13,10 @@ public class Cell {
     return state.getValue();
   }
 
+  public String getDirection(){
+    return state.getDirection();
+  }
+
 
   public State getState(){
     return state;
@@ -22,5 +26,7 @@ public class Cell {
     return coords;
   }
 
-
+  public void mark(boolean newStat) {
+    state.mark(newStat);
+  }
 }

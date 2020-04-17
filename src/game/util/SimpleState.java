@@ -3,12 +3,20 @@ package game.util;
 public class SimpleState implements State {
   private String type;
   private int value;
+  private String direction;
+  private boolean marked;
 
 
 
-  public SimpleState(String type, int value){
+  public SimpleState(String type, int value, String direction){
     this.type = type;
     this.value = value;
+    this.direction = direction;
+    marked = false;
+  }
+
+  public SimpleState(String type, int value){
+    this(type, value, "UP");
   }
 
 
@@ -22,4 +30,25 @@ public class SimpleState implements State {
   public int getValue() {
     return value;
   }
+
+  @Override
+  public String getDirection() {
+    return direction;
+  }
+
+  @Override
+  public boolean ifMarked() {
+    return marked;
+  }
+
+
+  @Override
+  public State mark(boolean newStat) {
+    marked = newStat;
+    return this;
+  }
+
+
+
+
 }

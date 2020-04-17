@@ -19,4 +19,10 @@ public interface  Grid {
     void loop(Consumer<Coordinates> c);
 
     List<MutableCell> getCellsOfValue(int val);
+
+    List<MutableCell> getCellsOfType(String type);
+
+    MutableCell getCellDirection(MutableCell c);
+
+    List<MutableCell> getMarkedCells();
 }

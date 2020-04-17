@@ -14,7 +14,7 @@ public class ValueGreaterThanEqual implements Rules {
   @Override
   public boolean canPerform(List<MutableCell> currCells) {
     for(Cell c : currCells){
-      if(c.getValue() >=val){
+      if(c.getValue() <val){
         return false;
       }
     }

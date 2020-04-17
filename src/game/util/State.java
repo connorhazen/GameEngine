@@ -6,4 +6,11 @@ public interface State {
 
   int getValue();
 
+  String getDirection();
+
+  boolean ifMarked();
+
+  State mark(boolean newStat);
+
+
 }
