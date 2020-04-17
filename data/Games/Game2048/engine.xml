@@ -32,7 +32,7 @@
     <Code>addRandom</Code>
     <Operations>OperationAddRandom</Operations>
     <Rules>RuleTrue</Rules>
-    <Interaction>RandomOfType</Interaction>
+    <Interaction>RandomOfValue</Interaction>
   </Event>
   <States>Head,Body,Food,Empty</States>
   <LevelBuilder>

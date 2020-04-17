@@ -1,5 +1,6 @@
 package game.util;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.function.Consumer;
 
@@ -16,4 +17,6 @@ public abstract class Grid implements Iterable<Cell> {
   public abstract List<MutableCell> getCellsOfState(State s);
 
   public abstract void loop(Consumer<Coordinates> c);
+
+  public abstract List<MutableCell> getCellsOfValue(SimpleState simpleState);
 }

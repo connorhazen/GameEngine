@@ -3,9 +3,11 @@ package game.engine;
 import game.engine.interaction.Interaction;
 import game.engine.operation.Operation;
 import game.engine.rules.Rules;
+import game.parse.XMLException;
 import game.util.*;
 
 import java.lang.reflect.Constructor;
+import java.util.ArrayList;
 import java.util.List;
 
 public class GridEvent implements Event {
@@ -22,10 +24,19 @@ public class GridEvent implements Event {
 
     private Boolean didExecute;
 
-    public GridEvent(String operation, String interaction, String rules, Action nextAction) {
-        myOperation = (Operation)createObjectOf(operation, OPERATION_PACKAGE);
-        myInteraction = (Interaction)createObjectOf(interaction, INTERACTION_PACKAGE);
-        myRules = (Rules)createObjectOf(rules, RULES_PACKAGE);
+    public GridEvent(List<String> operation, List<String> interaction, List<String> rules, Action nextAction) {
+        List<String> operationParams = new ArrayList<>(operation);
+        List<String> rulesParams = new ArrayList<>(rules);
+        List<String> interactionParams = new ArrayList<>(interaction);
+
+        operationParams.remove(0);
+        rulesParams.remove(0);
+        interactionParams.remove(0);
+
+
+        myOperation = (Operation)createObjectOf(operation.get(0), OPERATION_PACKAGE, operationParams);
+        myInteraction = (Interaction)createObjectOf(interaction.get(0), INTERACTION_PACKAGE, interactionParams);
+        myRules = (Rules)createObjectOf(rules.get(0), RULES_PACKAGE, rulesParams);
         this.nextAction = nextAction;
         didExecute = false;
     }
@@ -54,16 +65,25 @@ public class GridEvent implements Event {
 
     }
 
-    private Object createObjectOf(String rules, String pack) {
+    private Object createObjectOf(String rules, String pack, List<String> argument) throws XMLException {
         Object obj = null;
         try {
             Class c = Class.forName(pack + rules);
-            Constructor objConstruct = c.getDeclaredConstructor();
-            objConstruct.setAccessible(true);
-            obj = objConstruct.newInstance();
+            Constructor objConstruct;
+            try{
+                Class[] params = new Class[] {List.class};
+                objConstruct =  c.getDeclaredConstructor(params);
+                objConstruct.setAccessible(true);
+                obj = objConstruct.newInstance(argument);
+            }
+            catch (Exception e ){
+                objConstruct = c.getDeclaredConstructor();
+                objConstruct.setAccessible(true);
+                obj = objConstruct.newInstance();
+            }
+
         } catch (Exception e) {
-            //TODO: Class you were trying to create had a problem make exception
-            System.out.println("Class you were trying to create had a problem");
+            throw new XMLException("Bad event declaration: type - " + rules + " Args - " + argument);
         }
         return obj;
     }

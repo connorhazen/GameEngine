@@ -6,6 +6,8 @@ import java.util.List;
 
 public class Rule2048 implements Rules {
 
+
+
     @Override
     public boolean canPerform(List<MutableCell> currCells) {
 

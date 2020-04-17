@@ -3,6 +3,8 @@ package game.controller;
 import game.engine.AnimationHandler;
 import game.engine.GameHandler;
 import game.engine.LevelHandler;
+import java.lang.reflect.Array;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -28,14 +30,18 @@ public class EngineFactory {
         String interaction = Objects.requireNonNull(map.get("Interaction"));
         String rule = Objects.requireNonNull(map.get("Rules"));
         SimpleAction next = new SimpleAction(map.get("FollowEvents"));
+
         if(next.getCode() == null) next = null;
 
-        gameHandler.addEvent(new SimpleAction(code), operation, interaction, rule,
+        gameHandler.addEvent(new SimpleAction(code), Arrays.asList(operation.split(" ")),  Arrays.asList(interaction.split(" ")),  Arrays.asList(rule.split(" ")),
             next);
 
       }
-    } catch (Exception e) {
-      throw new XMLException("Bad Event Construction");
+    } catch (XMLException e) {
+      throw new XMLException("Bad Event Construction " + e.getMessage());
+    }
+    catch (Exception e){
+      e.printStackTrace();
     }
   }
 

@@ -1,16 +1,12 @@
 package game.controller;
 
-//import engine.UpdateObject;
-import game.parse.XMLException;
 import javafx.geometry.Insets;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
@@ -19,13 +15,9 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
-//import parse.XMLException;
-//import util.Action;
-//import util.SimpleAction;
 
 import java.io.File;
 import game.engine.UpdateObject;
-import javafx.stage.Stage;
 import game.util.Action;
 import game.util.SimpleAction;
 
