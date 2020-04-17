@@ -10,7 +10,9 @@ public class Rule2048 implements Rules {
 
     @Override
     public boolean canPerform(List<MutableCell> currCells) {
-
-        return (currCells.get(0).getValue() == currCells.get(1).getValue()) || (currCells.get(0).getValue() == 0 || currCells.get(1).getValue() == 0) && (currCells.get(0).getValue() !=0 || currCells.get(1).getValue() !=0) ;
+        boolean neitherMarked = !(currCells.get(0).getState().ifMarked() || currCells.get(1).getState().ifMarked());
+        boolean cellsEqualButNotZero = (currCells.get(0).getValue() == currCells.get(1).getValue()) && currCells.get(0).getValue() != 0;
+        boolean oneZero = (currCells.get(0).getValue() == 0 && currCells.get(1).getValue() != 0);
+        return neitherMarked && (cellsEqualButNotZero || oneZero);
     }
 }
