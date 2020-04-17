@@ -5,6 +5,7 @@ import game.util.Grid2dArray;
 import game.util.MutableCell;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class BottomToTopAll extends OrderedAll{
@@ -17,11 +18,20 @@ public class BottomToTopAll extends OrderedAll{
     public void setGrid(Grid2dArray currentGrid) {
         cells.clear();
         for(int col = 0; col < currentGrid.getWidth(); col++){
-            List<MutableCell> newGroup = new ArrayList<>();
-            for(int row = currentGrid.getHeight()-1; row >= 0; row--){
-                newGroup.add(currentGrid.getMutableCell(new Coordinates(col,row)));
+            List<List<MutableCell>> allRowCombos = new ArrayList<>();
+            for(int row = currentGrid.getHeight()-2; row >= 0; row--) {
+                List<MutableCell> newGroup = new ArrayList<>();
+                newGroup.add(currentGrid.getMutableCell(new Coordinates(col, row+1)));
+                newGroup.add(currentGrid.getMutableCell(new Coordinates(col, row)));
+                newGroup.get(0).mark(false);
+                newGroup.get(1).mark(false);
+                allRowCombos.add(newGroup);
             }
-            cells.add(newGroup);
+            for(int index = 1; index <= allRowCombos.size();index++){
+                List<List<MutableCell>> sub = new ArrayList<>(allRowCombos.subList(0,index));
+                Collections.reverse(sub);
+                cells.addAll(sub);
+            }
         }
     }
 }
