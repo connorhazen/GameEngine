@@ -26,7 +26,7 @@ public class GridEvent implements Event {
 
     private Boolean didExecute;
 
-    public GridEvent(List<String> operation, List<String> interaction, List<String> rules, Action ifExecute, Action ifNoExecute) {
+    public GridEvent(List<String> operation, List<String> interaction, List<String> rules, Action ifExecute, Action ifNoExecute) throws XMLException{
         List<String> operationParams = new ArrayList<>(operation);
         List<String> rulesParams = new ArrayList<>(rules);
         List<String> interactionParams = new ArrayList<>(interaction);

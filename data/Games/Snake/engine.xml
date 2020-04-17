@@ -66,8 +66,16 @@
     <Operations>IncrementValue 1</Operations>
     <Rules>RuleTrue</Rules>
     <Interaction>Marked</Interaction>
+    <IfExecuteEvent>s7.5</IfExecuteEvent>
+    <IfNoExecuteEvent>s7.5</IfNoExecuteEvent>
+  </Event>
+  <Event>
+    <Code>s7.5</Code>
+    <Operations>SetValue -1</Operations>
+    <Rules>RuleTrue</Rules>
+    <Interaction>RandomOfValue 0</Interaction>
     <IfExecuteEvent>s8</IfExecuteEvent>
-    <IfNoExecuteEvent>s8</IfNoExecuteEvent>
+    <IfNoExecuteEvent>sWon</IfNoExecuteEvent>
   </Event>
   <Event>
     <Code>s8</Code>
@@ -75,6 +83,7 @@
     <Rules>RuleTrue</Rules>
     <Interaction>Marked</Interaction>
   </Event>
+
 
 
   <Event>
@@ -107,12 +116,20 @@
   <Event>
     <Code>SPACE</Code>
     <Operations>Nothing</Operations>
-    <Rules>RuleTrue DOWMaxValueN</Rules>
+    <Rules>RuleTrue</Rules>
     <Interaction>All</Interaction>
     <IfExecuteEvent>s0</IfExecuteEvent>
   </Event>
 
- <LevelMaker>RandomSquareToValue 1</LevelMaker>
+  <Event>
+    <Code>sWon</Code>
+    <Operations>SetType WON</Operations>
+    <Rules>RuleTrue</Rules>
+    <Interaction>All</Interaction>
+  </Event>
+
+ <LevelMaker>RandomSquareToValue 1 -1</LevelMaker>
+ 
 
 
 </data>

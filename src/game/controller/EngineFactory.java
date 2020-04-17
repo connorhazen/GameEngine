@@ -19,10 +19,8 @@ public class EngineFactory {
 
     FileReader fr = new FileReader(folder+fileName);
 
-    doEvents(gameHandler, fr);
-
     doLevelMaker(levelHandler, fr);
-
+    doEvents(gameHandler, fr);
   }
 
   private static void doEvents(GameHandler gameHandler, FileReader fr) throws XMLException{
