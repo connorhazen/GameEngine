@@ -5,28 +5,28 @@
     <Operations>OperationCombine2048</Operations>
     <Rules>Rule2048</Rules>
     <Interaction>RightToLeftAll</Interaction>
-    <FollowEvents>addRandom</FollowEvents>
+    <IfExecuteEvent>addRandom</IfExecuteEvent>
   </Event>
   <Event>
     <Code>RIGHT</Code>
     <Operations>OperationCombine2048</Operations>
     <Rules>Rule2048</Rules>
     <Interaction>LeftToRightAll</Interaction>
-    <FollowEvents>addRandom</FollowEvents>
+    <IfExecuteEvent>addRandom</IfExecuteEvent>
   </Event>
   <Event>
     <Code>UP</Code>
     <Operations>OperationCombine2048</Operations>
     <Rules>Rule2048</Rules>
     <Interaction>BottomToTopAll</Interaction>
-    <FollowEvents>addRandom</FollowEvents>
+    <IfExecuteEvent>addRandom</IfExecuteEvent>
   </Event>
   <Event>
     <Code>DOWN</Code>
     <Operations>OperationCombine2048</Operations>
     <Rules>Rule2048</Rules>
     <Interaction>TopToBottomAll</Interaction>
-    <FollowEvents>addRandom</FollowEvents>
+    <IfExecuteEvent>addRandom</IfExecuteEvent>
   </Event>
   <Event>
     <Code>addRandom</Code>
@@ -34,10 +34,5 @@
     <Rules>RuleTrue</Rules>
     <Interaction>RandomOfValue</Interaction>
   </Event>
-  <States>Head,Body,Food,Empty</States>
-  <LevelBuilder>
-    <Type>Random</Type>
-    <Parms>1, 0, 1, x</Parms>
-    <ParamChange>0,0,0,0</ParamChange>
-  </LevelBuilder>
+  <LevelMaker>RandomValsTo 2</LevelMaker>
 </data>

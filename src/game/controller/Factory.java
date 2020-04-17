@@ -1,12 +1,12 @@
 package game.controller;
 
-import game.engine.AnimationHandler;
-import game.engine.BaseAnimationHandler;
-import game.engine.BaseGameHandler;
-import game.engine.BaseLevelHandler;
+import game.engine.animationHandlers.AnimationHandler;
+import game.engine.animationHandlers.BaseAnimationHandler;
+import game.engine.gameHandlers.BaseGameHandler;
+import game.engine.levelHandlers.BaseLevelHandler;
 import game.engine.Engine;
-import game.engine.GameHandler;
-import game.engine.LevelHandler;
+import game.engine.gameHandlers.GameHandler;
+import game.engine.levelHandlers.LevelHandler;
 import java.util.HashMap;
 import java.util.Map;
 import game.parse.XMLException;

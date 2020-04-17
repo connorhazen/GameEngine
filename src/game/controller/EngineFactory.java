@@ -1,8 +1,9 @@
 package game.controller;
 
-import game.engine.AnimationHandler;
-import game.engine.GameHandler;
-import game.engine.LevelHandler;
+import game.engine.animationHandlers.AnimationHandler;
+import game.engine.gameHandlers.GameHandler;
+import game.engine.levelHandlers.LevelHandler;
+import java.io.FileInputStream;
 import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.List;
@@ -14,25 +15,28 @@ import game.util.SimpleAction;
 
 public class EngineFactory {
 
-  public static void parseXML(String fileName, GameHandler gameHandler, AnimationHandler animationHandler, LevelHandler lh) throws XMLException{
+  public static void parseXML(String fileName, GameHandler gameHandler, AnimationHandler animationHandler, LevelHandler levelHandler) throws XMLException{
 
     FileReader fr = new FileReader(fileName);
 
-    doEvents(gameHandler, fr.makeMapsForTag("Event"));
+    doEvents(gameHandler, fr);
+
+    doLevelMaker(levelHandler, fr);
 
   }
 
-  private static void doEvents(GameHandler gameHandler, List<Map<String, String>> list) throws XMLException{
+  private static void doEvents(GameHandler gameHandler, FileReader fr) throws XMLException{
+    List<Map<String, String>> list = fr.makeMapsForTag("Event");
     try {
       for (Map<String, String> map : list) {
         String code = Objects.requireNonNull(map.get("Code"));
         String operation = Objects.requireNonNull(map.get("Operations"));
         String interaction = Objects.requireNonNull(map.get("Interaction"));
         String rule = Objects.requireNonNull(map.get("Rules"));
-        SimpleAction ifExe = new SimpleAction(map.get("IfExecuteEvents"));
+        SimpleAction ifExe = new SimpleAction(map.get("IfExecuteEvent"));
         if(ifExe.getCode() == null) ifExe = null;
 
-        SimpleAction ifNoExe = new SimpleAction(map.get("IfNoExecuteEvents"));
+        SimpleAction ifNoExe = new SimpleAction(map.get("IfNoExecuteEvent"));
         if(ifNoExe.getCode() == null) ifNoExe = null;
 
         gameHandler.addEvent(new SimpleAction(code), Arrays.asList(operation.split(" ")),  Arrays.asList(interaction.split(" ")),  Arrays.asList(rule.split(" ")),
@@ -45,6 +49,11 @@ public class EngineFactory {
     catch (Exception e){
       e.printStackTrace();
     }
+  }
+
+  private static void doLevelMaker(LevelHandler lh, FileReader fr){
+    String val = fr.getValue("LevelMaker");
+    lh.setInitialGridMaker(Arrays.asList(val.split(" ")));
   }
 
 }

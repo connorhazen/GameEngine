@@ -67,11 +67,11 @@ public class FileReader {
    * getValue returns the value found in the element that is identified by the tag
    * the tag is usually a certain parameter the Game.controller wants to run the simulation
    * @param tag the name of the parameter wanting to be read
-   * @param element the element the parameter will be found in
+
    * @return the int, double, string, etc value that is associated with that tag parameter
    */
-  private static String getValue(String tag, Element element) {
-    NodeList nodes = element.getElementsByTagName(tag).item(0).getChildNodes();
+  public String getValue(String tag) {
+    NodeList nodes = simElement.getElementsByTagName(tag).item(0).getChildNodes();
     Node node = nodes.item(0);
     return node.getNodeValue();
   }
@@ -101,7 +101,7 @@ public class FileReader {
    */
   public int getIntValue(String parameter) {
     try {
-      return Integer.parseInt(getValue(parameter, simElement));
+      return Integer.parseInt(getValue(parameter));
     } catch (NullPointerException e) {
 
       //throw new parameterException(errorMessage, parameter);
@@ -116,7 +116,7 @@ public class FileReader {
    */
   public double getDoubleValue(String parameter) {
     try {
-      return Double.parseDouble(getValue(parameter, simElement));
+      return Double.parseDouble(getValue(parameter));
     } catch (NullPointerException e) {
 
       //throw new parameterException(errorMessage, parameter);
@@ -131,7 +131,7 @@ public class FileReader {
    */
   public String getString(String parameter) {
     try {
-      return getValue(parameter, simElement);
+      return getValue(parameter);
     } catch (NullPointerException e) {
      //TODO; fix
       //throw new parameterException(errorMessage, parameter);
@@ -147,7 +147,7 @@ public class FileReader {
    */
   public boolean checkExists(String parameter) {
     try {
-      getValue(parameter, simElement);
+      getValue(parameter);
       return true;
     } catch (Exception e) {
       return false;

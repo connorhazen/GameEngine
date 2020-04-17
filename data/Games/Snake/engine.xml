@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<data>
+  <Event>
+    <Code>s0</Code>
+    <Operations>MarkCell</Operations>
+    <Rules>RuleTrue</Rules>
+    <Interaction>MaxValue</Interaction>
+    <IfExecuteEvent>s1</IfExecuteEvent>
+  </Event>
+  <Event>
+    <Code>s1</Code>
+    <Operations>MarkCell</Operations>
+    <Rules>RuleTrue</Rules>
+    <Interaction>MarkedDirection</Interaction>
+    <IfExecuteEvent>s2</IfExecuteEvent>
+  </Event>
+  <Event>
+    <Code>s2</Code>
+    <Operations>SetType LOST</Operations>
+    <Rules>ValueGreaterThanEqual 1</Rules>
+    <Interaction>Marked</Interaction>
+    <IfNoExecuteEvent>s3</IfNoExecuteEvent>
+  </Event>
+  <Event>
+    <Code>s3</Code>
+    <Operations>Nothing</Operations>
+    <Rules>ValueGreaterThanEqual 0</Rules>
+    <Interaction>Marked</Interaction>
+    <IfExecuteEvent>s4</IfExecuteEvent>
+    <IfNoExecuteEvent>s6</IfNoExecuteEvent>
+  </Event>
+  <Event>
+    <Code>s4</Code>
+    <Operations>CombineToMaxAndChanges</Operations>
+    <Rules>RuleTrue</Rules>
+    <Interaction>Marked</Interaction>
+    <IfExecuteEvent>s4.5</IfExecuteEvent>
+    <IfNoExecuteEvent>s4.5</IfNoExecuteEvent>
+  </Event>
+  <Event>
+    <Code>s4.5</Code>
+    <Operations>IncrementValue +1</Operations>
+    <Rules>RuleTrue</Rules>
+    <Interaction>Marked</Interaction>
+    <IfExecuteEvent>s5</IfExecuteEvent>
+    <IfNoExecuteEvent>s5</IfNoExecuteEvent>
+  </Event>
+  <Event>
+    <Code>s5</Code>
+    <Operations>IncrementValue -1</Operations>
+    <Rules>ValueGreaterThanEqual 0</Rules>
+    <Interaction>All</Interaction>
+    <IfExecuteEvent>s8</IfExecuteEvent>
+    <IfNoExecuteEvent>s8</IfNoExecuteEvent>
+  </Event>
+  <Event>
+    <Code>s6</Code>
+    <Operations>CombineToMaxAndChanges</Operations>
+    <Rules>RuleTrue</Rules>
+    <Interaction>Marked</Interaction>
+    <IfExecuteEvent>s7</IfExecuteEvent>
+    <IfNoExecuteEvent>s7</IfNoExecuteEvent>
+  </Event>
+  <Event>
+    <Code>s7</Code>
+    <Operations>IncrementValue 1</Operations>
+    <Rules>RuleTrue</Rules>
+    <Interaction>Marked</Interaction>
+    <IfExecuteEvent>s8</IfExecuteEvent>
+    <IfNoExecuteEvent>s8</IfNoExecuteEvent>
+  </Event>
+  <Event>
+    <Code>s8</Code>
+    <Operations>UnMarkCell</Operations>
+    <Rules>RuleTrue</Rules>
+    <Interaction>Marked</Interaction>
+  </Event>
+
+
+  <Event>
+    <Code>LEFT</Code>
+    <Operations>SetDirection LEFT</Operations>
+    <Rules>NotOppositeDirection LEFT</Rules>
+    <Interaction>MaxValue</Interaction>
+  </Event>
+
+  <Event>
+    <Code>RIGHT</Code>
+    <Operations>SetDirection RIGHT</Operations>
+    <Rules>NotOppositeDirection RIGHT</Rules>
+    <Interaction>MaxValue</Interaction>
+
+  </Event>
+  <Event>
+    <Code>UP</Code>
+    <Operations>SetDirection UP</Operations>
+    <Rules>NotOppositeDirection UP</Rules>
+    <Interaction>MaxValue</Interaction>
+
+  </Event>
+  <Event>
+    <Code>DOWN</Code>
+    <Operations>SetDirection DOWN</Operations>
+    <Rules>NotOppositeDirection DOWN</Rules>
+    <Interaction>MaxValue</Interaction>
+  </Event>
+
+ <LevelMaker>RandomSquareToValue 1</LevelMaker>
+
+
+</data>

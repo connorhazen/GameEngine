@@ -1,5 +1,9 @@
 package game.engine;
 
+import game.engine.animationHandlers.AnimationHandler;
+import game.engine.animationHandlers.GameAnimation;
+import game.engine.gameHandlers.GameHandler;
+import game.engine.levelHandlers.LevelHandler;
 import game.util.Grid;
 import game.util.Action;
 
