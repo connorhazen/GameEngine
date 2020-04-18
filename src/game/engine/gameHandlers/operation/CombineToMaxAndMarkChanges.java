@@ -4,7 +4,7 @@ import game.util.MutableCell;
 import game.util.SimpleState;
 import java.util.List;
 
-public class CombineToMaxAndChanges implements Operation {
+public class CombineToMaxAndMarkChanges implements Operation {
 
 
   @Override

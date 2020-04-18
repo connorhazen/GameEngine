@@ -23,67 +23,56 @@
   </Event>
   <Event>
     <Code>s3</Code>
-    <Operations>Nothing</Operations>
+    <Operations>CombineToMaxAndMarkChanges</Operations>
     <Rules>ValueGreaterThanEqual 0</Rules>
     <Interaction>Marked</Interaction>
     <IfExecuteEvent>s4</IfExecuteEvent>
     <IfNoExecuteEvent>s6</IfNoExecuteEvent>
   </Event>
+
   <Event>
     <Code>s4</Code>
-    <Operations>CombineToMaxAndChanges</Operations>
-    <Rules>RuleTrue</Rules>
-    <Interaction>Marked</Interaction>
-    <IfExecuteEvent>s4.5</IfExecuteEvent>
-    <IfNoExecuteEvent>s4.5</IfNoExecuteEvent>
-  </Event>
-  <Event>
-    <Code>s4.5</Code>
     <Operations>IncrementValue 1</Operations>
     <Rules>RuleTrue</Rules>
     <Interaction>Marked</Interaction>
     <IfExecuteEvent>s5</IfExecuteEvent>
-    <IfNoExecuteEvent>s5</IfNoExecuteEvent>
   </Event>
   <Event>
     <Code>s5</Code>
     <Operations>IncrementValue -1</Operations>
     <Rules>ValueGreaterThanEqual 1</Rules>
     <Interaction>All</Interaction>
-    <IfExecuteEvent>s8</IfExecuteEvent>
-    <IfNoExecuteEvent>s8</IfNoExecuteEvent>
+    <IfExecuteEvent>s9</IfExecuteEvent>
+    <IfNoExecuteEvent>s9</IfNoExecuteEvent>
   </Event>
   <Event>
     <Code>s6</Code>
-    <Operations>CombineToMaxAndChanges</Operations>
+    <Operations>CombineToMaxAndMarkChanges</Operations>
     <Rules>RuleTrue</Rules>
     <Interaction>Marked</Interaction>
     <IfExecuteEvent>s7</IfExecuteEvent>
-    <IfNoExecuteEvent>s7</IfNoExecuteEvent>
   </Event>
   <Event>
     <Code>s7</Code>
     <Operations>IncrementValue 1</Operations>
     <Rules>RuleTrue</Rules>
     <Interaction>Marked</Interaction>
-    <IfExecuteEvent>s7.5</IfExecuteEvent>
-    <IfNoExecuteEvent>s7.5</IfNoExecuteEvent>
-  </Event>
-  <Event>
-    <Code>s7.5</Code>
-    <Operations>SetValue -1</Operations>
-    <Rules>RuleTrue</Rules>
-    <Interaction>RandomOfValue 0</Interaction>
     <IfExecuteEvent>s8</IfExecuteEvent>
-    <IfNoExecuteEvent>sWon</IfNoExecuteEvent>
   </Event>
   <Event>
     <Code>s8</Code>
+    <Operations>SetValue -1</Operations>
+    <Rules>RuleTrue</Rules>
+    <Interaction>RandomOfValue 0</Interaction>
+    <IfExecuteEvent>s9</IfExecuteEvent>
+    <IfNoExecuteEvent>sWon</IfNoExecuteEvent>
+  </Event>
+  <Event>
+    <Code>s9</Code>
     <Operations>UnMarkCell</Operations>
     <Rules>RuleTrue</Rules>
     <Interaction>Marked</Interaction>
   </Event>
-
 
 
   <Event>
