@@ -8,21 +8,21 @@ import game.util.Action;
 public class UpdateStatus implements UpdateObject {
     private Grid gridStatus;
     private GameAnimation animationStatus;
-    private boolean gameOverStatus;
+    private boolean gameLost;
+    private boolean gameWon;
     private Action nextAction;
 
-    public UpdateStatus(Grid g, GameAnimation a, boolean over, Action ev){
+    public UpdateStatus(Grid g, GameAnimation a, boolean won, boolean lost, Action ev){
         gridStatus = g;
         animationStatus = a;
-        gameOverStatus = over;
+        gameWon = won;
+        gameLost = lost;
         nextAction = ev;
     }
 
     public UpdateStatus(Grid g){
-        gridStatus = g;
-        animationStatus = null;
-        gameOverStatus = false;
-        nextAction = null;
+        this(g, null, false, false, null);
+
     }
 
     @Override
@@ -36,8 +36,28 @@ public class UpdateStatus implements UpdateObject {
     }
 
     @Override
-    public boolean getLevelOver() {
-        return gameOverStatus;
+    public boolean getGameLost() {
+        return gameLost;
+    }
+
+    @Override
+    public boolean getGameWon() {
+        return gameWon;
+    }
+
+    @Override
+    public void setGameLost(boolean set) {
+        gameLost = set;
+    }
+
+    @Override
+    public void setGameWon(boolean set) {
+        gameWon = set;
+    }
+
+    @Override
+    public boolean getGameRunning() {
+        return !(gameLost || gameWon);
     }
 
     @Override

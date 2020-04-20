@@ -6,6 +6,7 @@ import game.parse.XMLException;
 import game.view.View;
 
 public class GameObject {
+  private boolean running;
   private Engine engine;
   private View view;
 
@@ -15,6 +16,7 @@ public class GameObject {
     Factory f = new Factory(folderPath);
     engine = f.makeEngine();
     view = f.makeView();
+    running = true;
   }
 
   public View getView() {
@@ -27,5 +29,13 @@ public class GameObject {
 
   public Scene getScene(){
     return view.getScene();
+  }
+
+  public boolean isRunning(){
+    return running;
+  }
+
+  public void setRunning(boolean running){
+    this.running = running;
   }
 }

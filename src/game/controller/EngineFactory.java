@@ -52,6 +52,14 @@ public class EngineFactory {
   private static void doLevelMaker(LevelHandler lh, FileReader fr){
     String val = fr.getValue("LevelMaker");
     lh.setInitialGridMaker(Arrays.asList(val.split(" ")));
+
+    val = fr.getValue("LoseCon");
+    lh.setLoseCondition(Arrays.asList(val.split(" ")));
+
+    val = fr.getValue("WinCon");
+    lh.setWinCondition(Arrays.asList(val.split(" ")));
+
+
   }
 
 }
