@@ -82,7 +82,7 @@ public class SimplePlayer implements Player {
         if(activeButton.equals(""))
           addGameMessage("You Haven't Selected a Game Type Yet!");
         else
-          addGameMessage(ex.getMessage());
+          addGameMessage("Issues Parsing or Finding XML File For This Game");
       }
     });
     return b;
