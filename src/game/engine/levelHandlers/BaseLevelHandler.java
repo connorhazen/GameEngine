@@ -13,6 +13,9 @@ import java.util.List;
 
 public class BaseLevelHandler implements LevelHandler {
 
+  private int height;
+  private int width;
+
   private List<InitialLevelMaker> maker;
   private Condition winCon;
   private Condition loseCon;
@@ -31,7 +34,7 @@ public class BaseLevelHandler implements LevelHandler {
     for(InitialLevelMaker m : maker){
       if(first){
         first = false;
-        g = m.execute(2,2);
+        g = m.execute(height,width);
         continue;
       }
       m.execute(g);
@@ -68,5 +71,11 @@ public class BaseLevelHandler implements LevelHandler {
     List<String> makerParams = new ArrayList<>(args);
     makerParams.remove(0);
     loseCon = (Condition) ObjectMaker.createObjectOf(args.get(0), OUTER_PACKAGE+END_CONDITIONS, makerParams);
+  }
+
+  @Override
+  public void setSize(String width, String height) {
+    this.width = Integer.parseInt(width);
+    this.height = Integer.parseInt(height);
   }
 }

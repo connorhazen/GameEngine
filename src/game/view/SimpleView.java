@@ -99,6 +99,8 @@ public class SimpleView implements View {
       String image = getImageFile(cell.getValue(), cell.getType());
       if(image!=null) {
         ImageView view = makeImage(image);
+        view.fitWidthProperty().bind(pane.widthProperty());
+        view.fitHeightProperty().bind(pane.heightProperty());
         view.setRotate(ROTATE_MAP.get(cell.getDirection()));
         pane.getChildren().add(view);
       }

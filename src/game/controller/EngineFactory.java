@@ -50,6 +50,10 @@ public class EngineFactory {
   }
 
   private static void doLevelMaker(LevelHandler lh, FileReader fr) throws XMLException{
+    String height = fr.getValue("Height");
+    String width = fr.getValue("Width");
+
+    lh.setSize(width, height);
     List<String> val = fr.getValues("LevelMaker");
     for(String s:val){
       lh.setInitialGridMaker(Arrays.asList(s.split(" ")));

@@ -16,4 +16,6 @@ public interface LevelHandler {
     void setWinCondition(List<String> args);
 
     void setLoseCondition(List<String> args);
+    void setSize(String width, String height);
+
 }
