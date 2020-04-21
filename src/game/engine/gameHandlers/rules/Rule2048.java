@@ -6,8 +6,6 @@ import java.util.List;
 
 public class Rule2048 implements Rules {
 
-
-
     @Override
     public boolean canPerform(List<MutableCell> currCells) {
         boolean neitherMarked = !(currCells.get(0).getState().ifMarked() || currCells.get(1).getState().ifMarked());

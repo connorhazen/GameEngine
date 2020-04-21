@@ -6,7 +6,7 @@ import game.util.Action;
 
 import java.io.Serializable;
 
-public interface UpdateObject extends Serializable {
+public interface UpdateObject{
 
   Grid getGrid();
   GameAnimation getAnimation();
