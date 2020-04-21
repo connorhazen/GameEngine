@@ -134,6 +134,6 @@
   <LevelMaker>RandomSquareToTypeVal "" -1</LevelMaker>
   <LoseCon>CellOfType LOST</LoseCon>
   <WinCon>CellOfType WON</WinCon>
-  <Height>2</Height>
-  <Width>2</Width>
+  <Height>20</Height>
+  <Width>20</Width>
 </data>

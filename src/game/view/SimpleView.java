@@ -94,21 +94,23 @@ public class SimpleView implements View {
     int width = grid.getWidth();
 
     grid.loop((c) -> {
-      AnchorPane pane = makePane(c, width, height);
+
       Cell cell = grid.getCell(c.x, c.y);
       String image = getImageFile(cell.getValue(), cell.getType());
       if(image!=null) {
         ImageView view = makeImage(image);
-        view.fitWidthProperty().bind(pane.widthProperty());
-        view.fitHeightProperty().bind(pane.heightProperty());
+        view.setLayoutX(display.getWidth() / width * c.x);
+        view.setLayoutY(display.getHeight() / height * c.y);
+        view.setFitWidth(display.getWidth() / width);
+        view.setFitHeight(display.getHeight() / height);
         view.setRotate(ROTATE_MAP.get(cell.getDirection()));
-        pane.getChildren().add(view);
+        root.getChildren().add(view);
       }
       else{
+        AnchorPane pane = makePane(c, width, height);
         pane.getChildren().add(makeNumber(cell.getValue()));
+        root.getChildren().add(pane);
       }
-      root.getChildren().add(pane);
-
     });
   }
 
