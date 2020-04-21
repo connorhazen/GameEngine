@@ -1,5 +1,6 @@
 package game.controller;
 
+import javafx.application.Platform;
 import javafx.geometry.Insets;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -75,6 +76,7 @@ public class SimplePlayer implements Player {
       try{
         activeButton = ((RadioButton)toggleGroup.getSelectedToggle()).getText();
         GameObject go = new GameObject("Games/"+activeButton);
+        go.setStepFunction(() -> handleEvent(new SimpleAction("STEP"), go));
         initialGameSetup(go);
         addGameMessage("Enjoy Your Game! Select Another to Start a New Game!");
       }

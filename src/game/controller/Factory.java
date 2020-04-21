@@ -39,4 +39,15 @@ public class Factory {
 
     return ViewFactory.makeView(gameFile, VIEW);
   }
+
+  public int getStep() {
+    String step = EngineFactory.getStep(gameFile,ENGINE);
+    if(!step.equals("")){
+      return Integer.parseInt(step);
+    }
+    else{
+      return 0;
+    }
+
+  }
 }

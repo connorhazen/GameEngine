@@ -3,6 +3,7 @@ package game.view;
 
 import game.engine.UpdateObject;
 import javafx.scene.Scene;
+import javafx.stage.Stage;
 
 public interface View {
 
@@ -14,4 +15,6 @@ public interface View {
 
 
   Scene getScene();
+
+  Stage getStage();
 }

@@ -69,4 +69,15 @@ public class EngineFactory {
 
   }
 
+  public static String getStep(String folder, String fileName) {
+    FileReader fr = new FileReader(folder+fileName);
+    try{
+      return fr.getValue("STEP");
+    }
+    catch (Exception e){
+      return "";
+    }
+
+
+  }
 }

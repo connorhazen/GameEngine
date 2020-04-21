@@ -32,6 +32,7 @@ public class SimpleView implements View {
   private Scene display;
   private Group root;
   private Map<String, String> imageMap;
+  private Stage stage;
 
   public static final String DEFAULT_IMAGE = "questionMark";
   public static final String FILE_PATH = "StateImages/";
@@ -46,7 +47,7 @@ public class SimpleView implements View {
   private final static double WIDTH = 500;
 
   public SimpleView( Map<String, String> images){
-    Stage stage = new Stage();
+    stage = new Stage();
 
     root = new Group();
     display = new Scene(root, WIDTH, HEIGHT);
@@ -213,6 +214,11 @@ public class SimpleView implements View {
   @Override
   public Scene getScene() {
     return display;
+  }
+
+  @Override
+  public Stage getStage() {
+    return stage;
   }
 
 }
