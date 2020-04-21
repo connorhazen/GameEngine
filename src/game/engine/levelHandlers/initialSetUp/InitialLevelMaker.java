@@ -1,4 +1,4 @@
-package game.engine.levelHandlers;
+package game.engine.levelHandlers.initialSetUp;
 
 import game.util.Grid;
 import game.util.Grid2dArray;

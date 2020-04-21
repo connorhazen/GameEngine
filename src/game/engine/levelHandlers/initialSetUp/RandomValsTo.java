@@ -1,12 +1,9 @@
-package game.engine.levelHandlers;
+package game.engine.levelHandlers.initialSetUp;
 
-import game.util.Grid;
 import game.util.Grid2dArray;
 import game.util.MutableGrid;
 import game.util.SimpleState;
 import java.util.List;
-import java.util.Random;
-import javax.print.DocFlavor.STRING;
 
 public class RandomValsTo implements InitialLevelMaker {
   private int val;

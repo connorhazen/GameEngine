@@ -29,4 +29,15 @@ public class Cell {
   public void mark(boolean newStat) {
     state.mark(newStat);
   }
+
+  @Override
+  public boolean equals(Object obj){
+    try{
+      Cell c = (Cell) obj;
+      return c.getValue() == getValue() && c.getType().equals(c.getType());
+    }
+    catch (Exception e){
+      return false;
+    }
+  }
 }

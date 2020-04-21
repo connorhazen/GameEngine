@@ -25,4 +25,7 @@ public interface  Grid {
     MutableCell getCellDirection(MutableCell c);
 
     List<MutableCell> getMarkedCells();
+
+    @Override
+    boolean equals(Object obj);
 }

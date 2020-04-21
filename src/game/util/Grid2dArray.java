@@ -1,8 +1,8 @@
 package game.util;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.function.Consumer;
 
 public class Grid2dArray implements MutableGrid {
@@ -122,5 +122,19 @@ public class Grid2dArray implements MutableGrid {
     loop(con);
 
     return ret;
+  }
+
+  @Override
+  public boolean equals(Object obj){
+    try{
+      Grid g = (Grid) obj;
+      AtomicBoolean ret = new AtomicBoolean(true);
+      Consumer<Coordinates> t = e -> {if(!g.getCell(e).equals(this.getCell(e))) ret.set(false);};
+      loop(t);
+      return ret.get();
+    }
+    catch (Exception e){
+      return false;
+    }
   }
 }

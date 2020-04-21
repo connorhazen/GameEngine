@@ -35,6 +35,6 @@
     <Interaction>RandomOfValue 0</Interaction>
   </Event>
   <LevelMaker>RandomSquareToTypeVal "" 2</LevelMaker>
-  <LoseCon>CellOfType LOST</LoseCon>
+  <LoseCon>NoNextMove LEFT RIGHT UP DOWN</LoseCon>
   <WinCon>CellOfType WON</WinCon>
 </data>
