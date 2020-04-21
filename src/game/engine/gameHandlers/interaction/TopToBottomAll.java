@@ -19,7 +19,7 @@ public class TopToBottomAll extends OrderedAll {
         cells.clear();
         for (int col = 0; col < currentGrid.getWidth(); col++) {
             List<List<MutableCell>> allRowCombos = new ArrayList<>();
-            for (int row = 1; row < currentGrid.getHeight(); col++) {
+            for (int row = 1; row < currentGrid.getHeight(); row++) {
                 List<MutableCell> newGroup = new ArrayList<>();
                 newGroup.add(currentGrid.getMutableCell(new Coordinates(col , row-1)));
                 newGroup.add(currentGrid.getMutableCell(new Coordinates(col, row)));
