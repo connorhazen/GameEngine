@@ -34,10 +34,11 @@ public class Engine implements EngineAPI{
     }
 
     private UpdateObject generateUpdateStatus() {
-        boolean status = currLevelHandler.determineStatus();
-        GameAnimation animation = currAnimationHandler.getAnimation(currentGrid, updatedGrid);
         Action nextAction = currGameHandler.getNextEvent();
-        UpdateObject updateStatus = new UpdateStatus(updatedGrid,animation,status, nextAction);
+        GameAnimation animation = currAnimationHandler.getAnimation(currentGrid, updatedGrid);
+        UpdateObject updateStatus = new UpdateStatus(updatedGrid,animation,false, false, nextAction);
+        currLevelHandler.determineStatus(updateStatus, updatedGrid);
+
         currentGrid = updatedGrid;
         updatedGrid = null;
         return updateStatus;

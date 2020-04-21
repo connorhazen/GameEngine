@@ -94,7 +94,6 @@
     <Operations>SetDirection UP</Operations>
     <Rules>NotOppositeDirection UP</Rules>
     <Interaction>MaxValue</Interaction>
-
   </Event>
   <Event>
     <Code>DOWN</Code>
@@ -118,7 +117,6 @@
   </Event>
 
  <LevelMaker>RandomSquareToValue 1 -1</LevelMaker>
- 
-
-
+  <LoseCon>CellOfType LOST</LoseCon>
+  <WinCon>CellOfType WON</WinCon>
 </data>

@@ -3,6 +3,7 @@ package game.view;
 import game.engine.UpdateObject;
 import game.parse.XMLException;
 import game.util.Cell;
+import game.util.Coordinates;
 import java.io.FileInputStream;
 import java.util.HashMap;
 import java.util.Map;
@@ -62,11 +63,27 @@ public class SimpleView implements View {
 
   @Override
   public void updateGridDisplay(UpdateObject uo) throws XMLException{
-    if(uo.getAnimation() == null){
+    if(!uo.getGameRunning()){
+      System.out.println(uo.getGameRunning());
+      displayStatusUO(uo);
+    }
+    else if(uo.getAnimation() == null){
       root.getChildren().clear();
       displayGrid(uo.getGrid());
     }
 
+  }
+
+  private void displayStatusUO(UpdateObject uo) {
+    root.getChildren().clear();
+    Label status = new Label();
+    if(uo.getGameLost()){
+      status.setText("YOU LOST");
+    }
+    if (uo.getGameWon()){
+      status.setText("YOU WON");
+    }
+   root.getChildren().add(status);
   }
 
   private void displayGrid(Grid grid) throws XMLException{
@@ -77,24 +94,13 @@ public class SimpleView implements View {
     int width = grid.getWidth();
 
     grid.loop((c) -> {
-      AnchorPane pane = new AnchorPane();
-
-      pane.setPrefWidth(display.getWidth() / width);
-      pane.setPrefHeight(display.getHeight() / height);
-      pane.setLayoutX(display.getWidth() / width * c.x);
-      pane.setLayoutY(display.getHeight() / height * c.y);
-
-
-
+      AnchorPane pane = makePane(c, width, height);
       Cell cell = grid.getCell(c.x, c.y);
-
       String image = getImageFile(cell.getValue());
       if(image!=null) {
         ImageView view = makeImage(image);
         view.setRotate(ROTATE_MAP.get(cell.getDirection()));
-
         pane.getChildren().add(view);
-
       }
       else{
         pane.getChildren().add(makeNumber(cell.getValue()));
@@ -102,6 +108,15 @@ public class SimpleView implements View {
       root.getChildren().add(pane);
 
     });
+  }
+
+  private AnchorPane makePane(Coordinates c, int width, int height){
+    AnchorPane ret = new AnchorPane();
+    ret.setPrefWidth(display.getWidth() / width);
+    ret.setPrefHeight(display.getHeight() / height);
+    ret.setLayoutX(display.getWidth() / width * c.x);
+    ret.setLayoutY(display.getHeight() / height * c.y);
+    return ret;
   }
 
   private String getImageFile(int value) {
