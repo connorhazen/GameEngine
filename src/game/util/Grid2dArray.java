@@ -5,7 +5,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.function.Consumer;
 
-public class Grid2dArray implements Grid {
+public class Grid2dArray implements MutableGrid {
   private MutableCell[][] grid;
   private int width;
   private int height;

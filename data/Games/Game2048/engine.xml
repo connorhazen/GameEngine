@@ -35,4 +35,6 @@
     <Interaction>RandomOfValue 0</Interaction>
   </Event>
   <LevelMaker>RandomValsTo 2</LevelMaker>
+  <LoseCon>CellOfType LOST</LoseCon>
+  <WinCon>CellOfType WON</WinCon>
 </data>

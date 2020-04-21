@@ -49,15 +49,18 @@ public class EngineFactory {
     }
   }
 
-  private static void doLevelMaker(LevelHandler lh, FileReader fr){
-    String val = fr.getValue("LevelMaker");
-    lh.setInitialGridMaker(Arrays.asList(val.split(" ")));
+  private static void doLevelMaker(LevelHandler lh, FileReader fr) throws XMLException{
+    List<String> val = fr.getValues("LevelMaker");
+    for(String s:val){
+      lh.setInitialGridMaker(Arrays.asList(s.split(" ")));
+    }
 
-    val = fr.getValue("LoseCon");
-    lh.setLoseCondition(Arrays.asList(val.split(" ")));
+    String val1 = fr.getValue("LoseCon");
+    lh.setLoseCondition(Arrays.asList(val1.split(" ")));
 
-    val = fr.getValue("WinCon");
-    lh.setWinCondition(Arrays.asList(val.split(" ")));
+
+    val1 = fr.getValue("WinCon");
+    lh.setWinCondition(Arrays.asList(val1.split(" ")));
 
 
   }

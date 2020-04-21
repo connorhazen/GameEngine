@@ -4,6 +4,7 @@ import game.engine.ObjectMaker;
 import game.engine.UpdateObject;
 import game.util.Grid;
 import game.util.Grid2dArray;
+import game.util.MutableGrid;
 import game.util.SimpleState;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,14 +13,28 @@ import java.util.List;
 
 public class BaseLevelHandler implements LevelHandler {
 
-  private InitialLevelMaker maker;
+  private List<InitialLevelMaker> maker;
   private Condition winCon;
   private Condition loseCon;
   public static final String OUTER_PACKAGE = "game.engine.levelHandlers.";
 
+  public BaseLevelHandler(){
+    maker = new ArrayList<>();
+  }
+
   @Override
   public Grid initializeGrid() {
-    return maker.execute(5, 5);
+    boolean first =  true;
+    MutableGrid g = null;
+    for(InitialLevelMaker m : maker){
+      if(first){
+        first = false;
+        g = m.execute(5,5);
+        continue;
+      }
+      m.execute(g);
+    }
+    return g;
 
   }
 
@@ -31,9 +46,11 @@ public class BaseLevelHandler implements LevelHandler {
 
   @Override
   public void setInitialGridMaker(List<String> args) {
+    System.out.println(args.get(0));
     List<String> makerParams = new ArrayList<>(args);
     makerParams.remove(0);
-    maker = (InitialLevelMaker) ObjectMaker.createObjectOf(args.get(0), OUTER_PACKAGE,makerParams);
+
+    maker.add((InitialLevelMaker) ObjectMaker.createObjectOf(args.get(0), OUTER_PACKAGE,makerParams));
 
   }
 

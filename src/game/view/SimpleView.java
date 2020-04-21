@@ -96,7 +96,7 @@ public class SimpleView implements View {
     grid.loop((c) -> {
       AnchorPane pane = makePane(c, width, height);
       Cell cell = grid.getCell(c.x, c.y);
-      String image = getImageFile(cell.getValue());
+      String image = getImageFile(cell.getValue(), cell.getType());
       if(image!=null) {
         ImageView view = makeImage(image);
         view.setRotate(ROTATE_MAP.get(cell.getDirection()));
@@ -119,24 +119,34 @@ public class SimpleView implements View {
     return ret;
   }
 
-  private String getImageFile(int value) {
+  private String getImageFile(int value, String type) {
+    if(imageMap.containsKey(type)){
+      System.out.println(type + " view");
+      return imageMap.get(type);
+    }
     for(String s: imageMap.keySet()){
-      String[] split = s.split(" ");
-      int lowerIndex = Integer.parseInt(split[0]);
-      int upperIndex = Integer.MAX_VALUE;
-      if(split.length>1){
-        if(split.length>2){
-          upperIndex = Integer.parseInt(split[3]);
+      try{
+        String[] split = s.split(" ");
+        int lowerIndex = Integer.parseInt(split[0]);
+        int upperIndex = Integer.MAX_VALUE;
+        if(split.length>1){
+          if(split.length>2){
+            upperIndex = Integer.parseInt(split[3]);
+          }
+          if(value >= lowerIndex && value<= upperIndex){
+            return imageMap.get(s);
+          }
         }
-        if(value >= lowerIndex && value<= upperIndex){
-          return imageMap.get(s);
+        else{
+          if(value == lowerIndex){
+            return imageMap.get(s);
+          }
         }
       }
-      else{
-        if(value == lowerIndex){
-          return imageMap.get(s);
-        }
+      catch (Exception e){
+        continue;
       }
+
     }
 
     return null;

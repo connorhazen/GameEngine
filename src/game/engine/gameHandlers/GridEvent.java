@@ -46,7 +46,7 @@ public class GridEvent implements Event {
 
     @Override
     public Grid execute(Grid currentGrid) {
-        Grid2dArray copiedGrid = new Grid2dArray(currentGrid);
+        MutableGrid copiedGrid = new Grid2dArray(currentGrid);
         myInteraction.setGrid(copiedGrid);
         while(myInteraction.hasNext()){
             List<MutableCell> currCells = myInteraction.next();
