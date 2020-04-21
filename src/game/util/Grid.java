@@ -1,10 +1,11 @@
 package game.util;
 
+import java.io.Serializable;
 import java.util.Collection;
 import java.util.List;
 import java.util.function.Consumer;
 
-public interface  Grid {
+public interface Grid extends Serializable {
 
 
     Cell getCell(Coordinates coords);

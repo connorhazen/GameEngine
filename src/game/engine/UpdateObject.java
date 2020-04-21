@@ -4,7 +4,9 @@ import game.engine.animationHandlers.GameAnimation;
 import game.util.Grid;
 import game.util.Action;
 
-public interface UpdateObject {
+import java.io.Serializable;
+
+public interface UpdateObject{
 
   Grid getGrid();
   GameAnimation getAnimation();
