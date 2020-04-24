@@ -26,12 +26,17 @@ public class Factory {
   }
 
   public Engine makeEngine() throws XMLException {
-    GameHandler gh = new BaseGameHandler();
-    LevelHandler lh = new BaseLevelHandler();
-    AnimationHandler ah = new BaseAnimationHandler();
-    EngineFactory.parseXML(gameFile, ENGINE, gh, ah, lh);
+    try {
+      GameHandler gh = new BaseGameHandler();
+      LevelHandler lh = new BaseLevelHandler();
+      AnimationHandler ah = new BaseAnimationHandler();
+      EngineFactory.parseXML(gameFile, ENGINE, gh, ah, lh);
+      return new Engine(gh,ah,lh);
+    }
+    catch (Exception e){
+      throw e;
+    }
 
-    return new Engine(gh,ah,lh);
   }
 
 

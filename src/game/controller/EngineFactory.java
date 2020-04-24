@@ -18,7 +18,6 @@ public class EngineFactory {
   public static void parseXML(String folder,String fileName, GameHandler gameHandler, AnimationHandler animationHandler, LevelHandler levelHandler) throws XMLException{
 
     FileReader fr = new FileReader(folder+fileName);
-
     doLevelMaker(levelHandler, fr);
     doEvents(gameHandler, fr);
   }
