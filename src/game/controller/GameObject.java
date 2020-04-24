@@ -47,7 +47,9 @@ public class GameObject {
     TimerTask task = new TimerTask() {
       @Override
       public void run() {
-        Platform.runLater(runnable);
+        if(view.getStage().isFocused()){
+          Platform.runLater(runnable);
+        }
       }
     };
 

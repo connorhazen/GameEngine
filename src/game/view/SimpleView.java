@@ -1,13 +1,18 @@
 package game.view;
 
+import game.controller.GameObject;
 import game.engine.UpdateObject;
 import game.parse.XMLException;
+import game.util.Action;
 import game.util.Cell;
+import game.util.ClickedAction;
 import game.util.Coordinates;
 import java.io.FileInputStream;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.BiConsumer;
+import java.util.function.Consumer;
 import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Node;
@@ -33,6 +38,7 @@ public class SimpleView implements View {
   private Group root;
   private Map<String, String> imageMap;
   private Stage stage;
+  private Consumer<Action> eventCaller;
 
   public static final String DEFAULT_IMAGE = "questionMark";
   public static final String FILE_PATH = "StateImages/";
@@ -98,8 +104,10 @@ public class SimpleView implements View {
 
       Cell cell = grid.getCell(c.x, c.y);
       String image = getImageFile(cell.getValue(), cell.getType());
+      Node n = null;
       if(image!=null) {
         ImageView view = makeImage(image);
+        n=view;
         view.setLayoutX(display.getWidth() / width * c.x);
         view.setLayoutY(display.getHeight() / height * c.y);
         view.setFitWidth(display.getWidth() / width);
@@ -109,9 +117,13 @@ public class SimpleView implements View {
       }
       else{
         AnchorPane pane = makePane(c, width, height);
-        pane.getChildren().add(makeNumber(cell.getValue()));
+        Button l = makeNumber(cell.getValue());
+        n = l;
+        pane.getChildren().add(l);
         root.getChildren().add(pane);
       }
+
+      n.setOnMouseClicked((e) -> eventCaller.accept(new ClickedAction("ClickedCell", c)));
     });
   }
 
@@ -126,7 +138,6 @@ public class SimpleView implements View {
 
   private String getImageFile(int value, String type) {
     if(imageMap.containsKey(type)){
-      System.out.println(type + " view");
       return imageMap.get(type);
     }
     for(String s: imageMap.keySet()){
@@ -209,6 +220,11 @@ public class SimpleView implements View {
   @Override
   public void removeWindow(Window w) {
 
+  }
+
+  @Override
+  public void setEventCaller(Consumer<Action> run) {
+    eventCaller = run;
   }
 
   @Override

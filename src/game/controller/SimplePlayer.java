@@ -77,6 +77,7 @@ public class SimplePlayer implements Player {
         activeButton = ((RadioButton)toggleGroup.getSelectedToggle()).getText();
         GameObject go = new GameObject("Games/"+activeButton);
         go.setStepFunction(() -> handleEvent(new SimpleAction("STEP"), go));
+        go.getView().setEventCaller((g) -> handleEvent(g, go));
         initialGameSetup(go);
         addGameMessage("Enjoy Your Game! Select Another to Start a New Game!");
       }
@@ -84,7 +85,7 @@ public class SimplePlayer implements Player {
         if(activeButton.equals(""))
           addGameMessage("You Haven't Selected a Game Type Yet!");
         else
-          addGameMessage("Issues Parsing or Finding XML File For This Game");
+          addGameMessage(ex.getMessage());
       }
     });
     return b;
@@ -137,7 +138,7 @@ public class SimplePlayer implements Player {
   @Override
   public void handleEvent(Action e, GameObject go) {
     if(go.isRunning()){
-      System.out.println("Player listened code :" + e.getCode());
+      System.out.println("Player Listened Event: " + e.getCode());
       UpdateObject uo = go.getEngine().executeAction(e);
       updateView(uo, go);
       go.setRunning(uo.getGameRunning());
