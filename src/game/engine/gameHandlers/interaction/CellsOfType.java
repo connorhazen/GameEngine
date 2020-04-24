@@ -8,33 +8,28 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
 
-public class MaxValue implements Interaction{
-  protected List<List<MutableCell>> cells;
+public class CellsOfType implements Interaction{
+  protected List<MutableCell> cells;
+  private String type;
+
+  public CellsOfType(List<String> args){
+   type = args.get(0);
+  }
 
   @Override
   public void setGrid(MutableGrid currentGrid, Action a) {
     cells = new ArrayList<>();
 
-    List<MutableCell> all = new ArrayList<>();
-
-    int max = 0;
-    MutableCell cell = null;
-
     Consumer<Coordinates> run = (e) -> {
-        all.add(currentGrid.getMutableCell(e));
+      if(currentGrid.getCell(e).getType().equals(type)){
+        cells.add(currentGrid.getMutableCell(e));
+      }
+
     };
 
     currentGrid.loop(run);
 
-    for (MutableCell c : all){
-      if(c.getValue()>max){
-        cell = c;
-        max = c.getValue();
-      }
-    }
-    List<MutableCell> toAdd = new ArrayList<>();
-    toAdd.add(cell);
-    cells.add(toAdd);
+
   }
 
   @Override
@@ -44,6 +39,8 @@ public class MaxValue implements Interaction{
 
   @Override
   public List<MutableCell> next() {
-    return cells.remove(0);
+    List<MutableCell> ret = new ArrayList<>();
+    ret.add(cells.remove(0));
+    return ret;
   }
 }

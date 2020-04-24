@@ -4,6 +4,7 @@ import game.engine.animationHandlers.AnimationHandler;
 import game.engine.animationHandlers.GameAnimation;
 import game.engine.gameHandlers.GameHandler;
 import game.engine.levelHandlers.LevelHandler;
+import game.parse.XMLException;
 import game.util.Grid;
 import game.util.Action;
 
@@ -14,7 +15,7 @@ public class Engine implements EngineAPI{
     private AnimationHandler currAnimationHandler;
     private LevelHandler currLevelHandler;
 
-    public Engine(GameHandler gameHandler, AnimationHandler animationHandler, LevelHandler levelHandler){
+    public Engine(GameHandler gameHandler, AnimationHandler animationHandler, LevelHandler levelHandler) throws XMLException {
         currGameHandler = gameHandler;
         currAnimationHandler = animationHandler;
         currLevelHandler = levelHandler;

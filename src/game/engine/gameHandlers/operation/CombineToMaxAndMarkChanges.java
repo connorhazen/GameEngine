@@ -21,7 +21,8 @@ public class CombineToMaxAndMarkChanges implements Operation {
 
     for(MutableCell c : currCells){
       if(c!= maxCell){
-        c.setState(new SimpleState(c.getType(), max, maxCell.getDirection()).mark(true));
+        c.setState(new SimpleState(c.getType(), max, maxCell.getDirection()));
+        c.mark(true);
       }
     }
   }
