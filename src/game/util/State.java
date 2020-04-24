@@ -1,6 +1,8 @@
 package game.util;
 
-public interface State {
+import java.io.Serializable;
+
+public interface State extends Serializable {
 
   String getType();
 
@@ -8,9 +10,6 @@ public interface State {
 
   String getDirection();
 
-  boolean ifMarked();
-
-  State mark(boolean newStat);
 
 
 }

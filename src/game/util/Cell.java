@@ -1,8 +1,11 @@
 package game.util;
 
-public class Cell {
+import java.io.Serializable;
+
+public class Cell implements Serializable {
   protected State state;
   protected Coordinates coords;
+  protected boolean marked;
 
 
   public String getType(){
@@ -27,7 +30,10 @@ public class Cell {
   }
 
   public void mark(boolean newStat) {
-    state.mark(newStat);
+    marked = newStat;
+  }
+  public boolean isMarked(){
+    return marked;
   }
 
   @Override

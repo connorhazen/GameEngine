@@ -20,7 +20,7 @@ public class Grid2dArray implements MutableGrid {
     width = grid.getWidth();
     height = grid.getHeight();
     this.grid = new MutableCell[width][height];
-    loop((c) -> {setCell(c.x, c.y, grid.getCell(c).getState());});
+    loop((c) -> {setCell(grid.getCell(c));});
   }
 
   public void setCell(int x, int y, State newState){
@@ -33,6 +33,11 @@ public class Grid2dArray implements MutableGrid {
     }
   }
 
+  public void setCell(Cell c){
+    grid[c.coords.x][c.coords.y] = new MutableCell(c);
+
+  }
+
 
 
   @Override
@@ -42,6 +47,31 @@ public class Grid2dArray implements MutableGrid {
 
   public MutableCell getMutableCell(Coordinates coords) {
     return grid[coords.x][coords.y];
+  }
+
+  @Override
+  public List<MutableCell> getNeighbors(MutableCell c) {
+    List<MutableCell> ret = new ArrayList<>();
+    int x = c.coords.x;
+    int y = c.coords.y;
+
+    addIfExists(ret, x - 1, y + 1);
+    addIfExists(ret, x, y + 1);
+    addIfExists(ret, x + 1, y + 1);
+
+    addIfExists(ret, x - 1, y);
+    addIfExists(ret, x + 1, y);
+
+    addIfExists(ret, x - 1, y - 1);
+    addIfExists(ret, x, y - 1);
+    addIfExists(ret, x + 1, y - 1);
+    return ret;
+  }
+
+  protected void addIfExists(List<MutableCell> ret, int x, int y) {
+    if (x < grid[0].length && x >= 0 && y >= 0 && y < grid.length) {
+      ret.add(getMutableCell(new Coordinates(x,y)));
+    }
   }
 
   @Override
@@ -117,7 +147,7 @@ public class Grid2dArray implements MutableGrid {
   @Override
   public List<MutableCell> getMarkedCells() {
     List<MutableCell> ret = new ArrayList<>();
-    Consumer<Coordinates> con = (c) -> {if(getCell(c).getState().ifMarked()) ret.add(getMutableCell(c));};
+    Consumer<Coordinates> con = (c) -> {if(getCell(c).isMarked()) ret.add(getMutableCell(c));};
 
     loop(con);
 
