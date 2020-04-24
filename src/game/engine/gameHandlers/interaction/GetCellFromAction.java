@@ -1,21 +1,22 @@
 package game.engine.gameHandlers.interaction;
 
 import game.util.Action;
+import game.util.Coordinates;
 import game.util.MutableCell;
 import game.util.MutableGrid;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Consumer;
 
-public class Marked implements Interaction {
-
+public class GetCellFromAction implements Interaction {
   protected List<MutableCell> cells;
+
 
   @Override
   public void setGrid(MutableGrid currentGrid, Action a) {
-    cells = currentGrid.getMarkedCells();
+    cells = new ArrayList<>();
 
-
-
+    cells.add(currentGrid.getMutableCell(a.getCell()));
   }
 
   @Override

@@ -10,9 +10,6 @@ public interface State extends Serializable {
 
   String getDirection();
 
-  boolean ifMarked();
-
-  State mark(boolean newStat);
 
 
 }

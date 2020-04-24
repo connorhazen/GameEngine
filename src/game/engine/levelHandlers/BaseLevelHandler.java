@@ -5,6 +5,7 @@ import game.engine.UpdateObject;
 import game.engine.gameHandlers.GameHandler;
 import game.engine.levelHandlers.endConditions.Condition;
 import game.engine.levelHandlers.initialSetUp.InitialLevelMaker;
+import game.parse.XMLException;
 import game.util.Grid;
 import game.util.MutableGrid;
 import java.util.ArrayList;
@@ -28,19 +29,25 @@ public class BaseLevelHandler implements LevelHandler {
   }
 
   @Override
-  public Grid initializeGrid() {
-    boolean first =  true;
-    MutableGrid g = null;
-    for(InitialLevelMaker m : maker){
-      if(first){
-        first = false;
-        g = m.execute(height,width);
-        continue;
+  public Grid initializeGrid() throws XMLException {
+    try{
+      boolean first =  true;
+      MutableGrid g = null;
+      for(InitialLevelMaker m : maker){
+        if(first){
+          first = false;
+          g = m.execute(height,width);
+          continue;
+        }
+        m.execute(g);
       }
-      m.execute(g);
+      return g;
     }
-    return g;
-
+    catch (Exception e){
+      e.printStackTrace();
+      return null;
+      //throw new XMLException("Error Making grid: " + e.getClass().toString());
+    }
   }
 
   @Override

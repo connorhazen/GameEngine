@@ -12,7 +12,7 @@ public class SimpleState implements State {
     this.type = type;
     this.value = value;
     this.direction = direction;
-    marked = false;
+
   }
 
   public SimpleState(String type, int value){
@@ -36,17 +36,6 @@ public class SimpleState implements State {
     return direction;
   }
 
-  @Override
-  public boolean ifMarked() {
-    return marked;
-  }
-
-
-  @Override
-  public State mark(boolean newStat) {
-    marked = newStat;
-    return this;
-  }
 
 
 

@@ -1,5 +1,6 @@
 package game.engine.levelHandlers.initialSetUp;
 
+import game.controller.GameStorageHandler;
 import game.util.Grid2dArray;
 import game.util.MutableGrid;
 import game.util.SimpleState;
@@ -13,8 +14,7 @@ public class ReadFromFile implements InitialLevelMaker {
 
   @Override
   public MutableGrid execute(int height, int width) {
-    Grid2dArray grid = new Grid2dArray(width,height);
-    return grid;
+    return  (MutableGrid) GameStorageHandler.loadGame(file).getGrid();
   }
 
   @Override

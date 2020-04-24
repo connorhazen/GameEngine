@@ -6,15 +6,14 @@ import game.util.MutableGrid;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Marked implements Interaction {
+public class MarkedGrouped implements Interaction {
 
-  protected List<MutableCell> cells;
+  protected List<List<MutableCell>> cells;
 
   @Override
   public void setGrid(MutableGrid currentGrid, Action a) {
-    cells = currentGrid.getMarkedCells();
-
-
+    cells = new ArrayList<>();
+    cells.add(currentGrid.getMarkedCells());
 
   }
 
@@ -25,8 +24,6 @@ public class Marked implements Interaction {
 
   @Override
   public List<MutableCell> next() {
-    List<MutableCell> ret = new ArrayList<>();
-    ret.add(cells.remove(0));
-    return ret;
+    return cells.remove(0);
   }
 }

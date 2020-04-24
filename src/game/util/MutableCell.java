@@ -5,7 +5,7 @@ public class MutableCell  extends Cell{
   public MutableCell(Cell c){
     setState(c.getState());
     coords = c.getCoords();
-
+    marked = c.marked;
   }
 
   public MutableCell(State s, Coordinates coordinates){

@@ -14,7 +14,7 @@ public class OperationCombine2048 implements Operation{
         State combinedState = new SimpleState("",cell1.getValue() + cell2.getValue());
         State combinedZero = new SimpleState("",0);
         if(cell1.getValue() == cell2.getValue()){
-            combinedState.mark(true);
+           cell1.mark(true);
         }
         cell1.setState(combinedState);
         cell2.setState(combinedZero);

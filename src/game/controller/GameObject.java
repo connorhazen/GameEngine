@@ -18,7 +18,9 @@ public class GameObject {
 
   public GameObject(String folderPath) throws XMLException {
     f = new Factory(folderPath);
+
     engine = f.makeEngine();
+
     view = f.makeView();
     running = true;
   }
