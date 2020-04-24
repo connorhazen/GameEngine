@@ -51,10 +51,8 @@ public class BaseLevelHandler implements LevelHandler {
 
   @Override
   public void setInitialGridMaker(List<String> args) {
-    System.out.println(args.get(0));
     List<String> makerParams = new ArrayList<>(args);
     makerParams.remove(0);
-
     maker.add((InitialLevelMaker) ObjectMaker.createObjectOf(args.get(0), OUTER_PACKAGE+INITIAL_LEVEL,makerParams));
 
   }

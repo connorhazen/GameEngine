@@ -44,8 +44,6 @@ public class RandomSquareToTypeVal implements InitialLevelMaker {
       return execute(g);
     }
     g.setCell(x, y, new SimpleState(type, val));
-    System.out.println(val);
-
     return g;
   }
 }

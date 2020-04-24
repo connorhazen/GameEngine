@@ -33,6 +33,11 @@ public class SimpleAction implements Action {
   }
 
   @Override
+  public Coordinates getCell() {
+    return null;
+  }
+
+  @Override
   public String toString() {
     return code;
   }
