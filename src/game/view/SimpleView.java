@@ -52,8 +52,9 @@ public class SimpleView implements View {
   private final static double HEIGHT = 500;
   private final static double WIDTH = 500;
   private final static double SCENE_HEIGHT = 600;
+  private boolean usingBackRound = false;
 
-  public SimpleView( Map<String, String> images){
+  public SimpleView( Map<String, String> images, boolean changingColors){
     stage = new Stage();
 
     root = new Group();
@@ -65,6 +66,8 @@ public class SimpleView implements View {
     imageMap = images;
 
     stage.show();
+
+    usingBackRound = changingColors;
 
   }
 
@@ -186,7 +189,13 @@ public class SimpleView implements View {
 
     Button b = new Button(Integer.toString(value));
 
-    b.setBackground(new Background(new BackgroundFill(getColor(value), null, null)));
+
+    if(usingBackRound){
+      b.setBackground(new Background(new BackgroundFill(getColor(value), null, null)));
+    }
+    else {
+      b.setBackground(new Background(new BackgroundFill(Color.WHITE, null, null)));
+    }
     AnchorPane.setTopAnchor(b, 0.0);
     AnchorPane.setBottomAnchor(b, 0.0);
     AnchorPane.setLeftAnchor(b, 0.0);

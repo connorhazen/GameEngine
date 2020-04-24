@@ -20,6 +20,13 @@ public class ViewFactory {
      imageMap.put(split.get(1), split.get(0));
     }
 
-    return new SimpleView(imageMap);
+    boolean colors = false;
+    try {
+      colors = Boolean.valueOf(fr.getValue("DynamicColors"));
+    }
+    catch (Exception e){
+    }
+
+    return new SimpleView(imageMap, colors);
   }
 }
