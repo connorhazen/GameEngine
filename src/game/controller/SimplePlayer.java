@@ -162,11 +162,12 @@ public class SimplePlayer implements Player {
     if(go.isRunning()){
       System.out.println("Player Listened Event: " + e.getCode());
       UpdateObject uo = go.getEngine().executeAction(e);
-      updateView(uo, go);
       go.setRunning(uo.getGameRunning());
       if(hasNextAction(uo)){
         handleEvent(uo.getNextAction(), go);
+        return;
       }
+      updateView(uo, go);
     }
 
   }
