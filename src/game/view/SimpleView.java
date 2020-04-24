@@ -80,17 +80,20 @@ public class SimpleView implements View {
       root.getChildren().clear();
       displayGrid(uo.getGrid());
     }
-//    displayOrganizeButtons(uo);
+    displayOrganizeButtons(uo);
   }
 
-//  private void displayOrganizeButtons(UpdateObject uo) {
-//    Rectangle bottomEdge = new Rectangle(0,HEIGHT+1,WIDTH,4);
-//    bottomEdge.setFill(Color.BLACK);
-//    Button saveGameButton = new Button("Save Game");
-//    TextField filName = new
-//    saveGameButton.setOnAction(e -> GameStorageHandler.storeGame(uo);)
-//    root.getChildren().add(bottomEdge);
-//  }
+  private void displayOrganizeButtons(UpdateObject uo) {
+    Rectangle bottomEdge = new Rectangle(0,HEIGHT,WIDTH,4);
+    bottomEdge.setFill(Color.BLACK);
+    Button saveGameButton = new Button("Save Game");
+    saveGameButton.setFocusTraversable(false);
+    saveGameButton.setOnAction(e -> {GameStorageHandler.storeGame(uo,"data/Games/SavedGames/savedfil.sav");
+    });
+    saveGameButton.setLayoutY(HEIGHT+35);
+    root.getChildren().add(bottomEdge);
+    root.getChildren().add(saveGameButton);
+  }
 
   private void displayStatusUO(UpdateObject uo) {
     root.getChildren().clear();
