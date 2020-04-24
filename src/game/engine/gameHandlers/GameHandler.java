@@ -11,5 +11,7 @@ public interface GameHandler {
 
     Action getNextEvent();
 
+
+
     Grid generateUpdatedGrid(Grid currentGrid, Action e);
 }

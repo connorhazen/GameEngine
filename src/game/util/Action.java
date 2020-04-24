@@ -6,5 +6,6 @@ public interface Action {
   boolean equals(Object obj);
   String toString();
   int hashCode();
+  Coordinates getCell();
 
 }

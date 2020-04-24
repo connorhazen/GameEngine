@@ -1,14 +1,14 @@
 package game.engine.gameHandlers.interaction;
 
-import game.util.Grid2dArray;
 import game.util.MutableCell;
 
+import game.util.MutableGrid;
 import java.util.Iterator;
 import java.util.List;
 
 public interface Interaction extends Iterator {
 
-    void setGrid(Grid2dArray currentGrid);
+    void setGrid(MutableGrid currentGrid);
 
     boolean hasNext();
 

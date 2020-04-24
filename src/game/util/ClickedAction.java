@@ -2,15 +2,13 @@ package game.util;
 
 import javafx.scene.input.KeyEvent;
 
-public class SimpleAction implements Action {
+public class ClickedAction implements Action {
 
   private String code;
-  public SimpleAction(KeyEvent e) {
-    code =  e.getCode().toString();
-  }
-
-  public SimpleAction(String e){
-    code = e;
+  private Coordinates cell;
+  public ClickedAction(String name, Coordinates cell) {
+    code =  name;
+    this.cell = cell;
   }
 
   public String getCode(){
@@ -34,11 +32,12 @@ public class SimpleAction implements Action {
 
   @Override
   public Coordinates getCell() {
-    return null;
+    return cell;
   }
 
   @Override
   public String toString() {
     return code;
   }
+
 }

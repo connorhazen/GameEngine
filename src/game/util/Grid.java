@@ -26,4 +26,7 @@ public interface Grid extends Serializable {
     MutableCell getCellDirection(MutableCell c);
 
     List<MutableCell> getMarkedCells();
+
+    @Override
+    boolean equals(Object obj);
 }

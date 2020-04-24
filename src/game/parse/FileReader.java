@@ -70,19 +70,30 @@ public class FileReader {
 
    * @return the int, double, string, etc value that is associated with that tag parameter
    */
-  public String getValue(String tag) {
-    NodeList nodes = simElement.getElementsByTagName(tag).item(0).getChildNodes();
-    Node node = nodes.item(0);
-    return node.getNodeValue();
-  }
-  public List<String> getValues(String tag) {
-    List<String> ret = new ArrayList<>();
-    NodeList nodes = simElement.getElementsByTagName(tag);
-    for(int i =0; i< nodes.getLength(); i++){
-      ret.add(nodes.item(i).getFirstChild().getNodeValue());
+  public String getValue(String tag){
+    try{
+      NodeList nodes = simElement.getElementsByTagName(tag).item(0).getChildNodes();
+      Node node = nodes.item(0);
+      return node.getNodeValue();
     }
+    catch (Exception e){
+      throw new XMLException("Tag does not exist in file: " + tag);
+    }
+  }
 
-    return ret;
+  public List<String> getValues(String tag) {
+    try{
+      List<String> ret = new ArrayList<>();
+      NodeList nodes = simElement.getElementsByTagName(tag);
+      for(int i =0; i< nodes.getLength(); i++){
+        ret.add(nodes.item(i).getFirstChild().getNodeValue());
+      }
+
+      return ret;
+    }
+    catch (Exception e){
+      throw new XMLException("Tag does not exist in file: " + tag);
+    }
   }
 
 

@@ -1,13 +1,18 @@
 package game.view;
 
+import game.controller.GameObject;
 import game.engine.UpdateObject;
 import game.parse.XMLException;
+import game.util.Action;
 import game.util.Cell;
+import game.util.ClickedAction;
 import game.util.Coordinates;
 import java.io.FileInputStream;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.BiConsumer;
+import java.util.function.Consumer;
 import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Node;
@@ -32,6 +37,8 @@ public class SimpleView implements View {
   private Scene display;
   private Group root;
   private Map<String, String> imageMap;
+  private Stage stage;
+  private Consumer<Action> eventCaller;
 
   public static final String DEFAULT_IMAGE = "questionMark";
   public static final String FILE_PATH = "StateImages/";
@@ -46,7 +53,7 @@ public class SimpleView implements View {
   private final static double WIDTH = 500;
 
   public SimpleView( Map<String, String> images){
-    Stage stage = new Stage();
+    stage = new Stage();
 
     root = new Group();
     display = new Scene(root, WIDTH, HEIGHT);
@@ -94,19 +101,29 @@ public class SimpleView implements View {
     int width = grid.getWidth();
 
     grid.loop((c) -> {
-      AnchorPane pane = makePane(c, width, height);
+
       Cell cell = grid.getCell(c.x, c.y);
-      String image = getImageFile(cell.getValue());
+      String image = getImageFile(cell.getValue(), cell.getType());
+      Node n = null;
       if(image!=null) {
         ImageView view = makeImage(image);
+        n=view;
+        view.setLayoutX(display.getWidth() / width * c.x);
+        view.setLayoutY(display.getHeight() / height * c.y);
+        view.setFitWidth(display.getWidth() / width);
+        view.setFitHeight(display.getHeight() / height);
         view.setRotate(ROTATE_MAP.get(cell.getDirection()));
-        pane.getChildren().add(view);
+        root.getChildren().add(view);
       }
       else{
-        pane.getChildren().add(makeNumber(cell.getValue()));
+        AnchorPane pane = makePane(c, width, height);
+        Button l = makeNumber(cell.getValue());
+        n = l;
+        pane.getChildren().add(l);
+        root.getChildren().add(pane);
       }
-      root.getChildren().add(pane);
 
+      n.setOnMouseClicked((e) -> eventCaller.accept(new ClickedAction("ClickedCell", c)));
     });
   }
 
@@ -119,24 +136,33 @@ public class SimpleView implements View {
     return ret;
   }
 
-  private String getImageFile(int value) {
+  private String getImageFile(int value, String type) {
+    if(imageMap.containsKey(type)){
+      return imageMap.get(type);
+    }
     for(String s: imageMap.keySet()){
-      String[] split = s.split(" ");
-      int lowerIndex = Integer.parseInt(split[0]);
-      int upperIndex = Integer.MAX_VALUE;
-      if(split.length>1){
-        if(split.length>2){
-          upperIndex = Integer.parseInt(split[3]);
+      try{
+        String[] split = s.split(" ");
+        int lowerIndex = Integer.parseInt(split[0]);
+        int upperIndex = Integer.MAX_VALUE;
+        if(split.length>1){
+          if(split.length>2){
+            upperIndex = Integer.parseInt(split[3]);
+          }
+          if(value >= lowerIndex && value<= upperIndex){
+            return imageMap.get(s);
+          }
         }
-        if(value >= lowerIndex && value<= upperIndex){
-          return imageMap.get(s);
+        else{
+          if(value == lowerIndex){
+            return imageMap.get(s);
+          }
         }
       }
-      else{
-        if(value == lowerIndex){
-          return imageMap.get(s);
-        }
+      catch (Exception e){
+        continue;
       }
+
     }
 
     return null;
@@ -197,8 +223,18 @@ public class SimpleView implements View {
   }
 
   @Override
+  public void setEventCaller(Consumer<Action> run) {
+    eventCaller = run;
+  }
+
+  @Override
   public Scene getScene() {
     return display;
+  }
+
+  @Override
+  public Stage getStage() {
+    return stage;
   }
 
 }

@@ -37,7 +37,7 @@ public class Engine implements EngineAPI{
         Action nextAction = currGameHandler.getNextEvent();
         GameAnimation animation = currAnimationHandler.getAnimation(currentGrid, updatedGrid);
         UpdateObject updateStatus = new UpdateStatus(updatedGrid,animation,false, false, nextAction);
-        currLevelHandler.determineStatus(updateStatus, updatedGrid);
+        currLevelHandler.determineStatus(updateStatus, updatedGrid, currGameHandler);
 
         currentGrid = updatedGrid;
         updatedGrid = null;

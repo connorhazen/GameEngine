@@ -1,8 +1,8 @@
 package game.engine.gameHandlers.interaction;
 
+import game.util.MutableGrid;
 import java.util.ArrayList;
 import java.util.List;
-import game.util.Grid2dArray;
 import game.util.MutableCell;
 
 public class RandomOfValue implements Interaction{
@@ -14,7 +14,7 @@ public class RandomOfValue implements Interaction{
   }
 
   @Override
-  public void setGrid(Grid2dArray currentGrid) {
+  public void setGrid(MutableGrid currentGrid) {
     cells = new ArrayList<>();
     cells.addAll(currentGrid.getCellsOfValue(val));
   }

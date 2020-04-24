@@ -17,8 +17,9 @@ public class SetType implements Operation{
 
   @Override
   public void execute(List<MutableCell> currCells) {
+
     for(MutableCell c : currCells){
-      c.setState(new SimpleState(type, c.getValue()));
+      c.setState(new SimpleState(type, c.getValue(), c.getDirection()));
     }
   }
 }

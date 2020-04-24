@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<data>
+  <Event>
+    <Code>ClickedCell</Code>
+    <Operations>MarkCell</Operations>
+    <Rules>RuleTrue</Rules>
+    <Interaction>GetCellFromAction</Interaction>
+    <IfExecuteEvent>s1</IfExecuteEvent>
+  </Event>
+
+  <Event>
+    <Code>sWon</Code>
+    <Operations>SetType WON</Operations>
+    <Rules>RuleTrue</Rules>
+    <Interaction>All</Interaction>
+  </Event>
+
+  <LevelMaker>ReadFromFile Games/Minesweeper/level1.txt</LevelMaker>
+  <LoseCon>CellOfType LOST</LoseCon>
+  <WinCon>CellOfType WON</WinCon>
+  <Height>20</Height>
+  <Width>20</Width>
+</data>

@@ -49,17 +49,35 @@ public class EngineFactory {
     }
   }
 
-  private static void doLevelMaker(LevelHandler lh, FileReader fr){
-    String val = fr.getValue("LevelMaker");
-    lh.setInitialGridMaker(Arrays.asList(val.split(" ")));
+  private static void doLevelMaker(LevelHandler lh, FileReader fr) throws XMLException{
+    String height = fr.getValue("Height");
+    String width = fr.getValue("Width");
 
-    val = fr.getValue("LoseCon");
-    lh.setLoseCondition(Arrays.asList(val.split(" ")));
+    lh.setSize(width, height);
+    List<String> val = fr.getValues("LevelMaker");
+    for(String s:val){
+      lh.setInitialGridMaker(Arrays.asList(s.split(" ")));
+    }
 
-    val = fr.getValue("WinCon");
-    lh.setWinCondition(Arrays.asList(val.split(" ")));
+    String val1 = fr.getValue("LoseCon");
+    lh.setLoseCondition(Arrays.asList(val1.split(" ")));
+
+
+    val1 = fr.getValue("WinCon");
+    lh.setWinCondition(Arrays.asList(val1.split(" ")));
 
 
   }
 
+  public static String getStep(String folder, String fileName) {
+    FileReader fr = new FileReader(folder+fileName);
+    try{
+      return fr.getValue("STEP");
+    }
+    catch (Exception e){
+      return "";
+    }
+
+
+  }
 }

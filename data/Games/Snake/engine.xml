@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <data>
   <Event>
-    <Code>s0</Code>
+    <Code>STEP</Code>
     <Operations>MarkCell</Operations>
     <Rules>RuleTrue</Rules>
     <Interaction>MaxValue</Interaction>
@@ -72,6 +72,20 @@
     <Operations>UnMarkCell</Operations>
     <Rules>RuleTrue</Rules>
     <Interaction>Marked</Interaction>
+    <IfExecuteEvent>s10</IfExecuteEvent>
+  </Event>
+  <Event>
+    <Code>s10</Code>
+    <Operations>SetType none</Operations>
+    <Rules>ValueGreaterThanEqual -1</Rules>
+    <Interaction>All</Interaction>
+    <IfExecuteEvent>s11</IfExecuteEvent>
+  </Event>
+  <Event>
+    <Code>s11</Code>
+    <Operations>SetType HEAD</Operations>
+    <Rules>RuleTrue</Rules>
+    <Interaction>MaxValue</Interaction>
   </Event>
 
 
@@ -106,7 +120,7 @@
     <Operations>Nothing</Operations>
     <Rules>RuleTrue</Rules>
     <Interaction>All</Interaction>
-    <IfExecuteEvent>s0</IfExecuteEvent>
+    <IfExecuteEvent>STEP</IfExecuteEvent>
   </Event>
 
   <Event>
@@ -116,7 +130,11 @@
     <Interaction>All</Interaction>
   </Event>
 
- <LevelMaker>RandomSquareToValue 1 -1</LevelMaker>
+ <LevelMaker>RandomSquareToTypeVal HEAD 1</LevelMaker>
+  <LevelMaker>RandomSquareToTypeVal "" -1</LevelMaker>
   <LoseCon>CellOfType LOST</LoseCon>
   <WinCon>CellOfType WON</WinCon>
+  <Height>20</Height>
+  <Width>20</Width>
+  <STEP>150</STEP>
 </data>
