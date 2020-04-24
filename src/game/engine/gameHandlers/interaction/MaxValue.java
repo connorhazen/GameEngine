@@ -1,5 +1,6 @@
 package game.engine.gameHandlers.interaction;
 
+import game.util.Action;
 import game.util.Coordinates;
 import game.util.MutableCell;
 import game.util.MutableGrid;
@@ -11,7 +12,7 @@ public class MaxValue implements Interaction{
   protected List<List<MutableCell>> cells;
 
   @Override
-  public void setGrid(MutableGrid currentGrid) {
+  public void setGrid(MutableGrid currentGrid, Action a) {
     cells = new ArrayList<>();
 
     List<MutableCell> all = new ArrayList<>();

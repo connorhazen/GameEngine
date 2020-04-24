@@ -1,5 +1,6 @@
 package game.engine.gameHandlers.interaction;
 
+import game.util.Action;
 import game.util.Coordinates;
 import game.util.MutableCell;
 
@@ -16,7 +17,7 @@ public class LeftToRightAll extends OrderedAll{
     }
 
     @Override
-    public void setGrid(MutableGrid currentGrid) {
+    public void setGrid(MutableGrid currentGrid, Action a) {
         cells.clear();
         for (int row = 0; row < currentGrid.getHeight(); row++) {
             List<List<MutableCell>> allRowCombos = new ArrayList<>();

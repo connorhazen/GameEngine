@@ -1,5 +1,6 @@
 package game.engine.gameHandlers.interaction;
 
+import game.util.Action;
 import game.util.Coordinates;
 import game.util.MutableCell;
 
@@ -15,7 +16,7 @@ public class BottomToTopAll extends OrderedAll{
     }
 
     @Override
-    public void setGrid(MutableGrid currentGrid) {
+    public void setGrid(MutableGrid currentGrid, Action a) {
         cells.clear();
         for(int col = 0; col < currentGrid.getWidth(); col++){
             List<List<MutableCell>> allRowCombos = new ArrayList<>();

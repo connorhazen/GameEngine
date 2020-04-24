@@ -1,5 +1,6 @@
 package game.engine.gameHandlers.interaction;
 
+import game.util.Action;
 import game.util.Coordinates;
 import game.util.MutableCell;
 import game.util.MutableGrid;
@@ -13,7 +14,7 @@ public class All implements Interaction{
   private int val;
 
   @Override
-  public void setGrid(MutableGrid currentGrid) {
+  public void setGrid(MutableGrid currentGrid, Action a) {
     cells = new ArrayList<>();
 
 
@@ -22,7 +23,6 @@ public class All implements Interaction{
     };
 
     currentGrid.loop(run);
-
   }
 
   @Override
