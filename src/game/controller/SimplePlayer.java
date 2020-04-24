@@ -163,13 +163,12 @@ public class SimplePlayer implements Player {
       System.out.println("Player Listened Event: " + e.getCode());
       UpdateObject uo = go.getEngine().executeAction(e);
       go.setRunning(uo.getGameRunning());
-      if(hasNextAction(uo)){
+      if(hasNextAction(uo) && go.isRunning()){
         handleEvent(uo.getNextAction(), go);
         return;
       }
       updateView(uo, go);
     }
-
   }
 
   private boolean hasNextAction(UpdateObject uo) {
