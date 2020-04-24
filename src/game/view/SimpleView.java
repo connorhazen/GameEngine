@@ -1,6 +1,7 @@
 package game.view;
 
 import game.controller.GameObject;
+import game.controller.GameStorageHandler;
 import game.engine.UpdateObject;
 import game.parse.XMLException;
 import game.util.Action;
@@ -19,14 +20,13 @@ import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
-import javafx.scene.layout.Pane;
+import javafx.scene.layout.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
+import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
@@ -51,12 +51,14 @@ public class SimpleView implements View {
       );
   private final static double HEIGHT = 500;
   private final static double WIDTH = 500;
+  private final static double SCENE_HEIGHT = 600;
 
   public SimpleView( Map<String, String> images){
     stage = new Stage();
 
     root = new Group();
-    display = new Scene(root, WIDTH, HEIGHT);
+
+    display = new Scene(root, WIDTH, SCENE_HEIGHT);
 
     stage.setScene(display);
 
@@ -78,8 +80,17 @@ public class SimpleView implements View {
       root.getChildren().clear();
       displayGrid(uo.getGrid());
     }
-
+//    displayOrganizeButtons(uo);
   }
+
+//  private void displayOrganizeButtons(UpdateObject uo) {
+//    Rectangle bottomEdge = new Rectangle(0,HEIGHT+1,WIDTH,4);
+//    bottomEdge.setFill(Color.BLACK);
+//    Button saveGameButton = new Button("Save Game");
+//    TextField filName = new
+//    saveGameButton.setOnAction(e -> GameStorageHandler.storeGame(uo);)
+//    root.getChildren().add(bottomEdge);
+//  }
 
   private void displayStatusUO(UpdateObject uo) {
     root.getChildren().clear();
@@ -108,10 +119,10 @@ public class SimpleView implements View {
       if(image!=null) {
         ImageView view = makeImage(image);
         n=view;
-        view.setLayoutX(display.getWidth() / width * c.x);
-        view.setLayoutY(display.getHeight() / height * c.y);
-        view.setFitWidth(display.getWidth() / width);
-        view.setFitHeight(display.getHeight() / height);
+        view.setLayoutX(WIDTH / width * c.x);
+        view.setLayoutY(HEIGHT / height * c.y);
+        view.setFitWidth(WIDTH / width);
+        view.setFitHeight(HEIGHT / height);
         view.setRotate(ROTATE_MAP.get(cell.getDirection()));
         root.getChildren().add(view);
       }
@@ -129,10 +140,10 @@ public class SimpleView implements View {
 
   private AnchorPane makePane(Coordinates c, int width, int height){
     AnchorPane ret = new AnchorPane();
-    ret.setPrefWidth(display.getWidth() / width);
-    ret.setPrefHeight(display.getHeight() / height);
-    ret.setLayoutX(display.getWidth() / width * c.x);
-    ret.setLayoutY(display.getHeight() / height * c.y);
+    ret.setPrefWidth(HEIGHT / width);
+    ret.setPrefHeight(HEIGHT / height);
+    ret.setLayoutX(WIDTH / width * c.x);
+    ret.setLayoutY(WIDTH / height * c.y);
     return ret;
   }
 
