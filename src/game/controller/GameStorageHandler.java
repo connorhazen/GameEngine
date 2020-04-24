@@ -17,6 +17,7 @@ public class GameStorageHandler {
             fil.close();
         }
         catch(Exception e){
+            e.printStackTrace();
             //TODO: handle
         }
 
@@ -33,6 +34,7 @@ public class GameStorageHandler {
             return gameState;
         }
         catch(Exception e){
+            e.printStackTrace();
             //TODO: handle
         }
         return null;

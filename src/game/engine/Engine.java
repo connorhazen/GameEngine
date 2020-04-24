@@ -33,6 +33,11 @@ public class Engine implements EngineAPI{
         return generateUpdateStatus();
     }
 
+    @Override
+    public void setGrid(Grid g){
+        currentGrid = g;
+    }
+
     private UpdateObject generateUpdateStatus() {
         Action nextAction = currGameHandler.getNextEvent();
         GameAnimation animation = currAnimationHandler.getAnimation(currentGrid, updatedGrid);

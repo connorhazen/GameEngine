@@ -1,6 +1,8 @@
 package game.util;
 
-public class Cell {
+import java.io.Serializable;
+
+public class Cell implements Serializable {
   protected State state;
   protected Coordinates coords;
 
