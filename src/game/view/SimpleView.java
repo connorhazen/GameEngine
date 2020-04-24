@@ -75,14 +75,13 @@ public class SimpleView implements View {
 
   @Override
   public void updateGridDisplay(UpdateObject uo) throws XMLException{
+    root.getChildren().clear();
+    displayGrid(uo.getGrid());
     if(!uo.getGameRunning()){
       System.out.println(uo.getGameRunning());
       displayStatusUO(uo);
     }
-    else if(uo.getAnimation() == null){
-      root.getChildren().clear();
-      displayGrid(uo.getGrid());
-    }
+
     displayOrganizeButtons(uo);
   }
 
@@ -99,7 +98,7 @@ public class SimpleView implements View {
   }
 
   private void displayStatusUO(UpdateObject uo) {
-    root.getChildren().clear();
+
     Label status = new Label();
     if(uo.getGameLost()){
       status.setText("YOU LOST");
@@ -107,6 +106,8 @@ public class SimpleView implements View {
     if (uo.getGameWon()){
       status.setText("YOU WON");
     }
+    status.setLayoutX(100);
+    status.setLayoutY(HEIGHT+35);
    root.getChildren().add(status);
   }
 

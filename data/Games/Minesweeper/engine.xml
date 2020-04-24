@@ -74,7 +74,8 @@
     <Interaction>All</Interaction>
   </Event>
 
-  <LevelMaker>ReadFromFile data/Games/Minesweeper/level1.sav</LevelMaker>
+  <LevelMaker>SpecificLevelMaker Minesweeper .1</LevelMaker>
+  <LevelMakerBACKUP>ReadFromFile data/Games/Minesweeper/level1.sav</LevelMakerBACKUP>
   <LoseCon>CellOfType LOST</LoseCon>
   <WinCon>CellOfType WON</WinCon>
   <Height>20</Height>
