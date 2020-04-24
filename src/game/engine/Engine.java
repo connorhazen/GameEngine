@@ -47,6 +47,7 @@ public class Engine implements EngineAPI{
 
         currentGrid = updatedGrid;
         updatedGrid = null;
+
         return updateStatus;
     }
 }

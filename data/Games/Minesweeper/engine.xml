@@ -4,10 +4,38 @@
   <Event>
     <Code>ClickedCell</Code>
     <Operations>MarkCell</Operations>
-    <Rules>CellOfType COVERED</Rules>
+    <Rules>RuleTrue</Rules>
     <Interaction>GetCellFromAction</Interaction>
-    <IfExecuteEvent>s1</IfExecuteEvent>
+    <IfExecuteEvent>sCovered</IfExecuteEvent>
+    <IfNoExecuteEvent>sFlag</IfNoExecuteEvent>
   </Event>
+
+
+  <Event>
+    <Code>sCovered</Code>
+    <Operations>MarkCell</Operations>
+    <Rules>CellOfType FLAG</Rules>
+    <Interaction>Marked</Interaction>
+    <IfExecuteEvent>s1</IfExecuteEvent>
+    <IfNoExecuteEvent>sFlag</IfNoExecuteEvent>
+  </Event>
+  <Event>
+    <Code>sFlag</Code>
+    <Operations>SetType FLAG</Operations>
+    <Rules>CellOfType COVERED</Rules>
+    <Interaction>Marked</Interaction>
+    <IfExecuteEvent>sUnMark</IfExecuteEvent>
+    <IfNoExecuteEvent>sFlag</IfNoExecuteEvent>
+  </Event>
+
+  <Event>
+    <Code>sUnMark</Code>
+    <Operations>UnMarkCell</Operations>
+    <Rules>RuleTrue</Rules>
+    <Interaction>Marked</Interaction>
+  </Event>
+
+
 
   <Event>
     <Code>s1</Code>
@@ -74,10 +102,10 @@
     <Interaction>All</Interaction>
   </Event>
 
-  <LevelMaker>SpecificLevelMaker Minesweeper .1</LevelMaker>
+  <LevelMaker>SpecificLevelMaker Minesweeper .01</LevelMaker>
   <LevelMakerBACKUP>ReadFromFile data/Games/Minesweeper/level1.sav</LevelMakerBACKUP>
   <LoseCon>CellOfType LOST</LoseCon>
-  <WinCon>CellOfType WON</WinCon>
-  <Height>20</Height>
-  <Width>20</Width>
+  <WinCon>AllCellOfTypes FLAG -1 empty x</WinCon>
+  <Height>15</Height>
+  <Width>15</Width>
 </data>
