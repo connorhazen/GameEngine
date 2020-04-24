@@ -8,7 +8,7 @@ import java.io.*;
 
 public class GameStorageHandler {
 
-    public void storeGame(UpdateObject gameState, String filename, String destination){
+    public static void storeGame(UpdateObject gameState, String filename){
         try{
             FileOutputStream fil = new FileOutputStream(new File(filename));
             ObjectOutputStream oStream = new ObjectOutputStream(fil);
@@ -22,11 +22,13 @@ public class GameStorageHandler {
 
     }
 
-    public UpdateObject loadGame(String sourceLocation){
+    public static UpdateObject loadGame(String sourceLocation){
         try{
             FileInputStream fil = new FileInputStream(new File(sourceLocation));
             ObjectInputStream iStream = new ObjectInputStream(fil);
             Grid g = (Grid)iStream.readObject();
+            iStream.close();
+            fil.close();
             UpdateObject gameState = new UpdateStatus(g);
             return gameState;
         }
