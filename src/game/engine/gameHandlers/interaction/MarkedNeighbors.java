@@ -6,7 +6,7 @@ import game.util.MutableGrid;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MarkedGrouped implements Interaction {
+public class Marked implements Interaction {
 
   protected List<List<MutableCell>> cells;
 

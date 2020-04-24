@@ -18,14 +18,14 @@
     <Code>s2</Code>
     <Operations>SetType LOST</Operations>
     <Rules>ValueGreaterThanEqual 1</Rules>
-    <Interaction>Marked</Interaction>
+    <Interaction>MarkedGrouped</Interaction>
     <IfNoExecuteEvent>s3</IfNoExecuteEvent>
   </Event>
   <Event>
     <Code>s3</Code>
     <Operations>CombineToMaxAndMarkChanges</Operations>
     <Rules>ValueGreaterThanEqual 0</Rules>
-    <Interaction>Marked</Interaction>
+    <Interaction>MarkedGrouped</Interaction>
     <IfExecuteEvent>s4</IfExecuteEvent>
     <IfNoExecuteEvent>s6</IfNoExecuteEvent>
   </Event>
@@ -34,7 +34,7 @@
     <Code>s4</Code>
     <Operations>IncrementValue 1</Operations>
     <Rules>RuleTrue</Rules>
-    <Interaction>Marked</Interaction>
+    <Interaction>MarkedGrouped</Interaction>
     <IfExecuteEvent>s5</IfExecuteEvent>
   </Event>
   <Event>
@@ -49,14 +49,14 @@
     <Code>s6</Code>
     <Operations>CombineToMaxAndMarkChanges</Operations>
     <Rules>RuleTrue</Rules>
-    <Interaction>Marked</Interaction>
+    <Interaction>MarkedGrouped</Interaction>
     <IfExecuteEvent>s7</IfExecuteEvent>
   </Event>
   <Event>
     <Code>s7</Code>
     <Operations>IncrementValue 1</Operations>
     <Rules>RuleTrue</Rules>
-    <Interaction>Marked</Interaction>
+    <Interaction>MarkedGrouped</Interaction>
     <IfExecuteEvent>s8</IfExecuteEvent>
   </Event>
   <Event>
@@ -71,7 +71,7 @@
     <Code>s9</Code>
     <Operations>UnMarkCell</Operations>
     <Rules>RuleTrue</Rules>
-    <Interaction>Marked</Interaction>
+    <Interaction>MarkedGrouped</Interaction>
     <IfExecuteEvent>s10</IfExecuteEvent>
   </Event>
   <Event>

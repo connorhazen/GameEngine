@@ -1,12 +1,65 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <data>
+
   <Event>
     <Code>ClickedCell</Code>
     <Operations>MarkCell</Operations>
-    <Rules>RuleTrue</Rules>
+    <Rules>CellOfType COVERED</Rules>
     <Interaction>GetCellFromAction</Interaction>
     <IfExecuteEvent>s1</IfExecuteEvent>
   </Event>
+
+  <Event>
+    <Code>s1</Code>
+    <Operations>Nothing</Operations>
+    <Rules>ValueGreaterThanEqual 0</Rules>
+    <Interaction>Marked</Interaction>
+    <IfExecuteEvent>s2</IfExecuteEvent>
+    <IfNoExecuteEvent>sLost</IfNoExecuteEvent>
+  </Event>
+
+  <Event>
+    <Code>s2</Code>
+    <Operations>SetType empty</Operations>
+    <Rules>RuleTrue</Rules>
+    <Interaction>Marked</Interaction>
+    <IfExecuteEvent>s3</IfExecuteEvent>
+  </Event>
+
+  <Event>
+    <Code>s3</Code>
+    <Operations>UnMarkCell</Operations>
+    <Rules>ValueGreaterThanEqual 1</Rules>
+    <Interaction>Marked</Interaction>
+    <IfExecuteEvent>s4</IfExecuteEvent>
+    <IfNoExecuteEvent>s4</IfNoExecuteEvent>
+  </Event>
+
+  <Event>
+    <Code>s4</Code>
+    <Operations>SetType CLICKED</Operations>
+    <Rules>CellNotOfType empty</Rules>
+    <Interaction>MarkedNeighbors</Interaction>
+    <IfExecuteEvent>s5</IfExecuteEvent>
+    <IfNoExecuteEvent>s5</IfNoExecuteEvent>
+  </Event>
+
+  <Event>
+    <Code>s5</Code>
+    <Operations>UnMarkCell</Operations>
+    <Rules>RuleTrue</Rules>
+    <Interaction>Marked</Interaction>
+    <IfExecuteEvent>s6</IfExecuteEvent>
+  </Event>
+
+  <Event>
+    <Code>s6</Code>
+    <Operations>MarkCell</Operations>
+    <Rules>RuleTrue</Rules>
+    <Interaction>CellsOfType CLICKED</Interaction>
+    <IfExecuteEvent>s2</IfExecuteEvent>
+  </Event>
+
 
   <Event>
     <Code>sWon</Code>
@@ -14,8 +67,14 @@
     <Rules>RuleTrue</Rules>
     <Interaction>All</Interaction>
   </Event>
+  <Event>
+    <Code>sLost</Code>
+    <Operations>SetType LOST</Operations>
+    <Rules>RuleTrue</Rules>
+    <Interaction>All</Interaction>
+  </Event>
 
-  <LevelMaker>ReadFromFile Games/Minesweeper/level1.txt</LevelMaker>
+  <LevelMaker>ReadFromFile data/Games/Minesweeper/level1.sav</LevelMaker>
   <LoseCon>CellOfType LOST</LoseCon>
   <WinCon>CellOfType WON</WinCon>
   <Height>20</Height>
