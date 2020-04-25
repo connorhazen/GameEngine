@@ -27,6 +27,6 @@ public class ViewFactory {
     catch (Exception e){
     }
 
-    return new SimpleView(imageMap, colors);
+    return new SimpleView(imageMap, colors, folder);
   }
 }

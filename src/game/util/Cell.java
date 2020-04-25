@@ -40,7 +40,7 @@ public class Cell implements Serializable {
   public boolean equals(Object obj){
     try{
       Cell c = (Cell) obj;
-      return c.getValue() == getValue() && c.getType().equals(c.getType());
+      return c.getValue() == getValue() && c.getType().equals(getType());
     }
     catch (Exception e){
       return false;

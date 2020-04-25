@@ -19,7 +19,7 @@ public class Engine implements EngineAPI{
         currGameHandler = gameHandler;
         currAnimationHandler = animationHandler;
         currLevelHandler = levelHandler;
-        currentGrid = currLevelHandler.initializeGrid();
+        intializegrid();
         updatedGrid = null;
     }
 
@@ -28,10 +28,17 @@ public class Engine implements EngineAPI{
         return new UpdateStatus(currentGrid);
     }
 
+
+
     @Override
     public UpdateObject executeAction(Action action) {
         updatedGrid = currGameHandler.generateUpdatedGrid(currentGrid, action);
         return generateUpdateStatus();
+    }
+
+    @Override
+    public void intializegrid() {
+        currentGrid = currLevelHandler.initializeGrid();
     }
 
     @Override
