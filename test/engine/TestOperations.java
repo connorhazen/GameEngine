@@ -48,8 +48,13 @@ public class TestOperations {
 
     @Test
     void testOperationCombine2048(){
-        
-
+        Operation op = new OperationCombine2048();
+        MutableCell cell = new MutableCell(new SimpleState("", 2), new Coordinates(0,0));
+        MutableCell cell2 = new MutableCell(new SimpleState("", 2), new Coordinates(0,0));
+        assertTrue(cell.getValue()==2);
+        op.execute(List.of(cell,cell2));
+        assertTrue(cell.getValue()==4);
+        assertTrue(cell2.getValue()==0);
     }
 
     @Test
