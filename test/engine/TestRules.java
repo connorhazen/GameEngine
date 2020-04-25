@@ -1,11 +1,5 @@
 package engine;
-import game.engine.gameHandlers.rules.CellNotOfType;
-import game.engine.gameHandlers.rules.CellOfType;
-import game.engine.gameHandlers.rules.NotOppositeDirection;
-import game.engine.gameHandlers.rules.RuleTrue;
-import game.engine.gameHandlers.rules.Rules;
-import game.engine.gameHandlers.rules.ValueEqual;
-import game.engine.gameHandlers.rules.ValueGreaterThanEqual;
+import game.engine.gameHandlers.rules.*;
 import game.util.Coordinates;
 import game.util.MutableCell;
 import game.util.SimpleState;
@@ -93,6 +87,22 @@ public class TestRules{
         new MutableCell(new SimpleState("", -1, "LEFT"), new Coordinates(0,0)))));
     assertTrue(rule.canPerform(Arrays.asList(
         new MutableCell(new SimpleState("Yes", 0, "RIGHT"), new Coordinates(0,0)))));
+
+  }
+
+  @Test
+  void testRule2048(){
+    Rules rule = new Rule2048();
+
+    assertTrue(rule.canPerform(Arrays.asList(
+            new MutableCell(new SimpleState("",2),new Coordinates(0,0)),
+            new MutableCell(new SimpleState("",2),new Coordinates(0,0)))));
+    assertFalse(rule.canPerform(Arrays.asList(
+            new MutableCell(new SimpleState("",1),new Coordinates(0,0)),
+            new MutableCell(new SimpleState("",2),new Coordinates(0,0)))));
+    assertTrue(rule.canPerform(Arrays.asList(
+            new MutableCell(new SimpleState("",0),new Coordinates(0,0)),
+            new MutableCell(new SimpleState("",2),new Coordinates(0,0)))));
 
   }
 
