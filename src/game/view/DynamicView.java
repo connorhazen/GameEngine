@@ -6,11 +6,13 @@ import game.util.Action;
 import game.util.Grid;
 import javafx.scene.Group;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
+import java.lang.reflect.Method;
 import java.util.Map;
 import java.util.function.Consumer;
 
@@ -76,6 +78,20 @@ public class DynamicView implements View {
     @Override
     public Stage getStage() {
         return stage;
+    }
+
+    public void addButton(String name, String funcName){
+        Button b = new Button(name);
+        b.setOnAction(e -> getFunction(name,funcName));
+        bottomDisplay.getChildren().add(b);
+    }
+
+    private void getFunction(String name, String funcName) {
+        try {
+            Method m = DynamicView.class.getDeclaredMethod(funcName);
+        } catch (Exception e) {
+            throw new XMLException("Failed to make UI Element: " + name);
+        }
     }
 
 }
