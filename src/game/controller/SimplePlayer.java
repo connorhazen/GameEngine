@@ -36,6 +36,8 @@ public class SimplePlayer implements Player {
   }
 
   private void initialGameSetup(GameObject go){
+    //go.getView().setResetRunnable(() -> restart(go));
+    //go.getView().setPausePlayRunnable(() -> go.setRunning(!go.isRunning()));
     updateView(go.getEngine().getGrid(),go);
     makeListeners(go);
   }
