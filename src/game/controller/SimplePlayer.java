@@ -54,7 +54,7 @@ public class SimplePlayer implements Player {
   @Override
   public void handleEvent(Action e, GameObject go) {
     if(go.isRunning()){
-      System.out.println("Player Listened Event: " + e.getCode());
+      //System.out.println("Player Listened Event: " + e.getCode());
       UpdateObject uo = go.getEngine().executeAction(e);
       go.setRunning(uo.getGameRunning());
       if(hasNextAction(uo) && go.isRunning()){

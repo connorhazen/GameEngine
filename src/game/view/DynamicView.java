@@ -79,7 +79,7 @@ public class DynamicView implements View {
             makeImagesInMap();
         }
         catch (Exception e){
-            e.printStackTrace();
+           throw new XMLException(e.getMessage());
         }
 
     }
@@ -111,7 +111,7 @@ public class DynamicView implements View {
         centerPane.getChildren().clear();
         displayGrid(uo.getGrid());
         if(!uo.getGameRunning()){
-            System.out.println(uo.getGameRunning());
+            //System.out.println(uo.getGameRunning());
             displayStatusUO(uo);
         }
     }

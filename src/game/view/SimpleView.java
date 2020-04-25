@@ -95,7 +95,7 @@ public class SimpleView implements View {
     saveGameButton.setFocusTraversable(false);
     saveGameButton.setOnAction(e -> {
       GameStorageHandler.storeGame(uo,saveLocation + LocalDateTime.now() + ".sav");
-      System.out.println("save");
+      //System.out.println("save");
 
     });
     saveGameButton.setLayoutY(HEIGHT+35);

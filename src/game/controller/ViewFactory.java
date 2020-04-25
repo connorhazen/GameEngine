@@ -49,7 +49,7 @@ public class ViewFactory {
       return view;
     }
     catch (Exception e){
-      e.printStackTrace();
+
       throw new XMLException(e.getMessage());
     }
 

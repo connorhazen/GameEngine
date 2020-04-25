@@ -44,9 +44,8 @@ public class BaseLevelHandler implements LevelHandler {
       return g;
     }
     catch (Exception e){
-      e.printStackTrace();
-      return null;
-      //throw new XMLException("Error Making grid: " + e.getClass().toString());
+
+      throw new XMLException("Error Making grid: " + e.getClass().toString());
     }
   }
 
