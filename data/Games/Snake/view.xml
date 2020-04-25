@@ -4,4 +4,10 @@
   <image>snakeFood -1</image>
   <image>empty 0</image>
   <image>snakeHead HEAD</image>
+  <Button>Reset reset</Button>
+  <Button>Pause pausePlay</Button>
+  <Button>Save saveGame</Button>
+  <height>600</height>
+  <width>500</width>
+  <display>SnakeInstruct</display>
 </data>

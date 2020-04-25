@@ -26,15 +26,14 @@ public class MainMenu {
   private final String PATH_TO_GAMES = "Games/";
   private final String SAVED_GAMES = "/SavedGames/";
 
-  private static final int WIDTH = 700;
-  private static final int HEIGHT = 300;
+  private static final int WIDTH = 600;
+  private static final int HEIGHT = 150;
   private static final Color BACKGROUND_COLOR = Color.TAN;
-  private static final String TITLE = "GridGUYS Games - Final Project";
 
   private Text messageBox;
 
   private BiConsumer<Action, GameObject> eventRunnable;
-  private Consumer<GameObject> intialSet;
+  private Consumer<GameObject> initialSet;
   private String selectedGame;
   private BorderPane pane;
   private ComboBox loadChoices;
@@ -51,13 +50,13 @@ public class MainMenu {
     root.getChildren().add(pane);
     Scene mainScreen = new Scene(root, WIDTH, HEIGHT, BACKGROUND_COLOR);
     menuStage.setScene(mainScreen);
-    menuStage.setTitle(TITLE);
+    menuStage.setTitle(MY_RESOURCES.getString("title"));
     menuStage.show();
 
     addGameMessage(MY_RESOURCES.getString("pickGame"));
 
     this.eventRunnable = eventRunnable;
-    this.intialSet=initialSet;
+    this.initialSet=initialSet;
   }
 
 
@@ -67,7 +66,7 @@ public class MainMenu {
 
   }
   private Text generateTitle() {
-    Text title = new Text(TITLE);
+    Text title = new Text(MY_RESOURCES.getString("title"));
     title.setFill(Color.BLACK);
     title.setFont(Font.font("Verdana", 32));
     title.setTextAlignment(TextAlignment.CENTER);
@@ -98,7 +97,7 @@ public class MainMenu {
         }
         go.setStepFunction(() -> eventRunnable.accept(new SimpleAction("STEP"), go));
         go.getView().setEventCaller((g) -> eventRunnable.accept(g, go));
-        intialSet.accept(go);
+        initialSet.accept(go);
         addGameMessage(MY_RESOURCES.getString("enjoy"));
       }
       catch(Exception ex){

@@ -94,7 +94,7 @@ public class SimpleView implements View {
     saveGameButton.setFocusTraversable(false);
     saveGameButton.setOnAction(e -> {
       GameStorageHandler.storeGame(uo,saveLocation + LocalDateTime.now() + ".sav");
-      System.out.println("save");
+      //System.out.println("save");
 
     });
     saveGameButton.setLayoutY(HEIGHT+35);
@@ -254,6 +254,16 @@ public class SimpleView implements View {
   @Override
   public Stage getStage() {
     return stage;
+  }
+
+  @Override
+  public void setResetRunnable(Runnable run) {
+
+  }
+
+  @Override
+  public void setPausePlayRunnable(Runnable run) {
+
   }
 
 }

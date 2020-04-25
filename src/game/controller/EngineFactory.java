@@ -44,7 +44,7 @@ public class EngineFactory {
       throw new XMLException("Bad Event Construction " + e.getMessage());
     }
     catch (Exception e){
-      e.printStackTrace();
+      throw new XMLException(e.getMessage());
     }
   }
 

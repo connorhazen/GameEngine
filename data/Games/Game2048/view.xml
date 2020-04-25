@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <data>
-  <image>2048Star 2048</image>
   <image>empty 0</image>
   <DynamicColors>true</DynamicColors>
+  <Button>Reset reset</Button>
+  <Button>Save saveGame</Button>
+  <height>600</height>
+  <width>500</width>
+  <display>2048Instruct</display>
 </data>

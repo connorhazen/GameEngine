@@ -33,11 +33,12 @@ public class SimplePlayer implements Player {
   private void restart(GameObject go){
     go.getEngine().intializegrid();
     updateView(go.getEngine().getGrid(), go);
+    go.setRunning(true);
   }
 
   private void initialGameSetup(GameObject go){
-    //go.getView().setResetRunnable(() -> restart(go));
-    //go.getView().setPausePlayRunnable(() -> go.setRunning(!go.isRunning()));
+    go.getView().setResetRunnable(() -> restart(go));
+    go.getView().setPausePlayRunnable(() -> go.setRunning(!go.isRunning()));
     updateView(go.getEngine().getGrid(),go);
     makeListeners(go);
   }
@@ -53,7 +54,7 @@ public class SimplePlayer implements Player {
   @Override
   public void handleEvent(Action e, GameObject go) {
     if(go.isRunning()){
-      System.out.println("Player Listened Event: " + e.getCode());
+      //System.out.println("Player Listened Event: " + e.getCode());
       UpdateObject uo = go.getEngine().executeAction(e);
       go.setRunning(uo.getGameRunning());
       if(hasNextAction(uo) && go.isRunning()){

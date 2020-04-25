@@ -29,8 +29,8 @@ public class FileReader {
   static {
     try {
       DOCUMENT_BUILDER = DocumentBuilderFactory.newInstance().newDocumentBuilder();
-    } catch (ParserConfigurationException e) {
-      e.printStackTrace();
+    } catch (Exception e) {
+      throw new XMLException(e.getMessage());
     }
   }
 

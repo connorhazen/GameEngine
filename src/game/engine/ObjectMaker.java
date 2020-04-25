@@ -24,7 +24,6 @@ public class ObjectMaker {
         obj = objConstruct.newInstance();
       }
     } catch (Exception e) {
-      e.printStackTrace();
       throw new XMLException("Bad event declaration: type - " + rules + " Args - " + argument);
     }
     return obj;

@@ -2,6 +2,7 @@ package game.controller;
 
 import game.engine.UpdateObject;
 import game.engine.UpdateStatus;
+import game.parse.XMLException;
 import game.util.Grid;
 
 import java.io.*;
@@ -19,7 +20,7 @@ public class GameStorageHandler {
             fil.close();
         }
         catch(Exception e){
-            e.printStackTrace();
+            throw new XMLException(e.getMessage());
         }
 
     }
@@ -36,9 +37,8 @@ public class GameStorageHandler {
             return gameState;
         }
         catch(Exception e){
-            e.printStackTrace();
+            throw new XMLException(e.getMessage());
         }
-        return null;
     }
 
 }

@@ -3,4 +3,9 @@
   <image>bomb -1</image>
   <image>flag FLAG</image>
   <image>covered COVERED</image>
+  <Button>Reset reset</Button>
+  <Button>Save saveGame</Button>
+  <height>600</height>
+  <width>500</width>
+  <display>MineInstruct</display>
 </data>
