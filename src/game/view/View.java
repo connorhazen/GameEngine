@@ -14,7 +14,7 @@ public interface View {
   void updateGridDisplay(UpdateObject uo);
 
   void setEventCaller(Consumer<Action> run);
-  
+
   Scene getScene();
 
   Stage getStage();

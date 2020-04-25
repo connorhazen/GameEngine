@@ -81,7 +81,6 @@ public class SimpleView implements View {
       System.out.println(uo.getGameRunning());
       displayStatusUO(uo);
     }
-
     displayOrganizeButtons(uo);
   }
 
@@ -234,16 +233,6 @@ public class SimpleView implements View {
 
 
     return new ImageView(image);
-  }
-
-  @Override
-  public void displayWindow(Window w) {
-
-  }
-
-  @Override
-  public void removeWindow(Window w) {
-
   }
 
   @Override
