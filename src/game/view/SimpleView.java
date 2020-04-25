@@ -60,7 +60,6 @@ public class SimpleView implements View {
   public SimpleView( Map<String, String> images, boolean changingColors, String currentLoc){
     saveLocation = currentLoc+"/SavedGames/";
     stage = new Stage();
-
     root = new Group();
 
     display = new Scene(root, WIDTH, SCENE_HEIGHT);
