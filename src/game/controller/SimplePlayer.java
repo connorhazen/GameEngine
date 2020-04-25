@@ -30,6 +30,11 @@ public class SimplePlayer implements Player {
     MainMenu menu = new MainMenu(primaryStage, this::handleEvent, this::initialGameSetup);
   }
 
+  private void restart(GameObject go){
+    go.getEngine().intializegrid();
+    updateView(go.getEngine().getGrid(), go);
+  }
+
   private void initialGameSetup(GameObject go){
     updateView(go.getEngine().getGrid(),go);
     makeListeners(go);

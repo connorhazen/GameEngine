@@ -94,7 +94,10 @@ public class SimpleView implements View {
     bottomEdge.setFill(Color.BLACK);
     Button saveGameButton = new Button("Save Game");
     saveGameButton.setFocusTraversable(false);
-    saveGameButton.setOnAction(e -> {GameStorageHandler.storeGame(uo,saveLocation + LocalDateTime.now() + ".sav");
+    saveGameButton.setOnAction(e -> {
+      GameStorageHandler.storeGame(uo,saveLocation + LocalDateTime.now() + ".sav");
+      System.out.println("save");
+
     });
     saveGameButton.setLayoutY(HEIGHT+35);
     root.getChildren().add(bottomEdge);
