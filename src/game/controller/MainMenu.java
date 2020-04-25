@@ -29,7 +29,6 @@ public class MainMenu {
   private static final int WIDTH = 600;
   private static final int HEIGHT = 150;
   private static final Color BACKGROUND_COLOR = Color.TAN;
-  private static final String TITLE = "GridGUYS Games - Final Project";
 
   private Text messageBox;
 
@@ -51,7 +50,7 @@ public class MainMenu {
     root.getChildren().add(pane);
     Scene mainScreen = new Scene(root, WIDTH, HEIGHT, BACKGROUND_COLOR);
     menuStage.setScene(mainScreen);
-    menuStage.setTitle(TITLE);
+    menuStage.setTitle(MY_RESOURCES.getString("title"));
     menuStage.show();
 
     addGameMessage(MY_RESOURCES.getString("pickGame"));
@@ -67,7 +66,7 @@ public class MainMenu {
 
   }
   private Text generateTitle() {
-    Text title = new Text(TITLE);
+    Text title = new Text(MY_RESOURCES.getString("title"));
     title.setFill(Color.BLACK);
     title.setFont(Font.font("Verdana", 32));
     title.setTextAlignment(TextAlignment.CENTER);

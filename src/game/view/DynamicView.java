@@ -9,6 +9,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.lang.reflect.Array;
 import java.util.HashMap;
+import java.util.ResourceBundle;
 import javafx.beans.binding.Bindings;
 import javafx.beans.binding.DoubleBinding;
 import javafx.beans.binding.NumberBinding;
@@ -35,8 +36,9 @@ import java.util.Objects;
 import java.util.function.Consumer;
 
 public class DynamicView implements View {
+    private static final String LANGUAGE = "english";
+    private static final ResourceBundle MY_RESOURCES = ResourceBundle.getBundle("resources." + LANGUAGE);
 
-    public static final String DEFAULT_IMAGE = "questionMark";
     public static final String FILE_PATH = "StateImages/";
     public static final String DATA ="data/";
     public static final String EXTENSION = ".gif";
@@ -118,10 +120,10 @@ public class DynamicView implements View {
 
     private void displayStatusUO(UpdateObject uo) {
         if(uo.getGameLost()&&gameMessages!=null){
-            gameMessages.setText("YOU LOST");
+            gameMessages.setText(MY_RESOURCES.getString("lost"));
         }
         if (uo.getGameWon()&&gameMessages!=null){
-            gameMessages.setText("YOU WON");
+            gameMessages.setText(MY_RESOURCES.getString("won"));
         }
     }
 
