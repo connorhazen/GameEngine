@@ -94,4 +94,16 @@ public class DynamicView implements View {
         }
     }
 
+   public void reset(){
+
+   }
+
+   public void pausePlay(){
+
+   }
+
+   public void saveGame(){
+        
+   }
+
 }
