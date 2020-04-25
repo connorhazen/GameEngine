@@ -4,6 +4,7 @@ import game.util.Action;
 import game.util.Grid;
 import game.util.SimpleAction;
 import java.io.File;
+import java.util.ResourceBundle;
 import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 import javafx.geometry.Insets;
@@ -27,18 +28,20 @@ import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 
 public class MainMenu {
+  private final String LANGUAGE = "english";
+  private final ResourceBundle  MY_RESOURCES = ResourceBundle.getBundle("resources." + LANGUAGE);
+  private final String DATA = "data/";
+  private final String PATH_TO_GAMES = "Games/";
+  private final String SAVED_GAMES = "/SavedGames/";
+
   private final static String GAME_FILE = "MainMenu.xml";
-  private static final int PADDING = 5;
-  private static final int V_GAP = 10;
-  private static final int H_GAP = 50;
   private static final int WIDTH = 700;
   private static final int HEIGHT = 300;
   private static final Color BACKGROUND_COLOR = Color.TAN;
   private static final String TITLE = "GridGUYS Games - Final Project";
-  private ComboBox selectFile;
-  private ToggleGroup toggleGroup = new ToggleGroup();
+
   private Text messageBox;
-  private ComboBox loadGame = new ComboBox();
+
   private BiConsumer<Action, GameObject> eventRunnable;
   private Consumer<GameObject> intialSet;
   private String selectedGame;
@@ -60,7 +63,7 @@ public class MainMenu {
     menuStage.setTitle(TITLE);
     menuStage.show();
 
-    addGameMessage("Select a Game!");
+    addGameMessage(MY_RESOURCES.getString("pickGame"));
 
     this.eventRunnable = eventRunnable;
     this.intialSet=initialSet;
@@ -83,33 +86,32 @@ public class MainMenu {
 
   private void generateLoadComboBox() {
     loadChoices = new ComboBox();
-    File fil = new File("data/Games/" + selectedGame + "/SavedGames");
+    File fil = new File(DATA+PATH_TO_GAMES + selectedGame + SAVED_GAMES);
     for(File f : fil.listFiles()){
       loadChoices.getItems().add(f.getName());
     }
-    loadChoices.getItems().add("NewGame");
-    loadChoices.setValue("NewGame");
+    loadChoices.getItems().add(MY_RESOURCES.getString("newGame"));
+    loadChoices.setValue(MY_RESOURCES.getString("newGame"));
     pane.setCenter(loadChoices);
     pane.setRight(createButton());
   }
 
   private Button createButton() {
-    Button b = new Button("Generate Game");
+    Button b = new Button(MY_RESOURCES.getString("makeGame"));
     b.setOnAction(e -> {
       try{
-        GameObject go = new GameObject("Games/"+selectedGame);
-        if(!loadChoices.getValue().equals("NewGame"))
-        {
-          Grid g = GameStorageHandler.loadGame("Games/" + selectedGame+ "/SavedGames/"+loadChoices.getValue()).getGrid();
+        GameObject go = new GameObject(PATH_TO_GAMES+selectedGame);
+        if(!loadChoices.getValue().equals(MY_RESOURCES.getString("newGame"))) {
+          Grid g = GameStorageHandler.loadGame(PATH_TO_GAMES + selectedGame+ SAVED_GAMES+loadChoices.getValue()).getGrid();
           go.getEngine().setGrid(g);
         }
         go.setStepFunction(() -> eventRunnable.accept(new SimpleAction("STEP"), go));
         go.getView().setEventCaller((g) -> eventRunnable.accept(g, go));
         intialSet.accept(go);
-        addGameMessage("Enjoy Your Game! Select Another to Start a New Game!");
+        addGameMessage(MY_RESOURCES.getString("enjoy"));
       }
       catch(Exception ex){
-       ex.printStackTrace();
+       addGameMessage(ex.getMessage());
       }
     });
     return b;
@@ -119,7 +121,7 @@ public class MainMenu {
 
   private VBox generateGameButtons() {
     VBox buttonBox = new VBox();
-    File fil = new File(getClass().getClassLoader().getResource("Games").getFile());
+    File fil = new File(getClass().getClassLoader().getResource(PATH_TO_GAMES).getFile());
     for(File f : fil.listFiles()){
       if(!f.getName().contains(".")){
         Button b = new Button(f.getName());
