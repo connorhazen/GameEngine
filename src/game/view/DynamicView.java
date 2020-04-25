@@ -35,6 +35,8 @@ public class DynamicView implements View {
     private UpdateObject currentUpdateObject;
     private String saveLocation;
     private Text gameMessages;
+    private Runnable resetFunc;
+    private Runnable pausePlayFunc;
 
     public DynamicView(double sceneWidth, double sceneHeight, Map<String, String> images, boolean changingColors, String saveLocation){
         initializeDisplay();
@@ -54,6 +56,14 @@ public class DynamicView implements View {
         bottomDisplay = new HBox();
         viewOrganizer.setCenter(gridDisplay);
         viewOrganizer.setBottom(bottomDisplay);
+    }
+
+    public void setResetRunnable(Runnable r){
+        resetFunc = r;
+    }
+
+    public void setPausePlayRunnable(Runnable r){
+        pausePlayFunc = r;
     }
 
     @Override
@@ -97,7 +107,15 @@ public class DynamicView implements View {
 
     public void addButton(String name, String funcName){
         Button b = new Button(name);
-        b.setOnAction(e -> getFunction(name,funcName));
+        Method m = getFunction(name,funcName);
+        b.setOnAction(e -> {
+            try{
+                m.invoke(this);
+            }
+            catch(Exception ex){
+                gameMessages.setText("Error With Button Action");
+            }
+        });
         bottomDisplay.getChildren().add(b);
     }
 
@@ -106,20 +124,21 @@ public class DynamicView implements View {
         bottomDisplay.getChildren().add(gameMessages);
     }
 
-    private void getFunction(String name, String funcName) {
+    private Method getFunction(String name, String funcName) {
         try {
             Method m = DynamicView.class.getDeclaredMethod(funcName);
+            return m;
         } catch (Exception e) {
             throw new XMLException("Failed to make UI Element: " + name);
         }
     }
 
    public void reset(){
-
+        resetFunc.run();
    }
 
    public void pausePlay(){
-
+        pausePlayFunc.run();
    }
 
    public void saveGame(){
