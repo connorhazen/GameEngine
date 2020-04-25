@@ -9,6 +9,8 @@ import game.util.Cell;
 import game.util.ClickedAction;
 import game.util.Coordinates;
 import java.io.FileInputStream;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -53,8 +55,10 @@ public class SimpleView implements View {
   private final static double WIDTH = 500;
   private final static double SCENE_HEIGHT = 600;
   private boolean usingBackRound = false;
+  private String saveLocation;
 
-  public SimpleView( Map<String, String> images, boolean changingColors){
+  public SimpleView( Map<String, String> images, boolean changingColors, String currentLoc){
+    saveLocation = currentLoc+"/SavedGames/";
     stage = new Stage();
 
     root = new Group();
@@ -78,7 +82,7 @@ public class SimpleView implements View {
     root.getChildren().clear();
     displayGrid(uo.getGrid());
     if(!uo.getGameRunning()){
-      System.out.println(uo.getGameRunning());
+      //System.out.println(uo.getGameRunning());
       displayStatusUO(uo);
     }
 
@@ -90,7 +94,7 @@ public class SimpleView implements View {
     bottomEdge.setFill(Color.BLACK);
     Button saveGameButton = new Button("Save Game");
     saveGameButton.setFocusTraversable(false);
-    saveGameButton.setOnAction(e -> {GameStorageHandler.storeGame(uo,"data/Games/SavedGames/savedfil.sav");
+    saveGameButton.setOnAction(e -> {GameStorageHandler.storeGame(uo,saveLocation + LocalDateTime.now() + ".sav");
     });
     saveGameButton.setLayoutY(HEIGHT+35);
     root.getChildren().add(bottomEdge);

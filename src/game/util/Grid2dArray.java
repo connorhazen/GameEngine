@@ -161,7 +161,6 @@ public class Grid2dArray implements MutableGrid {
       AtomicBoolean ret = new AtomicBoolean(true);
       Consumer<Coordinates> t = e -> {if(!g.getCell(e).equals(this.getCell(e))){
         ret.set(false);
-        System.out.println(g.getCell(e).getType());
       }};
       loop(t);
       return ret.get();
