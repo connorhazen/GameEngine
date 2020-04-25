@@ -18,4 +18,8 @@ public interface View {
   Scene getScene();
 
   Stage getStage();
+
+  void setResetRunnable(Runnable run);
+
+  void setPausePlayRunnable(Runnable run);
 }

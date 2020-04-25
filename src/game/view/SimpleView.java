@@ -257,5 +257,15 @@ public class SimpleView implements View {
     return stage;
   }
 
+  @Override
+  public void setResetRunnable(Runnable run) {
+
+  }
+
+  @Override
+  public void setPausePlayRunnable(Runnable run) {
+
+  }
+
 }
 
