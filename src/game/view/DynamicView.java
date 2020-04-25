@@ -1,5 +1,6 @@
 package game.view;
 
+import game.controller.GameStorageHandler;
 import game.engine.UpdateObject;
 import game.parse.XMLException;
 import game.util.Action;
@@ -7,12 +8,16 @@ import game.util.Grid;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.lang.reflect.Method;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Map;
 import java.util.function.Consumer;
 
@@ -27,14 +32,18 @@ public class DynamicView implements View {
     private GridPane gridDisplay;
     private BorderPane viewOrganizer;
     private HBox bottomDisplay;
+    private UpdateObject currentUpdateObject;
+    private String saveLocation;
+    private Text gameMessages;
 
-    public DynamicView(double sceneWidth, double sceneHeight, Map<String, String> images, boolean changingColors){
+    public DynamicView(double sceneWidth, double sceneHeight, Map<String, String> images, boolean changingColors, String saveLocation){
         initializeDisplay();
         display = new Scene(root, sceneWidth, sceneHeight);
         stage.setScene(display);
         imageMap = images;
         stage.show();
         usingBackRound = changingColors;
+        this.saveLocation = saveLocation+"/SavedGames/";
     }
 
     private void initializeDisplay() {
@@ -49,6 +58,7 @@ public class DynamicView implements View {
 
     @Override
     public void updateGridDisplay(UpdateObject uo) throws XMLException {
+        currentUpdateObject = uo;
         gridDisplay.getChildren().clear();
         displayGrid(uo.getGrid());
         if(!uo.getGameRunning()){
@@ -58,7 +68,12 @@ public class DynamicView implements View {
     }
 
     private void displayStatusUO(UpdateObject uo) {
-
+        if(uo.getGameLost()){
+            gameMessages.setText("YOU LOST");
+        }
+        if (uo.getGameWon()){
+            gameMessages.setText("YOU WON");
+        }
     }
 
     private void displayGrid(Grid grid) {
@@ -86,6 +101,11 @@ public class DynamicView implements View {
         bottomDisplay.getChildren().add(b);
     }
 
+    public void addDisplayInfo(String initMessage){
+        gameMessages = new Text(initMessage);
+        bottomDisplay.getChildren().add(gameMessages);
+    }
+
     private void getFunction(String name, String funcName) {
         try {
             Method m = DynamicView.class.getDeclaredMethod(funcName);
@@ -103,7 +123,12 @@ public class DynamicView implements View {
    }
 
    public void saveGame(){
-        
+        try{
+            GameStorageHandler.storeGame(currentUpdateObject,saveLocation + LocalDateTime.now() +".sav");
+        }
+        catch(Exception e){
+            gameMessages.setText("Game Could Not Be Saved");
+        }
    }
 
 }
