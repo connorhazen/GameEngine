@@ -13,13 +13,8 @@ public interface View {
 
   void updateGridDisplay(UpdateObject uo);
 
-  void displayWindow(Window w);
-
-  void removeWindow(Window w);
-
   void setEventCaller(Consumer<Action> run);
-
-
+  
   Scene getScene();
 
   Stage getStage();
