@@ -25,7 +25,7 @@
     <Rules>CellOfType COVERED</Rules>
     <Interaction>Marked</Interaction>
     <IfExecuteEvent>sUnMark</IfExecuteEvent>
-    <IfNoExecuteEvent>sFlag</IfNoExecuteEvent>
+    <IfNoExecuteEvent>sUnMark</IfNoExecuteEvent>
   </Event>
 
   <Event>
@@ -102,7 +102,7 @@
     <Interaction>All</Interaction>
   </Event>
 
-  <LevelMaker>SpecificLevelMaker Minesweeper .01</LevelMaker>
+  <LevelMaker>SpecificLevelMaker Minesweeper .175</LevelMaker>
   <LevelMakerBACKUP>ReadFromFile data/Games/Minesweeper/level1.sav</LevelMakerBACKUP>
   <LoseCon>CellOfType LOST</LoseCon>
   <WinCon>AllCellOfTypes FLAG -1 empty x</WinCon>
