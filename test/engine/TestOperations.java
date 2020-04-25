@@ -1,8 +1,5 @@
 package engine;
-import game.engine.gameHandlers.operation.MarkCell;
-import game.engine.gameHandlers.operation.Operation;
-import game.engine.gameHandlers.operation.SetValue;
-import game.engine.gameHandlers.operation.UnMarkCell;
+import game.engine.gameHandlers.operation.*;
 import game.engine.gameHandlers.rules.*;
 import game.util.Coordinates;
 import game.util.MutableCell;
@@ -21,7 +18,11 @@ public class TestOperations {
 
     @Test
     void testIncrementValue(){
-
+        Operation op = new IncrementValue(List.of("1"));
+        MutableCell cell = new MutableCell(new SimpleState("", 0), new Coordinates(0,0));
+        assertTrue(cell.getValue()==0);
+        op.execute(List.of(cell));
+        assertTrue(cell.getValue()==1);
     }
 
     @Test
@@ -38,11 +39,16 @@ public class TestOperations {
 
     @Test
     void testSetDirection(){
-
+        Operation op = new SetDirection(List.of("DOWN"));
+        MutableCell cell = new MutableCell(new SimpleState("", 0), new Coordinates(0,0));
+        assertFalse(cell.getDirection().equals("DOWN"));
+        op.execute(List.of(cell));
+        assertTrue(cell.getDirection().equals("DOWN"));
     }
 
     @Test
     void testOperationCombine2048(){
+        
 
     }
 
