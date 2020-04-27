@@ -18,38 +18,63 @@ public class ViewFactory {
       .getBundle("resources." + LANGUAGE);
 
   public static View makeView(String folder, String fileName) throws XMLException {
+    FileReader fr = new FileReader(folder + fileName);
+    Map<String, String> imageMap = getImages(fr);
+    boolean colors = false;
     try {
-      FileReader fr = new FileReader(folder + fileName);
-      List<String> list = fr.getValues("image");
-      Map<String, String> imageMap = new HashMap<>();
-      for (String s : list) {
-        List<String> split = new ArrayList<>(Arrays.asList(s.split(" ", 2)));
-        imageMap.put(split.get(1), split.get(0));
-      }
+      colors = Boolean.valueOf(fr.getValue("DynamicColors"));
+    } catch (Exception e) {
+      colors = false;
+    }
+    int width = 0;
+    int height = 0;
+    try{
+      height = Integer.parseInt(fr.getValue("height"));
+      width = Integer.parseInt(fr.getValue("width"));
+    }
+    catch (Exception e){
+      throw new XMLException("Missing height or width param in View file");
+    }
 
-      boolean colors = false;
-      try {
-        colors = Boolean.valueOf(fr.getValue("DynamicColors"));
-      } catch (Exception e) {
-      }
+    DynamicView view = new DynamicView(width, height, imageMap, colors, folder);
 
-      int height = Integer.parseInt(fr.getValue("height"));
-      int width = Integer.parseInt(fr.getValue("width"));
+    makeGUIElements(view, fr);
+    return view;
 
-      DynamicView view = new DynamicView(width, height, imageMap, colors, folder);
+
+
+
+  }
+
+  private static void makeGUIElements(DynamicView view, FileReader fr) throws XMLException{
+
+    try{
       List<String> values = fr.getValues("Button");
       for (String s : values) {
         String[] split = s.split(" ");
         view.addButton(MY_RESOURCES.getString(split[0]), split[1]);
       }
-
-      view.addDisplayInfo(MY_RESOURCES.getString(fr.getValue("display")));
-
-      return view;
-    } catch (Exception e) {
-
-      throw new XMLException(e.getMessage());
+    }
+    catch (Exception e){
+      throw new XMLException("ERROR MAKING BUTTONS: " + e.getMessage());
     }
 
+    try{
+      view.addDisplayInfo(MY_RESOURCES.getString(fr.getValue("display")));
+    }
+    catch (Exception e){
+      throw new XMLException("ERROR MAKING DISPLAY BOX: " + e.getMessage());
+    }
+
+  }
+
+  private static Map<String, String> getImages(FileReader fr) {
+    List<String> list = fr.getValues("image");
+    Map<String, String> imageMap = new HashMap<>();
+    for (String s : list) {
+      List<String> split = new ArrayList<>(Arrays.asList(s.split(" ", 2)));
+      imageMap.put(split.get(1), split.get(0));
+    }
+    return imageMap;
   }
 }

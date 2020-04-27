@@ -38,9 +38,10 @@ public class Factory {
   }
 
 
-  public View makeView() {
+  public View makeView() throws XMLException{
 
     return ViewFactory.makeView(gameFile, VIEW);
+
   }
 
   public int getStep() {
