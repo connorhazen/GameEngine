@@ -1,10 +1,28 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <data>
-  <image>empty 0</image>
+  <!-- the image tag is used to specify which image to use for a given cell state.
+  The first string is the file name without any extensions.
+  The following param is the mapping. If you are mapping to cell type, then just specify the name.
+  If you are mapping to a value, then either specify the value or a range.
+  The syntax of a range is "val1 - val2" where both are inclusive.
+  If no val2 is specified, then the range is val1 to infinity-->
+
+  <image>fileName tag/value</image>
+  <image>fileName value1 - value2</image>
+  <image>fileName value1 - </image>
+
+  <!-- This is an optional tag used to specify if you want cell color to change for values -->
   <DynamicColors>true</DynamicColors>
-  <Button>Reset reset</Button>
-  <Button>Save saveGame</Button>
-  <height>600</height>
-  <width>500</width>
-  <display>2048Instruct</display>
+
+  <!-- The button tag is used to create UI elements. First specify the label, and then the onclick function.
+  Possible onclick functions include reset, saveGame, pausePlay -->
+  <Button>labelName function</Button>
+
+  <!-- Height and width specify scene size. this can be change by user -->
+  <height>x</height>
+  <width>x</width>
+
+  <!-- This makes the view status box with associated message. It reads the message from
+  properties file. -->
+  <display>property.tag</display>
 </data>

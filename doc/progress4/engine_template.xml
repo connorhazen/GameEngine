@@ -1,42 +1,44 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <data>
+
+  <!-- You can use any number of events, they must follow the following template-->
   <Event>
-    <Code>LEFT</Code>
-    <Operations>OperationCombine2048</Operations>
-    <Rules>Rule2048</Rules>
-    <Interaction>LeftToRightAll</Interaction>
-    <IfExecuteEvent>addRandom</IfExecuteEvent>
+    <!--This is where you either specify Key Code or custom name.
+     Key code events get triggered on key press-->
+    <Code>name</Code>
+    <!-- For operations, rules and interactions you must specify file name and any params.
+    Separate multiple params with a space -->
+    <Operations>name params</Operations>
+    <Rules>name params</Rules>
+    <Interaction>name params</Interaction>
+    <!-- If Execute and If No execute specify any follow events, use the same name as Code.
+   If execute occurs if the rule ever returns true. If no execute is if rule never returns true.
+   If these are left blank, then nothing occurs. -->
+    <IfExecuteEvent>name</IfExecuteEvent>
+    <IfNoExecuteEvent>name</IfNoExecuteEvent>
   </Event>
-  <Event>
-    <Code>RIGHT</Code>
-    <Operations>OperationCombine2048</Operations>
-    <Rules>Rule2048</Rules>
-    <Interaction>RightToLeftAll</Interaction>
-    <IfExecuteEvent>addRandom</IfExecuteEvent>
-  </Event>
-  <Event>
-    <Code>UP</Code>
-    <Operations>OperationCombine2048</Operations>
-    <Rules>Rule2048</Rules>
-    <Interaction>TopToBottomAll</Interaction>
-    <IfExecuteEvent>addRandom</IfExecuteEvent>
-  </Event>
-  <Event>
-    <Code>DOWN</Code>
-    <Operations>OperationCombine2048</Operations>
-    <Rules>Rule2048</Rules>
-    <Interaction>BottomToTopAll</Interaction>
-    <IfExecuteEvent>addRandom</IfExecuteEvent>
-  </Event>
-  <Event>
-    <Code>addRandom</Code>
-    <Operations>SetValue 1</Operations>
-    <Rules>RuleTrue</Rules>
-    <Interaction>RandomOfValue 0</Interaction>
-  </Event>
-  <LevelMaker>RandomSquareToTypeVal "" 2</LevelMaker>
-  <LoseCon>NoNextMove LEFT RIGHT UP DOWN</LoseCon>
-  <WinCon>CellOfType WON</WinCon>
-  <Height>4</Height>
-  <Width>4</Width>
+
+
+  <!-- There are a few custom events that have specific names. ClickedCell and STEP
+  If you want to specify a step event, it must have the code STEP.
+  If you want to specify an event on cell click, it must have code ClickedCell-->
+
+
+
+  <!-- The level maker tag is used to specify how to create a level.
+  You can use multiple, they will run in what ever order they appear in the file-->
+  <LevelMaker>name params</LevelMaker>
+
+  <!-- The win and lose conditions are specified below, again use name followed by param(s)-->
+  <LoseCon>name params</LoseCon>
+  <WinCon>name params</WinCon>
+
+  <!-- The grid height and width are specified below -->
+  <Height>x</Height>
+  <Width>x</Width>
+  <!-- This is an optional tag to specify time in milliseconds between steps.
+  If no time is provided, there is no step event-->
+
+  <STEP>x</STEP>
+
 </data>
