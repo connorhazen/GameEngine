@@ -11,7 +11,6 @@ import java.util.function.Consumer;
 public class All implements Interaction{
 
   protected List<MutableCell> cells;
-  private int val;
 
   @Override
   public void setGrid(MutableGrid currentGrid, Action a) {
