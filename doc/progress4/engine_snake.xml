@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<data>
+  <Event>
+    <Code>STEP</Code>
+    <Operations>MarkCell</Operations>
+    <Rules>RuleTrue</Rules>
+    <Interaction>MaxValue</Interaction>
+    <IfExecuteEvent>s1</IfExecuteEvent>
+  </Event>
+  <Event>
+    <Code>s1</Code>
+    <Operations>MarkCell</Operations>
+    <Rules>RuleTrue</Rules>
+    <Interaction>MarkedDirection</Interaction>
+    <IfExecuteEvent>s2</IfExecuteEvent>
+  </Event>
+  <Event>
+    <Code>s2</Code>
+    <Operations>SetType LOST</Operations>
+    <Rules>ValueGreaterThanEqual 1</Rules>
+    <Interaction>MarkedGrouped</Interaction>
+    <IfNoExecuteEvent>s3</IfNoExecuteEvent>
+  </Event>
+  <Event>
+    <Code>s3</Code>
+    <Operations>CombineToMaxAndMarkChanges</Operations>
+    <Rules>ValueGreaterThanEqual 0</Rules>
+    <Interaction>MarkedGrouped</Interaction>
+    <IfExecuteEvent>s4</IfExecuteEvent>
+    <IfNoExecuteEvent>s6</IfNoExecuteEvent>
+  </Event>
+
+  <Event>
+    <Code>s4</Code>
+    <Operations>IncrementValue 1</Operations>
+    <Rules>RuleTrue</Rules>
+    <Interaction>MarkedGrouped</Interaction>
+    <IfExecuteEvent>s5</IfExecuteEvent>
+  </Event>
+  <Event>
+    <Code>s5</Code>
+    <Operations>IncrementValue -1</Operations>
+    <Rules>ValueGreaterThanEqual 1</Rules>
+    <Interaction>All</Interaction>
+    <IfExecuteEvent>s9</IfExecuteEvent>
+    <IfNoExecuteEvent>s9</IfNoExecuteEvent>
+  </Event>
+  <Event>
+    <Code>s6</Code>
+    <Operations>CombineToMaxAndMarkChanges</Operations>
+    <Rules>RuleTrue</Rules>
+    <Interaction>MarkedGrouped</Interaction>
+    <IfExecuteEvent>s7</IfExecuteEvent>
+  </Event>
+  <Event>
+    <Code>s7</Code>
+    <Operations>IncrementValue 1</Operations>
+    <Rules>RuleTrue</Rules>
+    <Interaction>MarkedGrouped</Interaction>
+    <IfExecuteEvent>s8</IfExecuteEvent>
+  </Event>
+  <Event>
+    <Code>s8</Code>
+    <Operations>SetValue -1</Operations>
+    <Rules>RuleTrue</Rules>
+    <Interaction>RandomOfValue 0</Interaction>
+    <IfExecuteEvent>s9</IfExecuteEvent>
+    <IfNoExecuteEvent>sWon</IfNoExecuteEvent>
+  </Event>
+  <Event>
+    <Code>s9</Code>
+    <Operations>UnMarkCell</Operations>
+    <Rules>RuleTrue</Rules>
+    <Interaction>MarkedGrouped</Interaction>
+    <IfExecuteEvent>s10</IfExecuteEvent>
+  </Event>
+  <Event>
+    <Code>s10</Code>
+    <Operations>SetType none</Operations>
+    <Rules>ValueGreaterThanEqual -1</Rules>
+    <Interaction>All</Interaction>
+    <IfExecuteEvent>s11</IfExecuteEvent>
+  </Event>
+  <Event>
+    <Code>s11</Code>
+    <Operations>SetType HEAD</Operations>
+    <Rules>RuleTrue</Rules>
+    <Interaction>MaxValue</Interaction>
+  </Event>
+
+
+  <Event>
+    <Code>LEFT</Code>
+    <Operations>SetDirection LEFT</Operations>
+    <Rules>NotOppositeDirection LEFT</Rules>
+    <Interaction>MaxValue</Interaction>
+  </Event>
+
+  <Event>
+    <Code>RIGHT</Code>
+    <Operations>SetDirection RIGHT</Operations>
+    <Rules>NotOppositeDirection RIGHT</Rules>
+    <Interaction>MaxValue</Interaction>
+
+  </Event>
+  <Event>
+    <Code>UP</Code>
+    <Operations>SetDirection UP</Operations>
+    <Rules>NotOppositeDirection UP</Rules>
+    <Interaction>MaxValue</Interaction>
+  </Event>
+  <Event>
+    <Code>DOWN</Code>
+    <Operations>SetDirection DOWN</Operations>
+    <Rules>NotOppositeDirection DOWN</Rules>
+    <Interaction>MaxValue</Interaction>
+  </Event>
+  <Event>
+    <Code>SPACE</Code>
+    <Operations>Nothing</Operations>
+    <Rules>RuleTrue</Rules>
+    <Interaction>All</Interaction>
+    <IfExecuteEvent>STEP</IfExecuteEvent>
+  </Event>
+
+  <Event>
+    <Code>sWon</Code>
+    <Operations>SetType WON</Operations>
+    <Rules>RuleTrue</Rules>
+    <Interaction>All</Interaction>
+  </Event>
+
+ <LevelMaker>RandomSquareToTypeVal HEAD 1</LevelMaker>
+  <LevelMaker>RandomSquareToTypeVal "" -1</LevelMaker>
+  <LoseCon>CellOfType LOST</LoseCon>
+  <WinCon>CellOfType WON</WinCon>
+  <Height>20</Height>
+  <Width>20</Width>
+  <STEP>150</STEP>
+</data>
