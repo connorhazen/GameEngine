@@ -10,8 +10,12 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.ResourceBundle;
 
 public class EngineFactory {
+  private static final String LANGUAGE = "english";
+  private static final ResourceBundle MY_RESOURCES = ResourceBundle
+      .getBundle("resources." + LANGUAGE);
 
   public static void parseXML(String folder, String fileName, GameHandler gameHandler,
       AnimationHandler animationHandler, LevelHandler levelHandler) throws XMLException {
@@ -45,7 +49,7 @@ public class EngineFactory {
 
       }
     } catch (XMLException e) {
-      throw new XMLException("Bad Event Construction " + e.getMessage());
+      throw new XMLException(MY_RESOURCES.getString("engineParseException") + e.getMessage());
     } catch (Exception e) {
       throw new XMLException(e.getMessage());
     }

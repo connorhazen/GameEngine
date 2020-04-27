@@ -33,7 +33,7 @@ public class ViewFactory {
       width = Integer.parseInt(fr.getValue("width"));
     }
     catch (Exception e){
-      throw new XMLException("Missing height or width param in View file");
+      throw new XMLException(MY_RESOURCES.getString("viewParseException") + e.getMessage() );
     }
 
     DynamicView view = new DynamicView(width, height, imageMap, colors, folder);
@@ -56,14 +56,14 @@ public class ViewFactory {
       }
     }
     catch (Exception e){
-      throw new XMLException("ERROR MAKING BUTTONS: " + e.getMessage());
+      throw new XMLException(MY_RESOURCES.getString("viewParseException") + e.getMessage());
     }
 
     try{
       view.addDisplayInfo(MY_RESOURCES.getString(fr.getValue("display")));
     }
     catch (Exception e){
-      throw new XMLException("ERROR MAKING DISPLAY BOX: " + e.getMessage());
+      throw new XMLException(MY_RESOURCES.getString("viewParseException") + e.getMessage());
     }
 
   }
