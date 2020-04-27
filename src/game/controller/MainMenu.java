@@ -27,7 +27,7 @@ public class MainMenu {
   private final String LANGUAGE = "english";
   private final ResourceBundle MY_RESOURCES = ResourceBundle.getBundle("resources." + LANGUAGE);
   private final String DATA = "data/";
-  private final String PATH_TO_GAMES = "Games/";
+  private final String PATH_TO_GAMES = "games/";
   private final String SAVED_GAMES = "/SavedGames/";
   private Text messageBox;
 

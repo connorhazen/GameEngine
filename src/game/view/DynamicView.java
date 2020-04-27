@@ -37,7 +37,7 @@ import javafx.stage.Stage;
 
 public class DynamicView implements View {
 
-  public static final String FILE_PATH = "StateImages/";
+  public static final String FILE_PATH = "stateImages/";
   public static final String DATA = "data/";
   public static final String EXTENSION = ".gif";
   public static final int BUTTON_HEIGHT = 80;

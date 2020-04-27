@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<data>
+  <Event>
+    <Code>LEFT</Code>
+    <Operations>OperationCombine2048</Operations>
+    <Rules>Rule2048</Rules>
+    <Interaction>LeftToRightAll</Interaction>
+    <IfExecuteEvent>addRandom</IfExecuteEvent>
+  </Event>
+  <Event>
+    <Code>RIGHT</Code>
+    <Operations>OperationCombine2048</Operations>
+    <Rules>Rule2048</Rules>
+    <Interaction>RightToLeftAll</Interaction>
+    <IfExecuteEvent>addRandom</IfExecuteEvent>
+  </Event>
+  <Event>
+    <Code>UP</Code>
+    <Operations>OperationCombine2048</Operations>
+    <Rules>Rule2048</Rules>
+    <Interaction>TopToBottomAll</Interaction>
+    <IfExecuteEvent>addRandom</IfExecuteEvent>
+  </Event>
+  <Event>
+    <Code>DOWN</Code>
+    <Operations>OperationCombine2048</Operations>
+    <Rules>Rule2048</Rules>
+    <Interaction>BottomToTopAll</Interaction>
+    <IfExecuteEvent>addRandom</IfExecuteEvent>
+  </Event>
+  <Event>
+    <Code>addRandom</Code>
+    <Operations>SetValue 1</Operations>
+    <Rules>RuleTrue</Rules>
+    <Interaction>RandomOfValue 0</Interaction>
+  </Event>
+  <LevelMaker>RandomSquareToTypeVal "" 2</LevelMaker>
+  <LoseCon>NoNextMove LEFT RIGHT UP DOWN</LoseCon>
+  <WinCon>CellOfType WON</WinCon>
+  <Height>4</Height>
+  <Width>4</Width>
+</data>

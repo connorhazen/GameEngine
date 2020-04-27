@@ -33,7 +33,7 @@ import javafx.stage.Stage;
 public class SimpleView implements View {
 
   public static final String DEFAULT_IMAGE = "questionMark";
-  public static final String FILE_PATH = "StateImages/";
+  public static final String FILE_PATH = "stateImages/";
   public static final String EXTENSION = ".gif";
   public static final Map<String, Double> ROTATE_MAP = Map.of(
       "LEFT", -90.0,

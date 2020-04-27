@@ -26,7 +26,7 @@ public class ViewParseTest {
 
   @Test
   void testViewFactoryWrongFile() {
-    Factory f = new Factory("TestingXmlsWrongView/");
+    Factory f = new Factory("testingXmlsWrongView/");
     assertThrows(XMLException.class, () -> f.makeView());
   }
 }
