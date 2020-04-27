@@ -62,8 +62,7 @@ public class ViewFactory {
     try{
       view.addDisplayInfo(MY_RESOURCES.getString(fr.getValue("display")));
     }
-    catch (Exception e){
-      throw new XMLException(MY_RESOURCES.getString("viewParseException") + e.getMessage());
+    catch (Exception ignored){
     }
 
   }

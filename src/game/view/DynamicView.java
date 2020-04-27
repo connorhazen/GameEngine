@@ -78,6 +78,9 @@ public class DynamicView implements View {
     imageMap = images;
     stage.show();
     usingBackRound = changingColors;
+    gameMessages = new Label();
+    bottomDisplay.getChildren().add(gameMessages);
+    gameMessages.setWrapText(true);
     this.saveLocation = saveLocation + "/SavedGames/";
     try {
       makeImagesInMap();
@@ -186,17 +189,14 @@ public class DynamicView implements View {
       try {
         m.invoke(this);
       } catch (Exception ex) {
-        gameMessages.setText("Error With Button Action");
+        gameMessages.setText(MY_RESOURCES.getString("uiElementException"));
       }
     });
     bottomDisplay.getChildren().add(b);
   }
 
   public void addDisplayInfo(String initial) {
-    gameMessages = new Label(initial);
-    bottomDisplay.getChildren().add(gameMessages);
-    gameMessages.setWrapText(true);
-
+    gameMessages.setText(initial);
   }
 
   private Method getFunction(String name, String funcName) {
@@ -204,7 +204,7 @@ public class DynamicView implements View {
       Method m = DynamicView.class.getDeclaredMethod(funcName);
       return m;
     } catch (Exception e) {
-      throw new XMLException("Failed to make UI Element: " + name);
+      throw new XMLException(MY_RESOURCES.getString("uiElementException") + name);
     }
   }
 
@@ -221,7 +221,7 @@ public class DynamicView implements View {
       GameStorageHandler
           .storeGame(currentUpdateObject, saveLocation + LocalDateTime.now() + ".sav");
     } catch (Exception e) {
-      gameMessages.setText("Game Could Not Be Saved");
+      gameMessages.setText(MY_RESOURCES.getString("gameNotSaved"));
     }
   }
 
