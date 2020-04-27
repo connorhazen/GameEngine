@@ -3,26 +3,25 @@ package game.controller;
 import game.engine.animationHandlers.AnimationHandler;
 import game.engine.gameHandlers.GameHandler;
 import game.engine.levelHandlers.LevelHandler;
-import java.io.FileInputStream;
-import java.lang.reflect.Array;
+import game.parse.FileReader;
+import game.parse.XMLException;
+import game.util.SimpleAction;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import game.parse.FileReader;
-import game.parse.XMLException;
-import game.util.SimpleAction;
 
 public class EngineFactory {
 
-  public static void parseXML(String folder,String fileName, GameHandler gameHandler, AnimationHandler animationHandler, LevelHandler levelHandler) throws XMLException{
+  public static void parseXML(String folder, String fileName, GameHandler gameHandler,
+      AnimationHandler animationHandler, LevelHandler levelHandler) throws XMLException {
 
-    FileReader fr = new FileReader(folder+fileName);
+    FileReader fr = new FileReader(folder + fileName);
     doLevelMaker(levelHandler, fr);
     doEvents(gameHandler, fr);
   }
 
-  private static void doEvents(GameHandler gameHandler, FileReader fr) throws XMLException{
+  private static void doEvents(GameHandler gameHandler, FileReader fr) throws XMLException {
     List<Map<String, String>> list = fr.makeMapsForTag("Event");
     try {
       for (Map<String, String> map : list) {
@@ -31,36 +30,39 @@ public class EngineFactory {
         String interaction = Objects.requireNonNull(map.get("Interaction"));
         String rule = Objects.requireNonNull(map.get("Rules"));
         SimpleAction ifExe = new SimpleAction(map.get("IfExecuteEvent"));
-        if(ifExe.getCode() == null) ifExe = null;
+        if (ifExe.getCode() == null) {
+          ifExe = null;
+        }
 
         SimpleAction ifNoExe = new SimpleAction(map.get("IfNoExecuteEvent"));
-        if(ifNoExe.getCode() == null) ifNoExe = null;
+        if (ifNoExe.getCode() == null) {
+          ifNoExe = null;
+        }
 
-        gameHandler.addEvent(new SimpleAction(code), Arrays.asList(operation.split(" ")),  Arrays.asList(interaction.split(" ")),  Arrays.asList(rule.split(" ")),
+        gameHandler.addEvent(new SimpleAction(code), Arrays.asList(operation.split(" ")),
+            Arrays.asList(interaction.split(" ")), Arrays.asList(rule.split(" ")),
             ifExe, ifNoExe);
 
       }
     } catch (XMLException e) {
       throw new XMLException("Bad Event Construction " + e.getMessage());
-    }
-    catch (Exception e){
+    } catch (Exception e) {
       throw new XMLException(e.getMessage());
     }
   }
 
-  private static void doLevelMaker(LevelHandler lh, FileReader fr) throws XMLException{
+  private static void doLevelMaker(LevelHandler lh, FileReader fr) throws XMLException {
     String height = fr.getValue("Height");
     String width = fr.getValue("Width");
 
     lh.setSize(width, height);
     List<String> val = fr.getValues("LevelMaker");
-    for(String s:val){
+    for (String s : val) {
       lh.setInitialGridMaker(Arrays.asList(s.split(" ")));
     }
 
     String val1 = fr.getValue("LoseCon");
     lh.setLoseCondition(Arrays.asList(val1.split(" ")));
-
 
     val1 = fr.getValue("WinCon");
     lh.setWinCondition(Arrays.asList(val1.split(" ")));
@@ -69,11 +71,10 @@ public class EngineFactory {
   }
 
   public static String getStep(String folder, String fileName) {
-    FileReader fr = new FileReader(folder+fileName);
-    try{
+    FileReader fr = new FileReader(folder + fileName);
+    try {
       return fr.getValue("STEP");
-    }
-    catch (Exception e){
+    } catch (Exception e) {
       return "";
     }
 

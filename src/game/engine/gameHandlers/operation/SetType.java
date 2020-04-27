@@ -5,10 +5,11 @@ import game.util.SimpleState;
 import java.util.List;
 
 
-public class SetType implements Operation{
+public class SetType implements Operation {
+
   private String type;
 
-  public SetType(List<String> type){
+  public SetType(List<String> type) {
 
     this.type = type.get(0);
 
@@ -18,7 +19,7 @@ public class SetType implements Operation{
   @Override
   public void execute(List<MutableCell> currCells) {
 
-    for(MutableCell c : currCells){
+    for (MutableCell c : currCells) {
       c.setState(new SimpleState(type, c.getValue(), c.getDirection()));
     }
   }

@@ -1,24 +1,23 @@
 package game.util;
 
 public class SimpleState implements State {
+
   private String type;
   private int value;
   private String direction;
   private boolean marked;
 
 
-
-  public SimpleState(String type, int value, String direction){
+  public SimpleState(String type, int value, String direction) {
     this.type = type;
     this.value = value;
     this.direction = direction;
 
   }
 
-  public SimpleState(String type, int value){
+  public SimpleState(String type, int value) {
     this(type, value, "UP");
   }
-
 
 
   @Override
@@ -35,9 +34,6 @@ public class SimpleState implements State {
   public String getDirection() {
     return direction;
   }
-
-
-
 
 
 }

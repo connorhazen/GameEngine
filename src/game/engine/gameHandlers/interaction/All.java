@@ -8,14 +8,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
 
-public class All implements Interaction{
+public class All implements Interaction {
 
   protected List<MutableCell> cells;
 
   @Override
   public void setGrid(MutableGrid currentGrid, Action a) {
     cells = new ArrayList<>();
-
 
     Consumer<Coordinates> run = (e) -> {
       cells.add(currentGrid.getMutableCell(e));
@@ -26,7 +25,7 @@ public class All implements Interaction{
 
   @Override
   public boolean hasNext() {
-    return cells.size()>0;
+    return cells.size() > 0;
   }
 
   @Override

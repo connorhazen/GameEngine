@@ -6,11 +6,12 @@ import game.util.SimpleState;
 import java.util.List;
 
 public class RandomSquareToTypeVal implements InitialLevelMaker {
+
   private Integer val;
   private String type;
 
 
-  public RandomSquareToTypeVal(List<String> args){
+  public RandomSquareToTypeVal(List<String> args) {
     val = Integer.parseInt(args.get(1));
     type = args.get(0);
 
@@ -18,14 +19,14 @@ public class RandomSquareToTypeVal implements InitialLevelMaker {
   }
 
   @Override
-  public MutableGrid execute(int height, int width){
-    MutableGrid grid = new Grid2dArray(width,height);
-    grid.loop(e -> grid.setCell(e.x,e.y,new SimpleState("", 0)));
+  public MutableGrid execute(int height, int width) {
+    MutableGrid grid = new Grid2dArray(width, height);
+    grid.loop(e -> grid.setCell(e.x, e.y, new SimpleState("", 0)));
 
-    while(true){
-      int x = (int)(Math.random()*width);
-      int y = (int) (Math.random()*height);
-      if(grid.getCell(x,y).getValue()!=0){
+    while (true) {
+      int x = (int) (Math.random() * width);
+      int y = (int) (Math.random() * height);
+      if (grid.getCell(x, y).getValue() != 0) {
         continue;
       }
       grid.setCell(x, y, new SimpleState(type, val));

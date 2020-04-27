@@ -8,12 +8,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
 
-public class CellsOfType implements Interaction{
+public class CellsOfType implements Interaction {
+
   protected List<MutableCell> cells;
   private String type;
 
-  public CellsOfType(List<String> args){
-   type = args.get(0);
+  public CellsOfType(List<String> args) {
+    type = args.get(0);
   }
 
   @Override
@@ -21,7 +22,7 @@ public class CellsOfType implements Interaction{
     cells = new ArrayList<>();
 
     Consumer<Coordinates> run = (e) -> {
-      if(currentGrid.getCell(e).getType().equals(type)){
+      if (currentGrid.getCell(e).getType().equals(type)) {
         cells.add(currentGrid.getMutableCell(e));
       }
 
@@ -34,7 +35,7 @@ public class CellsOfType implements Interaction{
 
   @Override
   public boolean hasNext() {
-    return cells.size()>0;
+    return cells.size() > 0;
   }
 
   @Override

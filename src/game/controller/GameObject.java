@@ -1,16 +1,15 @@
 package game.controller;
 
 import game.engine.Engine;
-import java.awt.event.ActionListener;
-import java.util.Timer;
-import java.util.TimerTask;
-import java.util.function.Consumer;
-import javafx.application.Platform;
-import javafx.scene.Scene;
 import game.parse.XMLException;
 import game.view.View;
+import java.util.Timer;
+import java.util.TimerTask;
+import javafx.application.Platform;
+import javafx.scene.Scene;
 
 public class GameObject {
+
   private boolean running;
   private Engine engine;
   private View view;
@@ -33,23 +32,23 @@ public class GameObject {
     return engine;
   }
 
-  public Scene getScene(){
+  public Scene getScene() {
     return view.getScene();
   }
 
-  public boolean isRunning(){
+  public boolean isRunning() {
     return running;
   }
 
-  public void setRunning(boolean running){
+  public void setRunning(boolean running) {
     this.running = running;
   }
 
-  private void setTimer(int time, Runnable runnable){
+  private void setTimer(int time, Runnable runnable) {
     TimerTask task = new TimerTask() {
       @Override
       public void run() {
-        if(view.getStage().isFocused()){
+        if (view.getStage().isFocused()) {
           Platform.runLater(runnable);
         }
       }
@@ -59,13 +58,13 @@ public class GameObject {
 
     t.scheduleAtFixedRate(task, 1, time);
 
-    view.getStage().setOnCloseRequest(e->t.cancel());
+    view.getStage().setOnCloseRequest(e -> t.cancel());
   }
 
 
   public void setStepFunction(Runnable run) {
     int step = f.getStep();
-    if(step!=0){
+    if (step != 0) {
       setTimer(step, run);
     }
   }

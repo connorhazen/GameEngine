@@ -20,16 +20,15 @@ import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 
 public class MainMenu {
-  private final String LANGUAGE = "english";
-  private final ResourceBundle  MY_RESOURCES = ResourceBundle.getBundle("resources." + LANGUAGE);
-  private final String DATA = "data/";
-  private final String PATH_TO_GAMES = "Games/";
-  private final String SAVED_GAMES = "/SavedGames/";
 
   private static final int WIDTH = 600;
   private static final int HEIGHT = 150;
   private static final Color BACKGROUND_COLOR = Color.TAN;
-
+  private final String LANGUAGE = "english";
+  private final ResourceBundle MY_RESOURCES = ResourceBundle.getBundle("resources." + LANGUAGE);
+  private final String DATA = "data/";
+  private final String PATH_TO_GAMES = "Games/";
+  private final String SAVED_GAMES = "/SavedGames/";
   private Text messageBox;
 
   private BiConsumer<Action, GameObject> eventRunnable;
@@ -38,7 +37,8 @@ public class MainMenu {
   private BorderPane pane;
   private ComboBox loadChoices;
 
-  public MainMenu(Stage menuStage, BiConsumer<Action, GameObject> eventRunnable, Consumer<GameObject> initialSet){
+  public MainMenu(Stage menuStage, BiConsumer<Action, GameObject> eventRunnable,
+      Consumer<GameObject> initialSet) {
 
     Group root = new Group();
     pane = new BorderPane();
@@ -56,15 +56,15 @@ public class MainMenu {
     addGameMessage(MY_RESOURCES.getString("pickGame"));
 
     this.eventRunnable = eventRunnable;
-    this.initialSet=initialSet;
+    this.initialSet = initialSet;
   }
 
 
-
-  private void makeMessageBox(){
+  private void makeMessageBox() {
     messageBox = new Text();
 
   }
+
   private Text generateTitle() {
     Text title = new Text(MY_RESOURCES.getString("title"));
     title.setFill(Color.BLACK);
@@ -76,8 +76,8 @@ public class MainMenu {
 
   private void generateLoadComboBox() {
     loadChoices = new ComboBox();
-    File fil = new File(DATA+PATH_TO_GAMES + selectedGame + SAVED_GAMES);
-    for(File f : fil.listFiles()){
+    File fil = new File(DATA + PATH_TO_GAMES + selectedGame + SAVED_GAMES);
+    for (File f : fil.listFiles()) {
       loadChoices.getItems().add(f.getName());
     }
     loadChoices.getItems().add(MY_RESOURCES.getString("newGame"));
@@ -89,31 +89,31 @@ public class MainMenu {
   private Button createButton() {
     Button b = new Button(MY_RESOURCES.getString("makeGame"));
     b.setOnAction(e -> {
-      try{
-        GameObject go = new GameObject(PATH_TO_GAMES+selectedGame);
-        if(!loadChoices.getValue().equals(MY_RESOURCES.getString("newGame"))) {
-          Grid g = GameStorageHandler.loadGame(PATH_TO_GAMES + selectedGame+ SAVED_GAMES+loadChoices.getValue()).getGrid();
+      try {
+        GameObject go = new GameObject(PATH_TO_GAMES + selectedGame);
+        if (!loadChoices.getValue().equals(MY_RESOURCES.getString("newGame"))) {
+          Grid g = GameStorageHandler
+              .loadGame(PATH_TO_GAMES + selectedGame + SAVED_GAMES + loadChoices.getValue())
+              .getGrid();
           go.getEngine().setGrid(g);
         }
         go.setStepFunction(() -> eventRunnable.accept(new SimpleAction("STEP"), go));
         go.getView().setEventCaller((g) -> eventRunnable.accept(g, go));
         initialSet.accept(go);
         addGameMessage(MY_RESOURCES.getString("enjoy"));
-      }
-      catch(Exception ex){
-       addGameMessage(ex.getMessage());
+      } catch (Exception ex) {
+        addGameMessage(ex.getMessage());
       }
     });
     return b;
   }
 
 
-
   private VBox generateGameButtons() {
     VBox buttonBox = new VBox();
     File fil = new File(getClass().getClassLoader().getResource(PATH_TO_GAMES).getFile());
-    for(File f : fil.listFiles()){
-      if(!f.getName().contains(".")){
+    for (File f : fil.listFiles()) {
+      if (!f.getName().contains(".")) {
         Button b = new Button(f.getName());
         b.setOnMouseClicked(e -> {
           selectedGame = f.getName();

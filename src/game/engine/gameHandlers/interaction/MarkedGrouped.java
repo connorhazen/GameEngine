@@ -19,7 +19,7 @@ public class MarkedGrouped implements Interaction {
 
   @Override
   public boolean hasNext() {
-    return cells.size()>0;
+    return cells.size() > 0;
   }
 
   @Override

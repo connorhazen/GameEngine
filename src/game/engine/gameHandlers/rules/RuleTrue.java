@@ -1,7 +1,7 @@
 package game.engine.gameHandlers.rules;
 
-import java.util.List;
 import game.util.MutableCell;
+import java.util.List;
 
 public class RuleTrue implements Rules {
 

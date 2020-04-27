@@ -6,16 +6,17 @@ import java.util.List;
 
 
 public class ValueEqual implements Rules {
+
   private int val;
 
-  public ValueEqual(List<String> args){
+  public ValueEqual(List<String> args) {
     val = Integer.parseInt(args.get(0));
   }
 
   @Override
   public boolean canPerform(List<MutableCell> currCells) {
-    for(Cell c : currCells){
-      if(c.getValue() != val){
+    for (Cell c : currCells) {
+      if (c.getValue() != val) {
         return false;
       }
     }

@@ -1,34 +1,34 @@
 package game.util;
 
 import java.io.Serializable;
-import java.util.Collection;
 import java.util.List;
 import java.util.function.Consumer;
 
 public interface Grid extends Serializable {
 
 
-    Cell getCell(Coordinates coords);
+  Cell getCell(Coordinates coords);
 
-    Cell getCell(int x, int y);
+  Cell getCell(int x, int y);
 
-    int getWidth();
-    int getHeight();
+  int getWidth();
 
-    List<MutableCell> getCellsOfState(State s);
+  int getHeight();
 
-    void loop(Consumer<Coordinates> c);
+  List<MutableCell> getCellsOfState(State s);
 
-    List<MutableCell> getCellsOfValue(int val);
+  void loop(Consumer<Coordinates> c);
 
-    List<MutableCell> getCellsOfType(String type);
+  List<MutableCell> getCellsOfValue(int val);
 
-    MutableCell getCellDirection(MutableCell c);
+  List<MutableCell> getCellsOfType(String type);
 
-    List<MutableCell> getMarkedCells();
+  MutableCell getCellDirection(MutableCell c);
 
-    @Override
-    boolean equals(Object obj);
+  List<MutableCell> getMarkedCells();
+
+  @Override
+  boolean equals(Object obj);
 
 
 }

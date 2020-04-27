@@ -14,36 +14,34 @@ import java.util.List;
 
 public class BaseLevelHandler implements LevelHandler {
 
-  private int height;
-  private int width;
-
-  private List<InitialLevelMaker> maker;
-  private Condition winCon;
-  private Condition loseCon;
   public static final String OUTER_PACKAGE = "game.engine.levelHandlers.";
   public static final String INITIAL_LEVEL = "initialSetUp.";
   public static final String END_CONDITIONS = "endConditions.";
+  private int height;
+  private int width;
+  private List<InitialLevelMaker> maker;
+  private Condition winCon;
+  private Condition loseCon;
 
-  public BaseLevelHandler(){
+  public BaseLevelHandler() {
     maker = new ArrayList<>();
   }
 
   @Override
   public Grid initializeGrid() throws XMLException {
-    try{
-      boolean first =  true;
+    try {
+      boolean first = true;
       MutableGrid g = null;
-      for(InitialLevelMaker m : maker){
-        if(first){
+      for (InitialLevelMaker m : maker) {
+        if (first) {
           first = false;
-          g = m.execute(height,width);
+          g = m.execute(height, width);
           continue;
         }
         m.execute(g);
       }
       return g;
-    }
-    catch (Exception e){
+    } catch (Exception e) {
 
       throw new XMLException("Error Making grid: " + e.getClass().toString());
     }
@@ -59,7 +57,8 @@ public class BaseLevelHandler implements LevelHandler {
   public void setInitialGridMaker(List<String> args) {
     List<String> makerParams = new ArrayList<>(args);
     makerParams.remove(0);
-    maker.add((InitialLevelMaker) ObjectMaker.createObjectOf(args.get(0), OUTER_PACKAGE+INITIAL_LEVEL,makerParams));
+    maker.add((InitialLevelMaker) ObjectMaker
+        .createObjectOf(args.get(0), OUTER_PACKAGE + INITIAL_LEVEL, makerParams));
 
   }
 
@@ -67,14 +66,16 @@ public class BaseLevelHandler implements LevelHandler {
   public void setWinCondition(List<String> args) {
     List<String> makerParams = new ArrayList<>(args);
     makerParams.remove(0);
-    winCon = (Condition) ObjectMaker.createObjectOf(args.get(0), OUTER_PACKAGE+END_CONDITIONS, makerParams);
+    winCon = (Condition) ObjectMaker
+        .createObjectOf(args.get(0), OUTER_PACKAGE + END_CONDITIONS, makerParams);
   }
 
   @Override
   public void setLoseCondition(List<String> args) {
     List<String> makerParams = new ArrayList<>(args);
     makerParams.remove(0);
-    loseCon = (Condition) ObjectMaker.createObjectOf(args.get(0), OUTER_PACKAGE+END_CONDITIONS, makerParams);
+    loseCon = (Condition) ObjectMaker
+        .createObjectOf(args.get(0), OUTER_PACKAGE + END_CONDITIONS, makerParams);
   }
 
   @Override

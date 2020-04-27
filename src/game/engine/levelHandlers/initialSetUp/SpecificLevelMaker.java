@@ -6,13 +6,14 @@ import game.util.MutableGrid;
 import java.util.List;
 
 
-public class SpecificLevelMaker implements InitialLevelMaker{
+public class SpecificLevelMaker implements InitialLevelMaker {
+
   public static final String OUTER_PACKAGE = "game.engine.levelHandlers.initialSetUp.specificGameMakers.";
   private LevelMaker lm;
 
-  public SpecificLevelMaker(List<String> args){
+  public SpecificLevelMaker(List<String> args) {
     String name = args.remove(0);
-    lm = (LevelMaker)  ObjectMaker.createObjectOf(name, OUTER_PACKAGE, args);
+    lm = (LevelMaker) ObjectMaker.createObjectOf(name, OUTER_PACKAGE, args);
   }
 
 

@@ -7,7 +7,7 @@ public class UnMarkCell implements Operation {
 
   @Override
   public void execute(List<MutableCell> currCells) {
-    for(MutableCell c: currCells){
+    for (MutableCell c : currCells) {
       c.mark(false);
     }
   }

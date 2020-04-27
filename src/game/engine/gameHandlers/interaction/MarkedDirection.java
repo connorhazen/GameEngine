@@ -18,7 +18,7 @@ public class MarkedDirection implements Interaction {
 
     List<MutableCell> toAdd = new ArrayList<>();
 
-    for(MutableCell c : marked){
+    for (MutableCell c : marked) {
       toAdd.add(currentGrid.getCellDirection(c));
     }
     cells.add(toAdd);
@@ -26,7 +26,7 @@ public class MarkedDirection implements Interaction {
 
   @Override
   public boolean hasNext() {
-    return cells.size()>0;
+    return cells.size() > 0;
   }
 
   @Override

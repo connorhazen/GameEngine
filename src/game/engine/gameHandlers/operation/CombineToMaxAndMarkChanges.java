@@ -11,16 +11,16 @@ public class CombineToMaxAndMarkChanges implements Operation {
   public void execute(List<MutableCell> currCells) {
     int max = 0;
     MutableCell maxCell = null;
-    for(MutableCell c : currCells){
+    for (MutableCell c : currCells) {
       c.mark(false);
-      if(c.getValue()>max){
+      if (c.getValue() > max) {
         maxCell = c;
         max = c.getValue();
       }
     }
 
-    for(MutableCell c : currCells){
-      if(c!= maxCell){
+    for (MutableCell c : currCells) {
+      if (c != maxCell) {
         c.setState(new SimpleState(c.getType(), max, maxCell.getDirection()));
         c.mark(true);
       }

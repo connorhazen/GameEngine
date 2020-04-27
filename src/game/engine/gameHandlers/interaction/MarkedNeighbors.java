@@ -8,30 +8,28 @@ import java.util.List;
 
 public class MarkedNeighbors implements Interaction {
 
-  protected List<MutableCell>cells;
+  protected List<MutableCell> cells;
 
   @Override
   public void setGrid(MutableGrid currentGrid, Action a) {
     cells = new ArrayList<>();
     List<MutableCell> marked = currentGrid.getMarkedCells();
 
-
-    for(MutableCell c : marked){
+    for (MutableCell c : marked) {
       cells.addAll(currentGrid.getNeighbors(c));
     }
-
 
 
   }
 
   @Override
   public boolean hasNext() {
-    return cells.size()>0;
+    return cells.size() > 0;
   }
 
   @Override
-  public List<MutableCell> next(){
-  List<MutableCell> ret = new ArrayList<>();
+  public List<MutableCell> next() {
+    List<MutableCell> ret = new ArrayList<>();
     ret.add(cells.remove(0));
     return ret;
   }

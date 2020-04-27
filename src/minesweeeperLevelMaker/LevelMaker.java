@@ -10,17 +10,17 @@ import game.util.MutableGrid;
 import game.util.SimpleState;
 import game.util.State;
 import java.util.List;
-import java.util.Random;
 import java.util.function.Consumer;
 
 public class LevelMaker {
-  public static void main(String[]args){
+
+  public static void main(String[] args) {
 
     LevelMaker lm = new LevelMaker();
     lm.makeLevel(10, 10, .2);
   }
 
-  private  void makeLevel(int width, int height, double prob) {
+  private void makeLevel(int width, int height, double prob) {
     Grid2dArray g = new Grid2dArray(width, height);
     Consumer<Coordinates> c = (e) -> g.setCell(e.x, e.y, new SimpleState("COVERED", 0));
 
@@ -37,11 +37,11 @@ public class LevelMaker {
   private void makeIndicators(Grid2dArray g) {
     Consumer<Coordinates> t = (e) -> {
       MutableCell current = g.getMutableCell(e);
-      if(current.getValue() != -1 ){
+      if (current.getValue() != -1) {
         List<MutableCell> neighs = g.getNeighbors(current);
-        int counter =0;
-        for(Cell c: neighs){
-          if(c.getValue()==-1){
+        int counter = 0;
+        for (Cell c : neighs) {
+          if (c.getValue() == -1) {
             counter++;
           }
         }
@@ -54,7 +54,7 @@ public class LevelMaker {
 
   }
 
-  private void makeBombs(double prob, MutableGrid g){
+  private void makeBombs(double prob, MutableGrid g) {
     Consumer<Coordinates> t = (e) -> {
       if (Math.random() < prob) {
         State current = g.getMutableCell(e).getState();

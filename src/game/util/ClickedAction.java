@@ -1,22 +1,22 @@
 package game.util;
 
-import javafx.scene.input.KeyEvent;
-
 public class ClickedAction implements Action {
 
   private String code;
   private Coordinates cell;
+
   public ClickedAction(String name, Coordinates cell) {
-    code =  name;
+    code = name;
     this.cell = cell;
   }
 
-  public String getCode(){
+  public String getCode() {
     return code;
   }
 
   /**
    * TODO: fix this shit
+   *
    * @param obj
    * @return
    */

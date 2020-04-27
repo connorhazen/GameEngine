@@ -15,12 +15,11 @@ public class Marked implements Interaction {
     cells = currentGrid.getMarkedCells();
 
 
-
   }
 
   @Override
   public boolean hasNext() {
-    return cells.size()>0;
+    return cells.size() > 0;
   }
 
   @Override

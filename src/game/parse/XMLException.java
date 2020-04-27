@@ -1,8 +1,8 @@
 package game.parse;
 
 /**
- * XML Exception is thrown when an XML file is invalid
- * More specifically if the <simulation> </simulation> element is missing or the file is completely blank
+ * XML Exception is thrown when an XML file is invalid More specifically if the <simulation>
+ * </simulation> element is missing or the file is completely blank
  */
 
 public class XMLException extends RuntimeException {

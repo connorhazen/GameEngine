@@ -6,38 +6,39 @@ import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.function.Consumer;
 
 public class Grid2dArray implements MutableGrid {
+
   private MutableCell[][] grid;
   private int width;
   private int height;
 
-  public Grid2dArray(int width, int height){
+  public Grid2dArray(int width, int height) {
     this.width = width;
     this.height = height;
     grid = new MutableCell[width][height];
   }
 
-  public Grid2dArray(Grid grid){
+  public Grid2dArray(Grid grid) {
     width = grid.getWidth();
     height = grid.getHeight();
     this.grid = new MutableCell[width][height];
-    loop((c) -> {setCell(grid.getCell(c));});
+    loop((c) -> {
+      setCell(grid.getCell(c));
+    });
   }
 
-  public void setCell(int x, int y, State newState){
+  public void setCell(int x, int y, State newState) {
     MutableCell cell = grid[x][y];
-    if(cell == null){
-      grid[x][y] = new MutableCell(newState, new Coordinates(x,y));
-    }
-    else{
+    if (cell == null) {
+      grid[x][y] = new MutableCell(newState, new Coordinates(x, y));
+    } else {
       cell.setState(newState);
     }
   }
 
-  public void setCell(Cell c){
+  public void setCell(Cell c) {
     grid[c.coords.x][c.coords.y] = new MutableCell(c);
 
   }
-
 
 
   @Override
@@ -70,7 +71,7 @@ public class Grid2dArray implements MutableGrid {
 
   protected void addIfExists(List<MutableCell> ret, int x, int y) {
     if (x < grid[0].length && x >= 0 && y >= 0 && y < grid.length) {
-      ret.add(getMutableCell(new Coordinates(x,y)));
+      ret.add(getMutableCell(new Coordinates(x, y)));
     }
   }
 
@@ -92,7 +93,11 @@ public class Grid2dArray implements MutableGrid {
   @Override
   public List<MutableCell> getCellsOfState(State s) {
     List<MutableCell> ret = new ArrayList<>();
-    Consumer<Coordinates> con = (c) -> {if(getCell(c).getState().getValue() == s.getValue()) ret.add(getMutableCell(c));};
+    Consumer<Coordinates> con = (c) -> {
+      if (getCell(c).getState().getValue() == s.getValue()) {
+        ret.add(getMutableCell(c));
+      }
+    };
 
     loop(con);
 
@@ -102,10 +107,10 @@ public class Grid2dArray implements MutableGrid {
 
 
   @Override
-  public void loop(Consumer<Coordinates> run){
-    for(int x = 0; x<width; x++) {
+  public void loop(Consumer<Coordinates> run) {
+    for (int x = 0; x < width; x++) {
       for (int y = 0; y < height; y++) {
-        run.accept(new Coordinates(x,y));
+        run.accept(new Coordinates(x, y));
       }
     }
   }
@@ -114,7 +119,11 @@ public class Grid2dArray implements MutableGrid {
   @Override
   public List<MutableCell> getCellsOfValue(int val) {
     List<MutableCell> ret = new ArrayList<>();
-    Consumer<Coordinates> con = (c) -> {if(getCell(c).getState().getValue() == val) ret.add(getMutableCell(c));};
+    Consumer<Coordinates> con = (c) -> {
+      if (getCell(c).getState().getValue() == val) {
+        ret.add(getMutableCell(c));
+      }
+    };
 
     loop(con);
 
@@ -124,7 +133,11 @@ public class Grid2dArray implements MutableGrid {
   @Override
   public List<MutableCell> getCellsOfType(String type) {
     List<MutableCell> ret = new ArrayList<>();
-    Consumer<Coordinates> con = (c) -> {if(getCell(c).getState().getType().equals(type)) ret.add(getMutableCell(c));};
+    Consumer<Coordinates> con = (c) -> {
+      if (getCell(c).getState().getType().equals(type)) {
+        ret.add(getMutableCell(c));
+      }
+    };
 
     loop(con);
 
@@ -135,19 +148,31 @@ public class Grid2dArray implements MutableGrid {
   public MutableCell getCellDirection(MutableCell c) {
     int xD = 0;
     int yD = 0;
-    if(c.getDirection().equals("LEFT")) xD = -1;
-    if(c.getDirection().equals("RIGHT")) xD = 1;
-    if(c.getDirection().equals("UP")) yD = -1;
-    if(c.getDirection().equals("DOWN")) yD = 1;
+    if (c.getDirection().equals("LEFT")) {
+      xD = -1;
+    }
+    if (c.getDirection().equals("RIGHT")) {
+      xD = 1;
+    }
+    if (c.getDirection().equals("UP")) {
+      yD = -1;
+    }
+    if (c.getDirection().equals("DOWN")) {
+      yD = 1;
+    }
 
-
-    return getMutableCell(new Coordinates(Math.floorMod(c.getCoords().x + xD, width) , Math.floorMod(c.getCoords().y + yD,height)));
+    return getMutableCell(new Coordinates(Math.floorMod(c.getCoords().x + xD, width),
+        Math.floorMod(c.getCoords().y + yD, height)));
   }
 
   @Override
   public List<MutableCell> getMarkedCells() {
     List<MutableCell> ret = new ArrayList<>();
-    Consumer<Coordinates> con = (c) -> {if(getCell(c).isMarked()) ret.add(getMutableCell(c));};
+    Consumer<Coordinates> con = (c) -> {
+      if (getCell(c).isMarked()) {
+        ret.add(getMutableCell(c));
+      }
+    };
 
     loop(con);
 
@@ -155,17 +180,18 @@ public class Grid2dArray implements MutableGrid {
   }
 
   @Override
-  public boolean equals(Object obj){
-    try{
+  public boolean equals(Object obj) {
+    try {
       Grid g = (Grid) obj;
       AtomicBoolean ret = new AtomicBoolean(true);
-      Consumer<Coordinates> t = e -> {if(!g.getCell(e).equals(this.getCell(e))){
-        ret.set(false);
-      }};
+      Consumer<Coordinates> t = e -> {
+        if (!g.getCell(e).equals(this.getCell(e))) {
+          ret.set(false);
+        }
+      };
       loop(t);
       return ret.get();
-    }
-    catch (Exception e){
+    } catch (Exception e) {
       return false;
     }
   }
