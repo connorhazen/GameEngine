@@ -28,6 +28,8 @@ import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 
+
+@Deprecated
 public class SimpleView implements View {
 
   public static final String DEFAULT_IMAGE = "questionMark";
