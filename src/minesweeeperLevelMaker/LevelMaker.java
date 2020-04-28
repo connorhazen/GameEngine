@@ -1,7 +1,7 @@
 package minesweeeperLevelMaker;
 
 import game.controller.GameStorageHandler;
-import game.engine.UpdateStatus;
+import game.util.UpdateStatus;
 import game.util.Cell;
 import game.util.Coordinates;
 import game.util.Grid2dArray;

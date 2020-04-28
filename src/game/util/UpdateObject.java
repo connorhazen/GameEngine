@@ -1,4 +1,4 @@
-package game.engine;
+package game.util;
 
 import game.engine.animationHandlers.GameAnimation;
 import game.util.Action;

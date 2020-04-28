@@ -1,7 +1,7 @@
 package game.view;
 
 
-import game.engine.UpdateObject;
+import game.util.UpdateObject;
 import game.util.Action;
 import java.util.function.Consumer;
 import javafx.scene.Scene;

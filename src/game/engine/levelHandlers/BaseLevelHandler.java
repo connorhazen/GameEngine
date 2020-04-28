@@ -1,7 +1,7 @@
 package game.engine.levelHandlers;
 
 import game.engine.ObjectMaker;
-import game.engine.UpdateObject;
+import game.util.UpdateObject;
 import game.engine.gameHandlers.GameHandler;
 import game.engine.levelHandlers.endConditions.Condition;
 import game.engine.levelHandlers.initialSetUp.InitialLevelMaker;

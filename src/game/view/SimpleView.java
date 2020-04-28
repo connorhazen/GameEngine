@@ -1,7 +1,7 @@
 package game.view;
 
 import game.controller.GameStorageHandler;
-import game.engine.UpdateObject;
+import game.util.UpdateObject;
 import game.parse.XMLException;
 import game.util.Action;
 import game.util.Cell;

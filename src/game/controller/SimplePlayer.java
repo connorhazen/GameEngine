@@ -1,6 +1,6 @@
 package game.controller;
 
-import game.engine.UpdateObject;
+import game.util.UpdateObject;
 import game.util.Action;
 import game.util.SimpleAction;
 import javafx.stage.Stage;

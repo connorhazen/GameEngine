@@ -7,6 +7,8 @@ import game.engine.levelHandlers.LevelHandler;
 import game.parse.XMLException;
 import game.util.Action;
 import game.util.Grid;
+import game.util.UpdateObject;
+import game.util.UpdateStatus;
 
 public class Engine implements EngineAPI {
 

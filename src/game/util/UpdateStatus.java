@@ -1,9 +1,7 @@
-package game.engine;
+package game.util;
 
 
 import game.engine.animationHandlers.GameAnimation;
-import game.util.Action;
-import game.util.Grid;
 
 public class UpdateStatus implements UpdateObject {
 

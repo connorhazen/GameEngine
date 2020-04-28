@@ -1,7 +1,7 @@
 package game.controller;
 
-import game.engine.UpdateObject;
-import game.engine.UpdateStatus;
+import game.util.UpdateObject;
+import game.util.UpdateStatus;
 import game.parse.XMLException;
 import game.util.Grid;
 import java.io.File;

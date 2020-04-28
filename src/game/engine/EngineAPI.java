@@ -2,6 +2,7 @@ package game.engine;
 
 import game.util.Action;
 import game.util.Grid;
+import game.util.UpdateObject;
 
 public interface EngineAPI {
 

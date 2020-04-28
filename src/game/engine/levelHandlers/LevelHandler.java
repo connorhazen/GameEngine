@@ -1,6 +1,6 @@
 package game.engine.levelHandlers;
 
-import game.engine.UpdateObject;
+import game.util.UpdateObject;
 import game.engine.gameHandlers.GameHandler;
 import game.util.Grid;
 import java.util.List;
