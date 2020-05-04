@@ -18,12 +18,9 @@
     <IfNoExecuteEvent>name</IfNoExecuteEvent>
   </Event>
 
-
   <!-- There are a few custom events that have specific names. ClickedCell and STEP
   If you want to specify a step event, it must have the code STEP.
   If you want to specify an event on cell click, it must have code ClickedCell-->
-
-
 
   <!-- The level maker tag is used to specify how to create a level.
   You can use multiple, they will run in what ever order they appear in the file-->
