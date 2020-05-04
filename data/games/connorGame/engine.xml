@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<data>
+
+  <Event>
+    <Code>ClickedCell</Code>
+    <Operations>SetType ClickedMIRROR</Operations>
+    <Rules>CellOfType MIRROR</Rules>
+    <Interaction>GetCellFromAction</Interaction>
+    <IfExecuteEvent>sMark</IfExecuteEvent>
+  </Event>
+
+  <Event>
+    <Code>sMark</Code>
+    <Operations>MarkCell</Operations>
+    <Rules>RuleTrue</Rules>
+    <Interaction>CellsOfType ClickedMIRROR</Interaction>
+    <IfExecuteEvent>sChangeName</IfExecuteEvent>
+    <IfNoExecuteEvent>sChangeName</IfNoExecuteEvent>
+  </Event>
+
+
+  <Event>
+    <Code>LEFT</Code>
+    <Operations>SetDirection LEFT</Operations>
+    <Rules>RuleTrue</Rules>
+    <Interaction>Marked</Interaction>
+    <IfExecuteEvent>CalcLight</IfExecuteEvent>
+  </Event>
+
+  <Event>
+    <Code>RIGHT</Code>
+    <Operations>SetDirection RIGHT</Operations>
+    <Rules>RuleTrue</Rules>
+    <Interaction>Marked</Interaction>
+    <IfExecuteEvent>CalcLight</IfExecuteEvent>
+  </Event>
+  <Event>
+    <Code>UP</Code>
+    <Operations>SetDirection UP</Operations>
+    <Rules>RuleTrue</Rules>
+    <Interaction>Marked</Interaction>
+    <IfExecuteEvent>CalcLight</IfExecuteEvent>
+  </Event>
+  <Event>
+    <Code>DOWN</Code>
+    <Operations>SetDirection DOWN</Operations>
+    <Rules>RuleTrue</Rules>
+    <Interaction>Marked</Interaction>
+    <IfExecuteEvent>CalcLight</IfExecuteEvent>
+  </Event>
+
+
+
+  <Event>
+    <Code>CalcLight</Code>
+    <Operations>SetType empty</Operations>
+    <Rules>RuleTrue</Rules>
+    <Interaction>CellsOfType light</Interaction>
+    <IfExecuteEvent>unMarkAll</IfExecuteEvent>
+    <IfNoExecuteEvent>unMarkAll</IfNoExecuteEvent>
+  </Event>
+
+  <Event>
+    <Code>unMarkAll</Code>
+    <Operations>UnMarkCell</Operations>
+    <Rules>RuleTrue</Rules>
+    <Interaction>Marked</Interaction>
+    <IfExecuteEvent>sRenameAll</IfExecuteEvent>
+  </Event>
+
+  <Event>
+  <Code>sRenameAll</Code>
+  <Operations>SetType MIRROR</Operations>
+  <Rules>RuleTrue</Rules>
+  <Interaction>CellsOfType ClickedMIRROR</Interaction>
+  <IfExecuteEvent>MarkHead</IfExecuteEvent>
+  </Event>
+
+  <Event>
+    <Code>MarkHead</Code>
+    <Operations>MarkCell</Operations>
+    <Rules>RuleTrue</Rules>
+    <Interaction>CellsOfType Start</Interaction>
+    <IfExecuteEvent>drawLight1</IfExecuteEvent>
+  </Event>
+
+  <Event>
+    <Code>drawLight1</Code>
+    <Operations>Nothing</Operations>
+    <Rules>CellOfType empty</Rules>
+    <Interaction>MarkedDirection</Interaction>
+    <IfExecuteEvent>emptyCell</IfExecuteEvent>
+    <IfNoExecuteEvent>drawLight4</IfNoExecuteEvent>
+  </Event>
+
+  <Event>
+    <Code>emptyCell</Code>
+    <Operations>SetValue 100</Operations>
+    <Rules>RuleTrue</Rules>
+    <Interaction>Marked</Interaction>
+    <IfExecuteEvent>emptyCell0</IfExecuteEvent>
+  </Event>
+
+  <Event>
+    <Code>emptyCell0</Code>
+    <Operations>MarkCell</Operations>
+    <Rules>RuleTrue</Rules>
+    <Interaction>MarkedDirection</Interaction>
+    <IfExecuteEvent>emptyCell1</IfExecuteEvent>
+  </Event>
+  <Event>
+  <Code>emptyCell1</Code>
+  <Operations>CombineToMaxAndMarkChanges</Operations>
+  <Rules>RuleTrue</Rules>
+  <Interaction>MarkedGrouped</Interaction>
+  <IfExecuteEvent>emptyCell2</IfExecuteEvent>
+</Event>
+  <Event>
+    <Code>emptyCell2</Code>
+    <Operations>SetValue 0</Operations>
+    <Rules>ValueEqual 100</Rules>
+    <Interaction>MaxValue</Interaction>
+    <IfExecuteEvent>emptyCell2.5</IfExecuteEvent>
+    <IfNoExecuteEvent>emptyCell2.5</IfNoExecuteEvent>
+  </Event>
+  <Event>
+    <Code>emptyCell2.5</Code>
+    <Operations>SetValue 0</Operations>
+    <Rules>ValueEqual 100</Rules>
+    <Interaction>MaxValue</Interaction>
+    <IfExecuteEvent>emptyCell3</IfExecuteEvent>
+    <IfNoExecuteEvent>emptyCell3</IfNoExecuteEvent>
+  </Event>
+  <Event>
+    <Code>emptyCell3</Code>
+    <Operations>SetType light</Operations>
+    <Rules>RuleTrue</Rules>
+    <Interaction>Marked</Interaction>
+    <IfExecuteEvent>drawLight1</IfExecuteEvent>
+    <IfNoExecuteEvent>drawLight1</IfNoExecuteEvent>
+  </Event>
+
+
+  <Event>
+    <Code>drawLight4</Code>
+    <Operations>SetValue 100</Operations>
+    <Rules>CellOfType MIRROR</Rules>
+    <Interaction>MarkedDirection</Interaction>
+    <IfExecuteEvent>resetCurrentVal1</IfExecuteEvent>
+    <IfNoExecuteEvent>drawLight5</IfNoExecuteEvent>
+  </Event>
+
+  <Event>
+  <Code>drawLight5</Code>
+  <Operations>MarkCell</Operations>
+  <Rules>CellOfType End</Rules>
+  <Interaction>MarkedDirection</Interaction>
+  <IfExecuteEvent>sWon</IfExecuteEvent>
+  </Event>
+
+
+  <Event>
+    <Code>resetCurrentVal1</Code>
+    <Operations>UnMarkCell</Operations>
+    <Rules>RuleTrue</Rules>
+    <Interaction>Marked</Interaction>
+    <IfExecuteEvent>resetCurrentVal2</IfExecuteEvent>
+  </Event>
+
+  <Event>
+    <Code>resetCurrentVal2</Code>
+    <Operations>MarkCell</Operations>
+    <Rules>RuleTrue</Rules>
+    <Interaction>MaxValue</Interaction>
+    <IfExecuteEvent>resetCurrentVal3</IfExecuteEvent>
+  </Event>
+
+  <Event>
+    <Code>resetCurrentVal3</Code>
+    <Operations>SetValue 0</Operations>
+    <Rules>RuleTrue</Rules>
+    <Interaction>Marked</Interaction>
+    <IfExecuteEvent>drawLight1</IfExecuteEvent>
+  </Event>
+
+
+
+
+  <Event>
+    <Code>sWon</Code>
+    <Operations>SetType WON</Operations>
+    <Rules>RuleTrue</Rules>
+    <Interaction>CellsOfType End</Interaction>
+  </Event>
+  <Event>
+    <Code>sLost</Code>
+    <Operations>SetType LOST</Operations>
+    <Rules>RuleTrue</Rules>
+    <Interaction>All</Interaction>
+  </Event>
+
+  <LevelMaker>ReadFromFile games/connorGame/level1.sav</LevelMaker>
+  <LoseCon>CellOfType LOST</LoseCon>
+  <WinCon>CellOfType WON</WinCon>
+  <Height>15</Height>
+  <Width>15</Width>
+</data>
